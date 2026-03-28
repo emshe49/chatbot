@@ -1,0 +1,385 @@
+{
+  "evaluation_dataset": [
+    {
+      "id": 1,
+      "question": "When was UET Mardan established?",
+      "gold_answer": "UET Mardan was established in 2018.",
+      "category": "university_info",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "question": "Who is the current Chancellor of UET Mardan?",
+      "gold_answer": "Haji Ghulam Ali is the Chancellor of UET Mardan.",
+      "category": "leadership",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "question": "Who is the Vice Chancellor of UET Mardan?",
+      "gold_answer": "Prof. Dr. Sadiq Ullah is the Vice Chancellor of UET Mardan.",
+      "category": "leadership",
+      "difficulty": "easy"
+    },
+    {
+      "id": 4,
+      "question": "What is the vision statement of UET Mardan?",
+      "gold_answer": "The UET Mardan aims to evolve as a distinguished seat of higher education and research and to contribute to local and global socioeconomic and technological development.",
+      "category": "mission_vision",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "question": "Which undergraduate engineering programs are offered by UET Mardan?",
+      "gold_answer": "UET Mardan offers undergraduate programs in: Computer Software Engineering, Electrical Engineering, Telecommunication Engineering, Civil Engineering, Mechanical Engineering, Computer Science, and Natural Sciences and Humanities.",
+      "category": "academic_programs",
+      "difficulty": "easy"
+    },
+    {
+      "id": 6,
+      "question": "Are UET Mardan's engineering programs accredited?",
+      "gold_answer": "Yes, all undergraduate engineering programs are accredited by Pakistan Engineering Council (PEC) under the Outcome Based Education (OBE) system of the Washington Accord (WA). The BS Computer Science program is accredited by the National Computing Education Accreditation Council (NCEAC).",
+      "category": "accreditation",
+      "difficulty": "medium"
+    },
+    {
+      "id": 7,
+      "question": "What is the total number of open merit seats for Electrical Engineering in 2023-24?",
+      "gold_answer": "There are 35 open merit seats for Electrical Engineering in 2023-24.",
+      "category": "admission",
+      "difficulty": "medium"
+    },
+    {
+      "id": 8,
+      "question": "What are the eligibility criteria for admission to BSc Engineering programs?",
+      "gold_answer": "Candidates must have Intermediate (Pre-Engineering) with at least 60% unadjusted marks in Mathematics, Physics, and Chemistry or Computer Science/Computer Studies. They must also appear in the entrance test conducted by ETEA or authorized testing agency nominated by PEC.",
+      "category": "admission",
+      "difficulty": "hard"
+    },
+    {
+      "id": 9,
+      "question": "What percentage weightage is given to SSC marks for engineering program merit calculation?",
+      "gold_answer": "10% weightage is given to SSC marks for engineering program merit calculation.",
+      "category": "admission",
+      "difficulty": "medium"
+    },
+    {
+      "id": 10,
+      "question": "How is merit calculated for engineering programs?",
+      "gold_answer": "Merit for engineering programs is calculated as: 10% weightage to SSC marks, 50% weightage to Intermediate/HSSC marks, and 40% weightage to Entrance Test marks.",
+      "category": "admission",
+      "difficulty": "hard"
+    },
+    {
+      "id": 11,
+      "question": "What is the minimum CGPA required for graduation?",
+      "gold_answer": "A minimum CGPA of 2.0 is required for graduation.",
+      "category": "academic_rules",
+      "difficulty": "easy"
+    },
+    {
+      "id": 12,
+      "question": "What are the attendance requirements for students?",
+      "gold_answer": "Students must maintain at least 75% attendance in each course. Under special circumstances, up to 25% shortage may be allowed. Students with attendance below 75% will not be allowed to appear in final examinations.",
+      "category": "academic_rules",
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "question": "How are theory courses graded?",
+      "gold_answer": "Theory courses are graded as: 25% for sessional work, 25% for mid-term examination, and 50% for final-term examination.",
+      "category": "examination",
+      "difficulty": "medium"
+    },
+    {
+      "id": 14,
+      "question": "How are lab courses assessed?",
+      "gold_answer": "Lab courses are assessed as: 40% for sessional evaluation, 20% for mid-term evaluation, 20% for final-term evaluation, and 20% for oral examination (viva voce).",
+      "category": "examination",
+      "difficulty": "medium"
+    },
+    {
+      "id": 15,
+      "question": "What is the tuition fee per semester for open merit engineering students?",
+      "gold_answer": "The tuition fee per semester for open merit engineering students is PKR 22,000.",
+      "category": "fees",
+      "difficulty": "easy"
+    },
+    {
+      "id": 16,
+      "question": "What is the total fee for 4 years for open merit engineering students?",
+      "gold_answer": "The total fee for 4 years (8 semesters) for open merit engineering students is PKR 358,000.",
+      "category": "fees",
+      "difficulty": "hard"
+    },
+    {
+      "id": 17,
+      "question": "What scholarships are available for deserving students?",
+      "gold_answer": "UET Mardan offers: 1. Siblings Student Scholarship (50% tuition fee waiver for junior sibling), 2. Merit-based Free-ship (tuition fee waiver for top 10% in each department), 3. Need-based Free-ship (2 per batch in each department), 4. Best Student Project Awards (PKR 30,000 each), and 5. Gold Medals for outstanding graduates.",
+      "category": "scholarships",
+      "difficulty": "hard"
+    },
+    {
+      "id": 18,
+      "question": "What are the hostel charges per year?",
+      "gold_answer": "Hostel charges per year are PKR 24,500, which includes admission fee, room rent, service charges, utility charges, crockery charges, furniture charges, contingency charges, and other fees.",
+      "category": "hostel",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "question": "How many hostels are available on campus?",
+      "gold_answer": "There are 3 boys hostels (Ahmad Shah Abdali Hostel, Malik Ahmad Khan Hostel, and Hostel No. 3) with total capacity of 450 students, and 1 girls hostel (Ayesha Girls Hostel) with capacity of 100 students.",
+      "category": "hostel",
+      "difficulty": "easy"
+    },
+    {
+      "id": 20,
+      "question": "What is the duration of Final Year Project?",
+      "gold_answer": "The Final Year Project spans over two consecutive semesters (7th and 8th semesters), totaling 6 credit hours (3 credit hours each semester).",
+      "category": "academic_programs",
+      "difficulty": "medium"
+    },
+    {
+      "id": 21,
+      "question": "What are the research areas in Computer Software Engineering department?",
+      "gold_answer": "The Computer Software Engineering department researches: Machine Learning, Cloud Computing, Cyber Security, Software Requirements Engineering, Software Design & Architecture, Agile Software Development, Global Software Development, Software Outsourcing, Data Science, Internet of Things, Computer Networks, and Semantic Web.",
+      "category": "research",
+      "difficulty": "hard"
+    },
+    {
+      "id": 22,
+      "question": "What career opportunities are available for Computer Software Engineering graduates?",
+      "gold_answer": "Graduates can work as software engineers, software developers, project team leaders/members, entrepreneurs, and can work in software design and development across various application areas. According to US Bureau of Labor Statistics, software engineers are among highly paid professionals.",
+      "category": "career",
+      "difficulty": "medium"
+    },
+    {
+      "id": 23,
+      "question": "What laboratories are available in Electrical Engineering department?",
+      "gold_answer": "Electrical Engineering department has: Power Systems Lab, Power Electronics Lab, Electrical Machine-I & II Labs, Electronics Lab, Computer Lab, Control Systems Lab, Microcontroller Lab, Workshop Technology Lab, High Voltage Engineering Lab, and Digital Electronics Lab (shared).",
+      "category": "facilities",
+      "difficulty": "hard"
+    },
+    {
+      "id": 24,
+      "question": "What are the research areas in Electrical Engineering department?",
+      "gold_answer": "Electrical Engineering department researches: Artificial Intelligence, Machine Learning, Internet of Things, Cognitive Radios, Mobile Computing, Signal Processing, Wireless Communication, Smart Grids, Blockchain Technology, Energy Storage, Rural Distribution Grids, Renewable and Hybrid Energies, and Power Electronics.",
+      "category": "research",
+      "difficulty": "hard"
+    },
+    {
+      "id": 25,
+      "question": "What is the total credit hours requirement for BS Computer Science?",
+      "gold_answer": "BS Computer Science requires completion of at least 130 credit hours with a minimum CGPA of 2.0.",
+      "category": "academic_programs",
+      "difficulty": "medium"
+    },
+    {
+      "id": 26,
+      "question": "What specializations are available in BS Computer Science?",
+      "gold_answer": "BS Computer Science offers specializations in Artificial Intelligence and Data Science. Students can choose specialization at the start of 5th semester based on merit-cum-choice.",
+      "category": "academic_programs",
+      "difficulty": "medium"
+    },
+    {
+      "id": 27,
+      "question": "What laboratories are available in Civil Engineering department?",
+      "gold_answer": "Civil Engineering department has: Construction Materials & Testing Lab, Engineering Surveying Lab, Soil Mechanics & Highway Engineering Lab, Public Health Engineering Lab, Structural Engineering Lab, Hydraulics Lab, Drawing Lab, Computer/Simulation Lab, and Electro-Mechanical Engineering Lab (shared).",
+      "category": "facilities",
+      "difficulty": "hard"
+    },
+    {
+      "id": 28,
+      "question": "What is the university's policy on sexual harassment?",
+      "gold_answer": "UET Mardan has adopted HEC's harassment policy. It defines sexual harassment, establishes an Inquiry Committee for investigation, provides interim measures for affected persons, and outlines penalties for violations. The policy applies to all university community members.",
+      "category": "policies",
+      "difficulty": "hard"
+    },
+    {
+      "id": 29,
+      "question": "What are the gate timings for boys hostels?",
+      "gold_answer": "Boys hostel gate timings are: Winter - 7:00 AM to 10:00 PM, Summer - 6:00 AM to 11:00 PM.",
+      "category": "hostel",
+      "difficulty": "easy"
+    },
+    {
+      "id": 30,
+      "question": "What are the gate timings for girls hostel?",
+      "gold_answer": "Girls hostel gate timings are: 7:45 AM to 4:00 PM throughout the year.",
+      "category": "hostel",
+      "difficulty": "easy"
+    },
+    {
+      "id": 31,
+      "question": "How can students apply for migration to UET Mardan?",
+      "gold_answer": "Students must submit migration application within 15 days of semester commencement to Dean, Faculty of Engineering and Computing with PKR 200,000 migration fee. Migration is allowed only in 3rd, 4th, and 5th semesters for same discipline, with maximum 50% credit hours transfer.",
+      "category": "admission",
+      "difficulty": "hard"
+    },
+    {
+      "id": 32,
+      "question": "What is the university's refund policy for tuition fee?",
+      "gold_answer": "Full (100%) refund before commencement of classes; Half (50%) refund from 1st to 7th day of classes; No refund from 8th day of classes onward.",
+      "category": "fees",
+      "difficulty": "medium"
+    },
+    {
+      "id": 33,
+      "question": "What are the prohibited acts for students?",
+      "gold_answer": "Prohibited acts include: smoking on campus, using/providing prohibited drugs/alcohol, organizing unauthorized functions, collecting funds without permission, participating in strikes/walkouts, carrying weapons, damaging university property, using loudspeakers, violating hostel rules, and harassment of any kind.",
+      "category": "policies",
+      "difficulty": "medium"
+    },
+    {
+      "id": 34,
+      "question": "What facilities does UET Mardan provide for sports?",
+      "gold_answer": "UET Mardan provides a football ground, cricket ground, basketball court, badminton courts, indoor sports facilities, and hostel TV lounges for students.",
+      "category": "facilities",
+      "difficulty": "easy"
+    },
+    {
+      "id": 35,
+      "question": "How can students apply for admission?",
+      "gold_answer": "Students must submit online application forms to Directorate of Admissions before the last date. Required documents include: SSC and HSSC DMCs, domicile certificate, CNIC of student and parent/guardian, character certificate, and other relevant certificates.",
+      "category": "admission",
+      "difficulty": "medium"
+    },
+    {
+      "id": 36,
+      "question": "What is the medium of instruction at UET Mardan?",
+      "gold_answer": "The medium of instruction and examinations is English, except for Islamic Studies and Pakistan Studies where both English and Urdu options are available.",
+      "category": "academic_rules",
+      "difficulty": "easy"
+    },
+    {
+      "id": 37,
+      "question": "What is the duration of each semester?",
+      "gold_answer": "Each semester is 18 weeks long: 16 weeks for teaching, 9th week for mid-term exams, and 18th week for final-term exams.",
+      "category": "academic_rules",
+      "difficulty": "easy"
+    },
+    {
+      "id": 38,
+      "question": "How can students get career counseling?",
+      "gold_answer": "UET Mardan provides career counseling through designated counselors who offer advice on academic and professional plans, career choices, prospective employers, and future market trends.",
+      "category": "student_support",
+      "difficulty": "medium"
+    },
+    {
+      "id": 39,
+      "question": "What is the university's policy on plagiarism?",
+      "gold_answer": "While not explicitly detailed in this document, the university follows HEC policies on academic integrity. Students are expected to maintain high ethical standards in all academic work.",
+      "category": "policies",
+      "difficulty": "medium"
+    },
+    {
+      "id": 40,
+      "question": "How can international students apply for admission?",
+      "gold_answer": "International students must apply through Ministry of Finance and Economic Affairs, Government of Pakistan. They need equivalence certificate from IBCC, minimum 60% marks in HSSC/equivalent, and must pass SAT-I and SAT-II with minimum 50% score.",
+      "category": "admission",
+      "difficulty": "hard"
+    },
+    {
+      "id": 41,
+      "question": "What is the role of Quality Enhancement Cell?",
+      "gold_answer": "The Quality Enhancement Cell ensures academic quality assessment & enhancement and assists in implementing Internal Quality Assurance (IQA).",
+      "category": "administration",
+      "difficulty": "medium"
+    },
+    {
+      "id": 42,
+      "question": "What is the role of Office of Research, Innovation & Commercialisation?",
+      "gold_answer": "The Office of Research, Innovation and Commercialisation serves as a pivotal point encompassing all research activities - from development of research proposals to commercialisation of research products.",
+      "category": "administration",
+      "difficulty": "medium"
+    },
+    {
+      "id": 43,
+      "question": "What are the historical sites near Mardan?",
+      "gold_answer": "Historical sites near Mardan include: Sanghao Caves, Ashoka remains, Jamal Garhi, Shahbaz Garhi excavation sites, and UNESCO World Heritage Site Takht-i-Bahi. Mardan Museum is also nearby.",
+      "category": "location",
+      "difficulty": "easy"
+    },
+    {
+      "id": 44,
+      "question": "What is the famous sweet of Mardan?",
+      "gold_answer": "Mardan is famous for Badayuni Perhas, a sweet made by migrated tribe from Badayun district of Uttar Pradesh, India.",
+      "category": "location",
+      "difficulty": "easy"
+    },
+    {
+      "id": 45,
+      "question": "How many contact hours are required per credit hour for lab courses?",
+      "gold_answer": "For lab courses, one credit hour equals 3 contact hours per week.",
+      "category": "academic_rules",
+      "difficulty": "medium"
+    },
+    {
+      "id": 46,
+      "question": "What is the maximum credit hours a student can take in a regular semester?",
+      "gold_answer": "The maximum credit hours a student can take in a regular semester is 21 credit hours as per HEC rules.",
+      "category": "academic_rules",
+      "difficulty": "medium"
+    },
+    {
+      "id": 47,
+      "question": "What is the process for re-checking of exam papers?",
+      "gold_answer": "Students may apply to the Chairman of concerned Department for re-checking of final term exam papers (theory only) within announced dates.",
+      "category": "examination",
+      "difficulty": "medium"
+    },
+    {
+      "id": 48,
+      "question": "What is the fee for re-appearing in a failed course?",
+      "gold_answer": "The re-appearing fee for B.Sc. (per subject) is PKR 2,500.",
+      "category": "fees",
+      "difficulty": "easy"
+    },
+    {
+      "id": 49,
+      "question": "What are the medical facilities available on campus?",
+      "gold_answer": "UET Mardan provides 24/7 on-duty medical staff, a dedicated ambulance, and has easy access to health and emergency response facilities of Mardan city.",
+      "category": "facilities",
+      "difficulty": "easy"
+    },
+    {
+      "id": 50,
+      "question": "How can students submit grievances?",
+      "gold_answer": "Students can submit grievances to Director Quality Enhancement Cell (QEC) on prescribed form available at QEC Directorate or download section of university website.",
+      "category": "student_support",
+      "difficulty": "easy"
+    }
+  ],
+  "metadata": {
+    "source_document": "UG-2023-24.pdf",
+    "total_questions": 50,
+    "categories": [
+      "admission",
+      "fees",
+      "academic_programs",
+      "academic_rules",
+      "examination",
+      "scholarships",
+      "hostel",
+      "facilities",
+      "research",
+      "career",
+      "policies",
+      "student_support",
+      "leadership",
+      "university_info",
+      "mission_vision",
+      "accreditation",
+      "location",
+      "administration"
+    ],
+    "difficulty_levels": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "creation_date": "2024-01-20",
+    "purpose": "Evaluation of UET Mardan Chatbot RAG System"
+  }
+}

@@ -1,0 +1,524 @@
+question,gold_answer,chatbot_answer,similarity,response_time_sec
+When was UET Mardan established?,UET Mardan was established in 2018.,"The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.355,4.23
+Who is the current Chancellor of UET Mardan?,Haji Ghulam Ali is the Chancellor of UET Mardan.,"The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.27,2.93
+Who is the Vice Chancellor of UET Mardan?,Prof. Dr. Sadiq Ullah is the Vice Chancellor of UET Mardan.,"Vice Chancellor of UET Mardan
+
+1. Prof. Dr. Sadiq Ullah is the Vice Chancellor of the University of Engineering and Technology, Mardan.
+
+📄 Sources:
+- UG-2023-24
+",0.888,2.59
+What is the vision statement of UET Mardan?,The UET Mardan aims to evolve as a distinguished seat of higher education and research and to contribute to local and global socioeconomic and technological development.,"Vision Statement
+
+1. To evolve as a distinguished seat of higher education and research and to contribute to local and global socioeconomic and technological development.
+
+📄 Sources:
+- UG-2023-24
+",0.482,3.6
+Which undergraduate engineering programs are offered by UET Mardan?,"UET Mardan offers undergraduate programs in: Computer Software Engineering, Electrical Engineering, Telecommunication Engineering, Civil Engineering, Mechanical Engineering, Computer Science, and Natural Sciences and Humanities.","Undergraduate Engineering Programs at UET Mardan
+
+1. Telecommunication Engineering  
+2. Electrical Engineering  
+3. Computer Software Engineering  
+4. Civil Engineering  
+5. Mechanical Engineering
+
+📄 Sources:
+- UG-2023-24
+",0.736,3.41
+Are UET Mardan's engineering programs accredited?,"Yes, all undergraduate engineering programs are accredited by Pakistan Engineering Council (PEC) under the Outcome Based Education (OBE) system of the Washington Accord (WA). The BS Computer Science program is accredited by the National Computing Education Accreditation Council (NCEAC).","The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.186,4.01
+What is the total number of open merit seats for Electrical Engineering in 2023-24?,There are 35 open merit seats for Electrical Engineering in 2023-24.,"The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.3,2.56
+What are the eligibility criteria for admission to BSc Engineering programs?,"Candidates must have Intermediate (Pre-Engineering) with at least 60% unadjusted marks in Mathematics, Physics, and Chemistry or Computer Science/Computer Studies. They must also appear in the entrance test conducted by ETEA or authorized testing agency nominated by PEC.","Eligibility Criteria for BSc Engineering Admission
+
+1. Academic Qualification  
+   a. Must have passed an Intermediate (Pre‑Engineering) examination or an equivalent qualification recognized by the IBCC.  
+   b. Required subjects are Mathematics, Physics and Chemistry, or Mathematics, Physics and Computer Science/Computer Studies.  
+   c. Minimum of 60 % unadjusted marks in the Intermediate/Pre‑Engineering exam.
+
+2. Entrance Test Requirement  
+   a. Candidates must appear for the entrance test conducted by ETEA (for Khyber Pakhtunkhwa / former FATA applicants) or by any testing agency authorized by the Pakistan Engineering Council (PEC).  
+   b. A minimum of 33 % marks in this entrance test is required.
+
+3. Domicile and Family Requirements (for Pakistani applicants)  
+   a. Must hold domicile of Khyber Pakhtunkhwa.  
+   b. The candidate’s father or mother must have a valid OPF membership and a Foreign Exchange Remittance card.
+
+4. Foreign Student Requirements  
+   a. Must pass SAT‑I and SAT‑II (Physics, Chemistry, Mathematics) with at least 50 % score.  
+   b. Additional documentation such as NOC from the applicant’s embassy and the Government of Pakistan may be required for admission to a second discipline.
+
+📄 Sources:
+- UG-2023-24
+",0.656,4.44
+What percentage weightage is given to SSC marks for engineering program merit calculation?,10% weightage is given to SSC marks for engineering program merit calculation.,"SSC Marks Weightage for Engineering Merit
+
+1. The engineering program assigns a 10 percent weightage to the percentage marks obtained in the SSC examination.
+
+📄 Sources:
+- UG-2023-24
+",0.935,2.73
+How is merit calculated for engineering programs?,"Merit for engineering programs is calculated as: 10% weightage to SSC marks, 50% weightage to Intermediate/HSSC marks, and 40% weightage to Entrance Test marks.","Merit Calculation for Engineering Programs  
+
+1. The merit score is a weighted sum of three components:  
+   a. Percent marks obtained in the SSC examination – 10 % of the total merit.  
+   b. Percent marks obtained in the Intermediate (or equivalent) examination, after adjustment – 50 % of the total merit.  
+   c. Percent marks obtained in the entrance test conducted by the authorized testing agency – 40 % of the total merit.  
+
+2. Adjusted Intermediate marks are calculated by applying a deduction for each additional attempt to pass or improve the Intermediate (Part‑I and Part‑II):  
+   a. A loss of 10 marks is applied for each extra attempt.  
+   b. The total deduction under this rule cannot exceed 20 marks.  
+
+3. If the Intermediate Part‑2 result is not declared on time, the university will compute merit using the Matric (SSC) marks, Intermediate Part‑1 marks, and the entrance test score.  
+
+4. The final merit score is obtained by multiplying each component’s percentage by its weightage and adding the three products.  
+
+5. Candidates must have at least 60 % (unadjusted) marks in Intermediate (Pre‑Engineering) or an equivalent qualification and must appear in the entrance test to be eligible for merit calculation.
+
+📄 Sources:
+- UG-2023-24
+",0.837,4.17
+What is the minimum CGPA required for graduation?,A minimum CGPA of 2.0 is required for graduation.,"Minimum CGPA Required for Graduation
+
+1. To be awarded a bachelor’s degree a student must obtain a Cumulative Grade Point Average (CGPA) of at least 2.0. 
+2. This requirement is part of the degree requirements and applies to all students completing the program.
+
+📄 Sources:
+- UG-2023-24
+",0.851,6.91
+What are the attendance requirements for students?,"Students must maintain at least 75% attendance in each course. Under special circumstances, up to 25% shortage may be allowed. Students with attendance below 75% will not be allowed to appear in final examinations.","Attendance Requirements
+
+1. Attendance in all classes is mandatory; students must attend every scheduled class.  
+2. Under special circumstances a shortage of attendance of up to 25 % may be allowed, meaning a student may miss at most one quarter of the total classes.  
+3. A student is not permitted to appear in the final examination of a course if his or her attendance falls below 75 % for that course.  
+4. If a student is barred from the final exam due to insufficient attendance, zero marks will be recorded for that examination.
+
+📄 Sources:
+- UG-2023-24
+",0.848,9.35
+How are theory courses graded?,"Theory courses are graded as: 25% for sessional work, 25% for mid-term examination, and 50% for final-term examination.","The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.218,11.48
+How are lab courses assessed?,"Lab courses are assessed as: 40% for sessional evaluation, 20% for mid-term evaluation, 20% for final-term evaluation, and 20% for oral examination (viva voce).","Lab Course Assessment
+
+1. Lab courses are separate from theory courses and are identified by an “L” at the end of the course code.  
+2. Assessment is divided into two main components:  
+   a. Sessional marks – these constitute 50 % of the total lab assessment and are earned through lab work, assignments, quizzes, presentations and projects conducted during the semester.  
+   b. Practical examination – the remaining portion of the assessment is based on a practical exam conducted at the end of the semester. The exam is marked jointly by the course instructor and an external examiner, and the marks are awarded out of 12.5.  
+3. The exact percentage weight of the practical examination is not specified in the prospectus; it complements the 50 % sessional component to complete the overall lab grade.
+
+📄 Sources:
+- UG-2023-24
+",0.711,13.38
+What is the tuition fee per semester for open merit engineering students?,"The tuition fee per semester for open merit engineering students is PKR 22,000.","Tuition Fee per Semester for Open Merit Engineering Students
+
+1. The tuition fee for Open Engineering (open merit) programs is 22,000 PKR per semester.
+
+📄 Sources:
+- UG-2023-24
+",0.952,10.34
+What is the total fee for 4 years for open merit engineering students?,"The total fee for 4 years (8 semesters) for open merit engineering students is PKR 358,000.","Total Fee for Four‑Year Open‑Merit Engineering Programme  
+
+1. First semester fee for Open Engineering and Computing Programs: 51,750 PKR.  
+2. Recurring fee for each of the remaining seven semesters: 43,750 PKR per semester.  
+3. Total fee for the eight semesters (four years):  
+
+   51,750 PKR + (7 × 43,750 PKR) = 51,750 PKR + 306,250 PKR = 358,000 PKR.  
+
+Therefore, the total amount payable over the full four‑year duration for an open‑merit engineering student is 358,000 PKR.
+
+📄 Sources:
+- UG-2023-24
+",0.94,10.99
+What scholarships are available for deserving students?,"UET Mardan offers: 1. Siblings Student Scholarship (50% tuition fee waiver for junior sibling), 2. Merit-based Free-ship (tuition fee waiver for top 10% in each department), 3. Need-based Free-ship (2 per batch in each department), 4. Best Student Project Awards (PKR 30,000 each), and 5. Gold Medals for outstanding graduates.","Scholarships Available for Deserving Students
+
+1. London Foundation Scholarships – www.pfl.uk.net  
+2. Ehsaas Undergraduate Scholarship Project – www.hec.gov.pk  
+3. National Bank of Pakistan Loan Scheme – www.nbp.com.pk  
+4. Professional Education Foundation – www.thepef.com  
+5. Chief Minister Scholarships for needy students – www.pmu-hed.com  
+6. Pakistan Engineering Congress – www.peccongress.com  
+7. Fast Cables Merit Scholarships – www.fast‑cables.com  
+8. HEC Need‑Based Scholarships – www.hec.gov.pk  
+9. USAID Merit & Need Based Scholarships – www.hec.gov.pk  
+10. Scholarship for Petroleum Production Areas – (website not provided)  
+11. HEC German Need‑Based Scholarships – www.hec.gov.pk  
+12. Diya Foundation Scholarships – www.diyapakorg  
+
+University‑Specific Scholarships  
+13. Free‑Ship Merit Based Tuition Fee Waiver – tuition fee waived for the academic year based on the Scholarship Award Committee recommendation.  
+14. Siblings Student Scholarship – when two or more siblings study in UG programs under the open/rationalized scheme, the junior sibling receives a 50 % tuition fee waiver until the senior sibling completes eight semesters.  
+
+Important Conditions  
+Students receiving any other form of financial assistance are ineligible for additional scholarships.  
+Double financial benefits from any source are strictly discouraged.  
+Students from the erstwhile FATA (merged districts of KP) are eligible for all university or donor scholarships; students from settled areas may also apply to local, provincial or federal agencies.
+
+📄 Sources:
+- UG-2023-24
+",0.625,11.36
+What are the hostel charges per year?,"Hostel charges per year are PKR 24,500, which includes admission fee, room rent, service charges, utility charges, crockery charges, furniture charges, contingency charges, and other fees.","Hostel Charges per Academic Year
+
+1. Total annual hostel fee for open‑merit students is 24,500 PKR.  
+2. Breakdown of the charges included in the total amount:  
+   a. Admission Fee – 1,000 PKR  
+   b. Room Rent Charges – 5,000 PKR  
+   c. Service Charges – 3,000 PKR  
+   d. Utility Charges – 10,000 PKR (gas advance 3,000 PKR and electricity 7,000 PKR)  
+   e. Crockery Charges – 1,000 PKR  
+   f. Furniture Charges – 1,000 PKR  
+   g. Contingency Charges – 2,500 PKR  
+   h. CRFAC – 500 PKR  
+   i. Hostel Card – 500 PKR  
+
+3. In addition to the above, a refundable security deposit (amount not specified in the prospectus) must be paid at the time of admission and is returned after deduction of any outstanding dues when the student leaves the hostel.
+
+📄 Sources:
+- UG-2023-24
+",0.827,10.98
+How many hostels are available on campus?,"There are 3 boys hostels (Ahmad Shah Abdali Hostel, Malik Ahmad Khan Hostel, and Hostel No. 3) with total capacity of 450 students, and 1 girls hostel (Ayesha Girls Hostel) with capacity of 100 students.","Hostel Count on Campus
+
+1. The university provides three boys hostels: Ahmad Shah Abdali Hostel, Malik Ahmad Khan Hostel, and Hostel No. 3.  
+2. There is one girls hostel: Ayesha Girls Hostel.  
+3. Therefore, the total number of hostels available on campus is four.
+
+📄 Sources:
+- UG-2023-24
+",0.862,7.17
+What is the duration of Final Year Project?,"The Final Year Project spans over two consecutive semesters (7th and 8th semesters), totaling 6 credit hours (3 credit hours each semester).","Duration of Final Year Project
+
+1. The Final Year Project (FYP) is a capstone project that spans two consecutive semesters, specifically Semester 7 and Semester 8.  
+2. Each semester lasts eighteen weeks, with sixteen weeks dedicated to teaching and project work.  
+3. The project carries a total of six credit hours, divided as three credit hours (nine contact hours per week) in each of the two semesters.  
+4. Consequently, the overall duration of the FYP is the full length of the last two semesters of study, amounting to approximately thirty‑six weeks of teaching time.
+
+📄 Sources:
+- UG-2023-24
+",0.786,8.5
+What are the research areas in Computer Software Engineering department?,"The Computer Software Engineering department researches: Machine Learning, Cloud Computing, Cyber Security, Software Requirements Engineering, Software Design & Architecture, Agile Software Development, Global Software Development, Software Outsourcing, Data Science, Internet of Things, Computer Networks, and Semantic Web.","Research Areas in Computer Software Engineering
+
+1. Human-Computer Interaction (HCI)  
+2. Agile Software Development
+
+📄 Sources:
+- UG-2023-24
+",0.558,8.9
+What career opportunities are available for Computer Software Engineering graduates?,"Graduates can work as software engineers, software developers, project team leaders/members, entrepreneurs, and can work in software design and development across various application areas. According to US Bureau of Labor Statistics, software engineers are among highly paid professionals.","Career Opportunities for Computer Software Engineering Graduates
+
+1. Software design and development in a wide range of application areas, including small‑scale and large‑scale systems.  
+2. Leadership or team‑member roles on software project teams, planning and delivering quality software within schedule and cost constraints.  
+3. Positions such as IT consultant, applications programmer, sales and business developer, cybersecurity consultant, information security specialist, information systems manager, database administrator, multimedia programmer, systems analyst, and games developer.  
+4. Employment in diverse industries: software houses, data warehouses, multinational companies, governmental agencies, universities, healthcare institutions, and e‑commerce firms (examples include Amazon, OLX, Daraz).  
+5. Opportunities in public and private national organisations such as NADRA, Pakistan Software Export Board, provincial IT boards, technology parks, and other technology‑focused enterprises.  
+6. Roles that support digital transformation and the development of a knowledge‑based economy, including entrepreneurship and consultancy.  
+7. Highly paid and fast‑growing positions as software engineers, as projected by the United States Bureau of Labor and Statistics for the period 2018‑2028.
+
+📄 Sources:
+- UG-2023-24
+",0.716,9.75
+What laboratories are available in Electrical Engineering department?,"Electrical Engineering department has: Power Systems Lab, Power Electronics Lab, Electrical Machine-I & II Labs, Electronics Lab, Computer Lab, Control Systems Lab, Microcontroller Lab, Workshop Technology Lab, High Voltage Engineering Lab, and Digital Electronics Lab (shared).","The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.185,11.33
+What are the research areas in Electrical Engineering department?,"Electrical Engineering department researches: Artificial Intelligence, Machine Learning, Internet of Things, Cognitive Radios, Mobile Computing, Signal Processing, Wireless Communication, Smart Grids, Blockchain Technology, Energy Storage, Rural Distribution Grids, Renewable and Hybrid Energies, and Power Electronics.","The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.202,7.7
+What is the total credit hours requirement for BS Computer Science?,BS Computer Science requires completion of at least 130 credit hours with a minimum CGPA of 2.0.,"Total Credit Hours for BS Computer Science
+
+1. The BS Computer Science program requires a total of 27 credit hours.
+
+📄 Sources:
+- UG-2023-24
+",0.772,13.85
+What specializations are available in BS Computer Science?,BS Computer Science offers specializations in Artificial Intelligence and Data Science. Students can choose specialization at the start of 5th semester based on merit-cum-choice.,"Specializations in BS Computer Science
+
+1. Artificial Intelligence
+2. Data Science
+
+These two areas are offered as specialization options for BS Computer Science students, with allocation based on merit and choice at the start of the fifth semester.
+
+📄 Sources:
+- UG-2023-24
+",0.935,6.9
+What laboratories are available in Civil Engineering department?,"Civil Engineering department has: Construction Materials & Testing Lab, Engineering Surveying Lab, Soil Mechanics & Highway Engineering Lab, Public Health Engineering Lab, Structural Engineering Lab, Hydraulics Lab, Drawing Lab, Computer/Simulation Lab, and Electro-Mechanical Engineering Lab (shared).","Civil Engineering Department Laboratories
+
+1. Civil Engineering Materials Lab (CE‑112L)  
+2. Engineering Surveying Lab (CE‑202L)  
+3. Engineering Mechanics Lab (CE‑111L)  
+4. Engineering Drawing Lab (CE‑211L)
+
+📄 Sources:
+- UG-2023-24
+",0.651,11.4
+What is the university's policy on sexual harassment?,"UET Mardan has adopted HEC's harassment policy. It defines sexual harassment, establishes an Inquiry Committee for investigation, provides interim measures for affected persons, and outlines penalties for violations. The policy applies to all university community members.","University Policy on Sexual Harassment
+
+1. Definition  
+   Sexual harassment is any unwelcome sexual advance, request for sexual favors, verbal or written communication, physical conduct of a sexual nature, or sexually demeaning attitudes that:  
+   a. Is used as a term or condition for participation in any university activity;  
+   b. Influences academic or employment decisions based on submission to or rejection of such conduct; or  
+   c. Creates an intimidating, hostile, or offensive educational or work environment.  
+   The policy applies to conduct by any gender toward any other gender and includes electronic forms such as email, social media, texting, telephone, and voicemail.
+
+2. Reporting and Investigation  
+   a. All members of the university community are encouraged to report observed instances of sexual harassment to the designated Focal Persons or the Inquiry Committee.  
+   b. The university has an obligation to investigate material violations even if a formal complaint has not been filed.  
+   c. An Inquiry Committee is constituted to investigate and adjudicate allegations of prohibited conduct. Those who have experienced harassment may also seek support and advice from the Inquiry Committee.
+
+3. Support Structures  
+   a. The university shall designate at least two members of the administration as “Focal Persons,” one of whom must be a woman, to provide immediate assistance and support to victims. Contact details shall be readily available, including on the university website.  
+   b. Victims may also contact members of the Inquiry Committee for support.
+
+4. Protection Against Reprisal  
+   a. No member of the university community may face reprisal or threats of reprisal for using the policy, whether formally or informally.  
+   b. Retaliation against a complainant, witnesses, or anyone participating in the process will be investigated formally and, if substantiated, will result in appropriate disciplinary action.
+
+5. Disciplinary Actions  
+   a. For gender‑based harassment or discrimination, the university will take steps to end the conduct, prevent its recurrence, and address its effects.  
+   b. The University Discipline Committee (UDC) may recommend further action, which can include sanctions such as rustication, expulsion, or fines as prescribed for related misconduct.  
+   c. Specific sanctions for sexual harassment are determined by the Inquiry Committee and the UDC in accordance with the policy.
+
+📄 Sources:
+- UG-2023-24
+",0.579,10.34
+What are the gate timings for boys hostels?,"Boys hostel gate timings are: Winter - 7:00 AM to 10:00 PM, Summer - 6:00 AM to 11:00 PM.","Gate Timings for Boys Hostels
+
+1. Winter season – the gate opens at 07:00 AM and closes at 10:00 PM.  
+2. Summer season – the gate opens at 06:00 AM and closes at 11:00 PM.
+
+📄 Sources:
+- UG-2023-24
+",0.926,9.06
+What are the gate timings for girls hostel?,Girls hostel gate timings are: 7:45 AM to 4:00 PM throughout the year.,"Gate Timings for Girls Hostel
+
+1. Winter season – opening gate time is 07:45 AM and closing gate time is 04:00 PM.
+2. Summer season – opening gate time is 07:45 AM and closing gate time is 04:00 PM.
+
+📄 Sources:
+- UG-2023-24
+",0.879,6.48
+How can students apply for migration to UET Mardan?,"Students must submit migration application within 15 days of semester commencement to Dean, Faculty of Engineering and Computing with PKR 200,000 migration fee. Migration is allowed only in 3rd, 4th, and 5th semesters for same discipline, with maximum 50% credit hours transfer.","Procedure for Migration Application
+
+1. Submit a written application for migration within 15 days from the start of the semester.  
+2. Address the application to the Dean, Faculty of Engineering and Computing.  
+3. Attach a fee receipt of Rs. 200,000 (Two hundred thousand rupees) payable to the Treasurer, UET Mardan.  
+4. Ensure the application is forwarded to the Admission Committee of UET Mardan through the appropriate Ministry for recommendation.  
+5. Meet the eligibility conditions: the migration must be to the same discipline, and the applicant must be a bona‑fide student of an HEC‑recognized public sector institution enrolled in a program accredited by the relevant accreditation body.  
+6. The Admission Committee will review the application, assess merit, and make the final admission decision within the prescribed time.
+
+📄 Sources:
+- UG-2023-24
+",0.739,9.77
+What is the university's refund policy for tuition fee?,Full (100%) refund before commencement of classes; Half (50%) refund from 1st to 7th day of classes; No refund from 8th day of classes onward.,"Tuition Fee Refund Policy
+
+1. Semester/Trimester System  
+   1. Full (100 %) refund if the request is made before the commencement of classes.  
+   2. Half (50 %) refund if the request is made from the 1st to the 7th day after classes begin.  
+   3. No (0 %) refund if the request is made from the 8th day of classes onward.  
+
+2. Annual System  
+   1. Full (100 %) refund if the request is made up to the 15th day of the convene of classes.  
+   2. Half (50 %) refund if the request is made from the 16th to the 30th day of the convene of classes.  
+   3. No (0 %) refund if the request is made from the 31st day of the convene of classes onward.  
+
+3. Additional Note  
+   If admission of a first‑semester student is cancelled for any reason, the refund rules stated above and any other fee provisions in the prospectus for 2023‑24 will be applied.
+
+📄 Sources:
+- UG-2023-24
+",0.746,10.95
+What are the prohibited acts for students?,"Prohibited acts include: smoking on campus, using/providing prohibited drugs/alcohol, organizing unauthorized functions, collecting funds without permission, participating in strikes/walkouts, carrying weapons, damaging university property, using loudspeakers, violating hostel rules, and harassment of any kind.","Prohibited Acts for Students  
+
+1. Consuming alcoholic drinks or possessing intoxicating drugs on campus, during study tours, cultural tours, or survey camps.  
+2. Organising functions, societies or associations within the university campus or hostel without following the prescribed rules and regulations.  
+3. Collecting funds on behalf of the university without written permission from the Vice‑Chancellor.  
+4. Keeping prohibited items in hostel rooms such as cars, motorcycles, video cameras, TV sets, gold, expensive mobile phones, large sums of money (computers or laptops without external speakers are allowed for educational purposes only).  
+5. Forcing fellow students to walk out of classes, or organising strikes, agitation or violence against university authorities or staff.  
+6. Using abusive language or manhandling university authorities or staff.  
+7. Participating in a violent attack on university offices.  
+8. Damaging or destroying university property.  
+9. Bringing or firing arms within the university campus.  
+10. Using loudspeakers or making provocative speeches on campus.  
+11. Raising or using funds for political, religious or religio‑political groups without permission.  
+12. Engaging in any unauthorized activities as defined by university regulations.  
+13. Committing gender‑based harassment or discrimination.  
+14. Engaging in non‑consensual sexual acts or non‑consensual sexual contact.
+
+📄 Sources:
+- UG-2023-24
+",0.842,14.01
+What facilities does UET Mardan provide for sports?,"UET Mardan provides a football ground, cricket ground, basketball court, badminton courts, indoor sports facilities, and hostel TV lounges for students.","Sports Facilities at UET Mardan
+
+1. Football ground
+2. Cricket ground
+3. Basketball court
+4. Badminton courts
+5. Indoor sports facilities
+6. Hostel TV lounges for recreation and mental well‑being
+
+📄 Sources:
+- UG-2023-24
+",0.829,9.88
+How can students apply for admission?,"Students must submit online application forms to Directorate of Admissions before the last date. Required documents include: SSC and HSSC DMCs, domicile certificate, CNIC of student and parent/guardian, character certificate, and other relevant certificates.","Admission Application Process
+
+1. Submit an online application form to the Directorate of Admissions, UET Mardan, on or before the advertised last date. The form must be complete and include any required recommendations from the Admission Committee.  
+2. After the online call for applications, the Directorate will prepare a provisional merit list and display it on the university’s admission notice board and official website (http://www.uetmardan.edu.pk).  
+3. Candidates whose names appear on the provisional list will receive a notification on the university’s webpage and on the notice board. It is the candidate’s responsibility to check these sources regularly.  
+4. Selected candidates must appear for an interview on the announced date, accompanied by their parents or guardians.  
+5. On the interview day, candidates must complete all admission formalities, including payment of any required fees, to secure their seat. Failure to do so will result in the seat being declared vacant.  
+6. If a candidate wishes to change the order of discipline preferences or correct any data, they may fill out a Correction/Rectification Form available at the Directorate of Admissions, attach a copy of the original application, and pay a fee of Rs 200.  
+
+All applications must be submitted within the specified deadline; incomplete or late applications will not be considered.
+
+📄 Sources:
+- UG-2023-24
+",0.619,7.7
+What is the medium of instruction at UET Mardan?,"The medium of instruction and examinations is English, except for Islamic Studies and Pakistan Studies where both English and Urdu options are available.","The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.107,9.77
+What is the duration of each semester?,"Each semester is 18 weeks long: 16 weeks for teaching, 9th week for mid-term exams, and 18th week for final-term exams.","Duration of Each Semester
+
+1. Each semester lasts eighteen (18) weeks.  
+2. The 9th week is reserved for the Midterm examination and the 18th week for the Final term examination; the other sixteen weeks are used for teaching.
+
+📄 Sources:
+- UG-2023-24
+",0.898,9.06
+How can students get career counseling?,"UET Mardan provides career counseling through designated counselors who offer advice on academic and professional plans, career choices, prospective employers, and future market trends.","Career Counseling Access
+
+1. Students should contact the designated career counsellors at UET Mardan.  
+2. By availing these counsellor services, they receive comprehensive advice on academic and professional plans, helping them shape goals and make informed career decisions.
+
+📄 Sources:
+- UG-2023-24
+",0.856,7.09
+What is the university's policy on plagiarism?,"While not explicitly detailed in this document, the university follows HEC policies on academic integrity. Students are expected to maintain high ethical standards in all academic work.","Plagiarism Policy
+
+The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.329,7.71
+How can international students apply for admission?,"International students must apply through Ministry of Finance and Economic Affairs, Government of Pakistan. They need equivalence certificate from IBCC, minimum 60% marks in HSSC/equivalent, and must pass SAT-I and SAT-II with minimum 50% score.","Application Procedure for International Students
+
+1. Prepare the application package and send it to the Ministry of Finance and Economic Affairs, Government of Pakistan, Islamabad.  
+2. Include a certificate from an appropriate authority in your home country confirming that you are a bona‑fide citizen and that you have sufficient financial resources to cover your study expenses.  
+3. Ensure you meet the specific admission criteria for the program you wish to join, for example:  
+   a. For BSc Engineering, obtain a minimum of 50 % in SAT‑I and SAT‑II (Physics, Chemistry, Mathematics).  
+   b. For other programs, satisfy the academic requirements listed in the prospectus (e.g., intermediate‑level marks, ETEA scores, domicile, parental OPF membership).  
+4. After the university receives your application, the Directorate of Admissions will forward your details, together with the Admission Committee’s recommendation, to the Vice‑Chancellor for approval within 30 days of the admission deadline.  
+5. Once approved, your name will be entered in the University Students’ Register and a student identity card will be issued.  
+6. Join the university within 15 days from the start of classes; if a genuine reason prevents this, request an extension through the Admission Committee’s recommendation.
+
+📄 Sources:
+- UG-2023-24
+",0.797,8.32
+What is the role of Quality Enhancement Cell?,The Quality Enhancement Cell ensures academic quality assessment & enhancement and assists in implementing Internal Quality Assurance (IQA).,"Role of Quality Enhancement Cell
+
+1. The Quality Enhancement Cell undertakes measures to ensure academic quality assessment and enhancement.  
+2. It assists the university in implementing Internal Quality Assurance (IQA).
+
+📄 Sources:
+- UG-2023-24
+",0.949,10.1
+"What is the role of Office of Research, Innovation & Commercialisation?","The Office of Research, Innovation and Commercialisation serves as a pivotal point encompassing all research activities - from development of research proposals to commercialisation of research products.","Role of Office of Research, Innovation & Commercialisation
+
+1. It serves as a pivotal point that encompasses all research activities within the university.  
+2. It is responsible for the development of research proposals.  
+3. It manages the commercialization of research products.
+
+📄 Sources:
+- UG-2023-24
+",0.803,7.49
+What are the historical sites near Mardan?,"Historical sites near Mardan include: Sanghao Caves, Ashoka remains, Jamal Garhi, Shahbaz Garhi excavation sites, and UNESCO World Heritage Site Takht-i-Bahi. Mardan Museum is also nearby.","Historical Sites Near Mardan
+
+1. Sanghao Caves – ancient caves containing early artefacts.  
+2. Ashoka remains – relics associated with Emperor Ashoka’s period.  
+3. Jamal Garhi – an archaeological excavation site.  
+4. Shahbaz Garhi – another important excavation site.  
+5. Takht‑i‑Bahi – a UNESCO World Heritage Site located close to Mardan.  
+6. Mardan Museum – a museum near the University of Engineering and Technology that displays local artefacts.  
+7. Pushkalavati (Charsadda) – the former capital of Gandhara, about 25 km from Mardan.  
+8. Hund – the later capital of Gandhara, also roughly 25 km from Mardan.
+
+📄 Sources:
+- UG-2023-24
+",0.818,8.93
+What is the famous sweet of Mardan?,"Mardan is famous for Badayuni Perhas, a sweet made by migrated tribe from Badayun district of Uttar Pradesh, India.","Famous Sweet of Mardan
+
+1. The well‑known sweet of Mardan is called Badayuni Perhas.  
+2. It is prepared by the migrated tribe that originally made the sweet in Badayun, a district of Uttar Pradesh, as a remembrance of their former home after the partition.  
+3. Badayuni Perhas are popular throughout Pakistan and are also exported abroad, contributing to Mardan’s reputation among scholars and researchers.
+
+📄 Sources:
+- UG-2023-24
+",0.895,9.61
+How many contact hours are required per credit hour for lab courses?,"For lab courses, one credit hour equals 3 contact hours per week.","Contact Hours per Credit Hour for Lab Courses
+
+1. One credit hour for a lab course equals 3 contact hours.
+
+📄 Sources:
+- UG-2023-24
+",0.906,11.4
+What is the maximum credit hours a student can take in a regular semester?,The maximum credit hours a student can take in a regular semester is 21 credit hours as per HEC rules.,"The requested information is not available in the provided prospectus.
+
+📄 Sources:
+- UG-2023-24
+",0.047,10.22
+What is the process for re-checking of exam papers?,Students may apply to the Chairman of concerned Department for re-checking of final term exam papers (theory only) within announced dates.,"Re‑checking of Exam Papers
+
+1. The student must submit an application to the Chairman of the department that conducted the exam.  
+2. The request is allowed only for final term theory papers.  
+3. The application must be made within the re‑checking dates announced by the university for that exam.
+
+📄 Sources:
+- UG-2023-24
+",0.838,7.92
+What is the fee for re-appearing in a failed course?,"The re-appearing fee for B.Sc. (per subject) is PKR 2,500.","Re‑appearing Fee for a Failed Course
+
+1. The fee for re‑appearing (re‑registration) in a failed B.Sc subject is 2,500 PKR per subject.
+
+📄 Sources:
+- UG-2023-24
+",0.851,12.73
+What are the medical facilities available on campus?,"UET Mardan provides 24/7 on-duty medical staff, a dedicated ambulance, and has easy access to health and emergency response facilities of Mardan city.","Medical Facilities on Campus
+
+1. 24/7 on‑duty medical staff available for student health needs.  
+2. A dedicated ambulance on campus for emergency transport.  
+3. Easy access to the health and emergency response facilities of Mardan city.  
+4. Access to counselling services and other appropriate medical assistance.
+
+📄 Sources:
+- UG-2023-24
+",0.716,4.58
+How can students submit grievances?,Students can submit grievances to Director Quality Enhancement Cell (QEC) on prescribed form available at QEC Directorate or download section of university website.,"Submitting Grievances
+
+1. Students can report any observed instance of sexual harassment to the designated Focal Persons.  
+2. They may also submit a formal complaint directly to the Inquiry Committee.  
+3. If the conduct falls within the scope of the 2010 Harassment Act, the affected person has the option to submit a complaint to the Ombudsperson.  
+4. The university is obligated to investigate material violations of the policy as soon as a complaint or report is received, even if a formal complaint has not yet been filed.
+
+📄 Sources:
+- UG-2023-24
+",0.318,8.05

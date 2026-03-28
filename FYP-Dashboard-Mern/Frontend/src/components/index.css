@@ -1,0 +1,17 @@
+/* Scrollbar Styles */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #4c1d95; /* indigo-900 */
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #4338ca; /* indigo-700 */
+  border-radius: 20px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5; /* indigo-600 */
+}

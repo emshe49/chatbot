@@ -1,0 +1,5 @@
+uploads/
+*.pdf
+# i want to ignore data directorY and all the folder and files in it 
+data/
+*.pdf
