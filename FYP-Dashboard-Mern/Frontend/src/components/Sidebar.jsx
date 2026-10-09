@@ -6,7 +6,7 @@ function Sidebar() {
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken"); // Remove token
-    navigate("/login"); // Redirect to login
+    navigate("admin/login"); // Redirect to login
   };
 
   return (
@@ -21,9 +21,7 @@ function Sidebar() {
         <NavLink to="admin/upload-prospectus" className="nav-item">
           Upload Prospectus
         </NavLink>
-        <NavLink to="admin/analytics" className="nav-item">
-          Analytics
-        </NavLink>
+      
 
         <NavLink to="admin/auto-scraping" className="nav-item">
           Auto Scraping

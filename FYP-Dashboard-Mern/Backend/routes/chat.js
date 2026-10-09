@@ -29,9 +29,10 @@ router.post("/new_session", async (req, res) => {
     });
 
     res.status(201).json({ session_id: newChat.sessionId });
+
   } catch (error) {
     console.error("New Session Error:", error);
-    res.status(500).json({ message:"Failed to create session" });
+    res.status(500).json({ message: "Failed to create session" });
   }
 });
 
@@ -52,14 +53,11 @@ router.post("/chat", async (req, res) => {
       return res.status(404).json({ message: "Session not found" });
     }
 
-    // Save user message
-    chat.messages.push({
-      sender: "user",
-      text: question,
-      timestamp: new Date(),
-    });
-
-    await chat.save();
+    /* ============================================
+       MEMORY FIX:
+       Send OLD history only to FastAPI
+    ============================================ */
+    const historyForAI = [...chat.messages];
 
     // Call FastAPI backend
     const aiResponse = await fetch("http://localhost:8000/api/chat", {
@@ -71,6 +69,7 @@ router.post("/chat", async (req, res) => {
         question,
         namespace,
         session_id,
+        chat_history: historyForAI,
       }),
     });
 
@@ -91,7 +90,18 @@ router.post("/chat", async (req, res) => {
 
     res.end();
 
-    // Save assistant reply
+    /* ============================================
+       Save user message AFTER AI processing
+    ============================================ */
+    chat.messages.push({
+      sender: "user",
+      text: question,
+      timestamp: new Date(),
+    });
+
+    /* ============================================
+       Save assistant reply
+    ============================================ */
     chat.messages.push({
       sender: "assistant",
       text: fullAIResponse,
@@ -99,13 +109,10 @@ router.post("/chat", async (req, res) => {
     });
 
     /* ============================================
-       🔥 AUTO-GENERATE TITLE FROM FIRST RESPONSE
+       AUTO-GENERATE TITLE
     ============================================ */
     if (chat.title === "New Chat") {
-      const cleanTitle = fullAIResponse
-        .replace(/\n/g, " ")
-        .trim()
-        .substring(0, 40);
+      const cleanTitle = question.trim().substring(0, 40);
 
       chat.title =
         cleanTitle.length >= 40
@@ -124,14 +131,15 @@ router.post("/chat", async (req, res) => {
   }
 });
 
-/* ================================================= yourselves
-   GET ALL SESSIONS (FILTER BY NAMESPACE)
+/* =====================================================
+   GET ALL SESSIONS
 ===================================================== */
 router.get("/sessions", async (req, res) => {
   try {
     const { namespace } = req.query;
 
     let filter = {};
+
     if (namespace) {
       filter.namespace = namespace;
     }
@@ -141,6 +149,7 @@ router.get("/sessions", async (req, res) => {
       .select("sessionId title namespace updatedAt");
 
     res.json({ sessions: chats });
+
   } catch (error) {
     console.error("Fetch Sessions Error:", error);
     res.status(500).json({ message: "Failed to fetch sessions" });
@@ -148,7 +157,7 @@ router.get("/sessions", async (req, res) => {
 });
 
 /* =====================================================
-   GET CHAT HISTORY (PUBLIC)
+   GET CHAT HISTORY
 ===================================================== */
 router.get("/chat-history/:session_id", async (req, res) => {
   try {
@@ -161,6 +170,7 @@ router.get("/chat-history/:session_id", async (req, res) => {
     }
 
     res.json(chat.messages);
+
   } catch (error) {
     console.error("Chat History Error:", error);
     res.status(500).json({ message: "Failed to load chat history" });
@@ -168,7 +178,7 @@ router.get("/chat-history/:session_id", async (req, res) => {
 });
 
 /* =====================================================
-   ADMIN DASHBOARD DATA (PROTECTED)
+   ADMIN DASHBOARD DATA
 ===================================================== */
 router.get(
   "/admin/dashboard-data",
@@ -190,6 +200,7 @@ router.get(
             questionFrequency[msg.text] =
               (questionFrequency[msg.text] || 0) + 1;
           }
+
           if (msg.sender === "assistant") {
             responseFrequency[msg.text] =
               (responseFrequency[msg.text] || 0) + 1;
@@ -210,6 +221,7 @@ router.get(
         topQuestions,
         topResponses,
       });
+
     } catch (error) {
       console.error("Admin Dashboard Error:", error);
       res.status(500).json({ message: "Failed to load dashboard data" });
@@ -218,7 +230,7 @@ router.get(
 );
 
 /* =====================================================
-   ADMIN ANALYTICS (PROTECTED)
+   ADMIN ANALYTICS
 ===================================================== */
 router.get(
   "/admin/analytics",
@@ -269,11 +281,41 @@ router.get(
         userCounts,
         botCounts,
       });
+
     } catch (error) {
       console.error("Analytics Error:", error);
       res.status(500).json({ message: "Failed to load analytics" });
     }
   }
 );
+
+/* =====================================================
+   DELETE CHAT SESSION
+===================================================== */
+router.delete("/delete-session/:session_id", async (req, res) => {
+  try {
+    const { session_id } = req.params;
+
+    const deletedChat = await Chat.findOneAndDelete({
+      sessionId: session_id,
+    });
+
+    if (!deletedChat) {
+      return res.status(404).json({
+        message: "Chat session not found",
+      });
+    }
+
+    res.json({
+      message: "Chat deleted successfully",
+    });
+
+  } catch (error) {
+    console.error("Delete Chat Error:", error);
+    res.status(500).json({
+      message: "Failed to delete chat",
+    });
+  }
+});
 
 module.exports = router;

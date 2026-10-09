@@ -1,0 +1,776 @@
+{
+  "name": "UET Mardan Complete Chatbot Evaluation Dataset",
+  "description": "Comprehensive test dataset for chatbot answering queries about UET Mardan including MS/PhD AI programs, all engineering departments, admissions, fees, rules, facilities, and academic regulations.",
+  "dataset": [
+    {
+      "input": {
+        "question": "What are the eligibility criteria for the MS in Artificial Intelligence program?"
+      },
+      "expected_output": "For MS in Artificial Intelligence, you need a 16-year Bachelor's degree in Computer Software Engineering, Computer Science, Information Technology, or an MCS/M.Sc. Computer Science. Alternatively, a 16-year relevant engineering program is also acceptable.",
+      "context": "From 'Eligibility Criteria for Admission in MSc Artificial Intelligence'"
+    },
+    {
+      "input": {
+        "question": "How many credit hours are required for the MS AI program, and what is the minimum duration?"
+      },
+      "expected_output": "The MS in Artificial Intelligence requires 33 total credit hours (27 coursework + 6 thesis). The minimum duration is 2 years (4 semesters).",
+      "context": "From 'Plan A' and 'Minimum Duration' sections"
+    },
+    {
+      "input": {
+        "question": "List 5 core courses offered in the MS Artificial Intelligence program."
+      },
+      "expected_output": "Five core courses for MS AI are: AI-701 Artificial Intelligence, AI-702 Machine Learning, AI-703 Mathematical Methods for Artificial Intelligence, AI-704 Probability and Random Signal and Noise, and AI-705 Computer Vision.",
+      "context": "From 'Core Courses (Any 6 of the following)' list"
+    },
+    {
+      "input": {
+        "question": "What is the fee for re-checking an exam paper at UET Mardan?"
+      },
+      "expected_output": "The fee for re-checking one exam paper is PKR 1,200.",
+      "context": "From 'Examination & Other Fee' table, item 17"
+    },
+    {
+      "input": {
+        "question": "I am a student with a Pre-Medical background. Can I apply for BS Computer Science at UET Mardan?"
+      },
+      "expected_output": "Yes, you can apply. However, you must pass deficiency courses of Mathematics totaling 6 credit hours in your first two semesters.",
+      "context": "From 'Eligibility for Admission' section 2(b)(ii) and footnote"
+    },
+    {
+      "input": {
+        "question": "What is the hostel admission process and what is the total yearly hostel fee?"
+      },
+      "expected_output": "Hostel admission is granted based on merit (CGPA) and distance from the university. Students within 25 km radius are not eligible. The total yearly hostel fee (including room rent, service, utility, etc.) is PKR 37,200. A refundable security of PKR 6,000 is also required.",
+      "context": "From 'Hostel Admission' and Table 2 & 3"
+    },
+    {
+      "input": {
+        "question": "What is the policy on smoking inside the university hostel?"
+      },
+      "expected_output": "Smoking is strictly prohibited inside hostel premises. If cigarette butts or related items are found in a room, all residents of that room can be fined up to PKR 3,000 each. Smoking itself can lead to a fine up to PKR 5,000 or referral to the Hostel Discipline Committee.",
+      "context": "From 'Regulations for Hostel Warden' items 5 and 6"
+    },
+    {
+      "input": {
+        "question": "What are the basic requirements for a student to earn a Bachelor's degree at UET Mardan?"
+      },
+      "expected_output": "To earn a Bachelor's degree, a student must: (1) Pass all courses in their Scheme of Studies, (2) Achieve a CGPA of at least 2.0, (3) Complete 6-8 weeks of practical training/internship (not applicable for BS English), and (4) Complete the non-credit Quranic Studies course.",
+      "context": "From 'Degree Requirements' section"
+    },
+    {
+      "input": {
+        "question": "I have a domicile from Balochistan. Can I apply for admission, and if so, under which quota?"
+      },
+      "expected_output": "Yes, you can apply against the Balochistan reserved quota seats. Your nomination must be made by the Director of Colleges, Higher & Technical Education, Government of Balochistan, Quetta.",
+      "context": "From 'Quota Seats' section 3.3"
+    },
+    {
+      "input": {
+        "question": "What are the rules for migration of a student to UET Mardan from another university?"
+      },
+      "expected_output": "Migration is allowed only in the same discipline, to the 3rd, 4th, or 5th semesters, with a maximum of 50% credit hours transferable. You need a NOC from your current institution and must have a minimum CGPA of 2.00. A migration fee of PKR 200,000 applies. Preference is given to KP/Erstwhile FATA domicile holders.",
+      "context": "From 'Admission by Migration' section 8"
+    },
+    {
+      "input": {
+        "question": "What happens if a student is found to have submitted false documents or suppressed facts during admission?"
+      },
+      "expected_output": "If any incorrect information or suppression of facts is detected, even after admission is granted, the student's admission will be cancelled immediately. The student will be expelled and will not be eligible to seek admission again. All fees deposited will be forfeited, and no show-cause notice will be issued.",
+      "context": "From 'Special Provisions' section 13.5"
+    },
+    {
+      "input": {
+        "question": "When was UET Mardan established and what does it offer?"
+      },
+      "expected_output": "UET Mardan was established in 2018. It offers undergraduate and graduate programs in engineering, technology, and natural sciences with modern curriculum, research opportunities, and practical training.",
+      "context": "From general university information"
+    },
+    {
+      "input": {
+        "question": "What is the mission of UET Mardan?"
+      },
+      "expected_output": "The mission of UET Mardan is to provide quality engineering knowledge, produce skilled graduates for industry and research, and improve academic processes through continuous improvement and collaboration.",
+      "context": "From university mission statement"
+    },
+    {
+      "input": {
+        "question": "What is the vision of UET Mardan?"
+      },
+      "expected_output": "UET Mardan aims to become a distinguished center of higher education and research contributing to local and global socioeconomic and technological development.",
+      "context": "From university vision statement"
+    },
+    {
+      "input": {
+        "question": "What departments are available at UET Mardan?"
+      },
+      "expected_output": "UET Mardan has six departments: Computer Science, Computer Software Engineering, Civil Engineering, Electrical Engineering, Mechanical Engineering, and Natural Sciences and Humanities.",
+      "context": "From department listing"
+    },
+    {
+      "input": {
+        "question": "Which programs does the Department of Computer Software Engineering offer?"
+      },
+      "expected_output": "The department offers BSc, MSc, and PhD programs in Computer Software Engineering.",
+      "context": "From Computer Software Engineering department information"
+    },
+    {
+      "input": {
+        "question": "What are the Program Educational Objectives (PEOs) of Computer Software Engineering?"
+      },
+      "expected_output": "PEOs include applying engineering knowledge for society, building careers in software industry, continuous learning, and teamwork with professional communication skills.",
+      "context": "From Computer Software Engineering PEOs"
+    },
+    {
+      "input": {
+        "question": "What research areas are covered in Computer Software Engineering?"
+      },
+      "expected_output": "Research areas include Machine Learning, Cloud Computing, Cyber Security, Software Engineering, Data Science, IoT, Computer Networks, and Human Computer Interaction.",
+      "context": "From Computer Software Engineering research areas"
+    },
+    {
+      "input": {
+        "question": "What facilities are available in the Computer Software Engineering department?"
+      },
+      "expected_output": "The department has Programming Labs, Data Science Lab, System and Design Lab, and Final Year Project Lab.",
+      "context": "From Computer Software Engineering facilities"
+    },
+    {
+      "input": {
+        "question": "What is Outcome Based Education (OBE) at UET Mardan?"
+      },
+      "expected_output": "Outcome Based Education is a system aligned with Washington Accord that enhances instruction, assessment, feedback, and continuous improvement of academic quality.",
+      "context": "From OBE information"
+    },
+    {
+      "input": {
+        "question": "What is the role of ORIC at UET Mardan?"
+      },
+      "expected_output": "ORIC manages research activities including proposal development, innovation, and commercialization of research products.",
+      "context": "From ORIC description"
+    },
+    {
+      "input": {
+        "question": "What facilities are provided to students at UET Mardan?"
+      },
+      "expected_output": "UET Mardan provides hostels, libraries, digital access, labs, sports facilities, medical services, and career counseling.",
+      "context": "From student facilities information"
+    },
+    {
+      "input": {
+        "question": "What is the historical importance of Mardan city?"
+      },
+      "expected_output": "Mardan has a rich historical background connected to Gandhara civilization and is near archaeological sites like Takht-i-Bahi, Jamal Garhi, and Sanghao Caves.",
+      "context": "From Mardan city history"
+    },
+    {
+      "input": {
+        "question": "What industries and facilities are present in Mardan city?"
+      },
+      "expected_output": "Mardan has oil mills, sugar mills, textile, tobacco, marble industries, modern markets, hospitals, and is connected through M1 motorway.",
+      "context": "From Mardan city industries"
+    },
+    {
+      "input": {
+        "question": "What is the focus of the Electrical Engineering department at UET Mardan?"
+      },
+      "expected_output": "The department focuses on Electrical Power and Communication Engineering with future emphasis on Green Energy, Information Security, Industrial Power Control, Solar Power, and Energy Efficient Systems.",
+      "context": "From Electrical Engineering department focus"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the Electrical Engineering program?"
+      },
+      "expected_output": "The mission is to produce graduates with state-of-the-art education and relevant skills in Electrical Engineering to provide effective solutions for emerging societal challenges.",
+      "context": "From Electrical Engineering mission"
+    },
+    {
+      "input": {
+        "question": "What programs are offered in the Electrical Engineering department?"
+      },
+      "expected_output": "The department offers BSc Electrical Engineering, MSc Electrical Engineering with specializations in Power Systems and Communication, MSc Renewable Energy Engineering, and PhD Electrical Engineering.",
+      "context": "From Electrical Engineering programs"
+    },
+    {
+      "input": {
+        "question": "What are the specialization streams in BSc Electrical Engineering?"
+      },
+      "expected_output": "BSc Electrical Engineering has specializations in Power Engineering and Communications Engineering.",
+      "context": "From Electrical Engineering specializations"
+    },
+    {
+      "input": {
+        "question": "What are the Program Educational Objectives (PEOs) of Electrical Engineering?"
+      },
+      "expected_output": "PEOs include applying innovation and critical thinking to solve engineering problems, demonstrating communication and planning skills, and practicing ethical and team-based professional work.",
+      "context": "From Electrical Engineering PEOs"
+    },
+    {
+      "input": {
+        "question": "What are the Program Learning Outcomes (PLOs) of Electrical Engineering?"
+      },
+      "expected_output": "The PLOs include engineering knowledge, problem analysis, design solutions, investigation, modern tool usage, societal impact understanding, sustainability, ethics, teamwork, communication, project management, and lifelong learning.",
+      "context": "From Electrical Engineering PLOs"
+    },
+    {
+      "input": {
+        "question": "What career opportunities are available for Electrical Engineering graduates?"
+      },
+      "expected_output": "Graduates can work in power sectors, telecom industries, WAPDA, NTDC, atomic energy, R&D organizations, industrial control, power automation, satellite systems, and more.",
+      "context": "From Electrical Engineering career opportunities"
+    },
+    {
+      "input": {
+        "question": "What research areas are covered in Electrical Engineering?"
+      },
+      "expected_output": "Research areas include Artificial Intelligence, Machine Learning, IoT, Signal Processing, Wireless Communication, Smart Grids, Renewable Energy, Power Systems, Electric Vehicles, and Electrical Machines.",
+      "context": "From Electrical Engineering research areas"
+    },
+    {
+      "input": {
+        "question": "How many laboratories are available in the Electrical Engineering department?"
+      },
+      "expected_output": "The department has 11 laboratories including Power Systems, Power Electronics, Electrical Machines, Electronics, Control Systems, Microcontroller, High Voltage, and Digital Electronics labs.",
+      "context": "From Electrical Engineering laboratories"
+    },
+    {
+      "input": {
+        "question": "What facilities support the Electrical Engineering labs?"
+      },
+      "expected_output": "The labs are supported by a 200 KW PV system, a 500 KVA generator, and a 200 KVA generator for smooth operation.",
+      "context": "From Electrical Engineering lab facilities"
+    },
+    {
+      "input": {
+        "question": "What skills do Electrical Engineering graduates develop?"
+      },
+      "expected_output": "Graduates develop skills in engineering problem solving, system design, teamwork, communication, project management, ethics, and lifelong learning.",
+      "context": "From Electrical Engineering graduate skills"
+    },
+    {
+      "input": {
+        "question": "What is the focus of the Telecommunication Engineering department?"
+      },
+      "expected_output": "The department focuses on evolving telecommunication technologies including 5G, 6G, AI-driven networks, cybersecurity, IoT, cloud computing, and intelligent communication systems.",
+      "context": "From Telecommunication Engineering focus"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the Telecommunication Engineering department?"
+      },
+      "expected_output": "The mission is to produce professionals with up-to-date technical knowledge, interpersonal skills, and problem-solving abilities to improve societal and economic well-being.",
+      "context": "From Telecommunication Engineering mission"
+    },
+    {
+      "input": {
+        "question": "What academic programs are offered in Telecommunication Engineering?"
+      },
+      "expected_output": "The department offers BSc, MSc, and PhD programs in Telecommunication Engineering.",
+      "context": "From Telecommunication Engineering programs"
+    },
+    {
+      "input": {
+        "question": "What are the Program Educational Objectives (PEOs) of Telecommunication Engineering?"
+      },
+      "expected_output": "PEOs include gaining expertise in telecom and related fields, designing sustainable solutions, teamwork and leadership skills, and maintaining professional ethics.",
+      "context": "From Telecommunication Engineering PEOs"
+    },
+    {
+      "input": {
+        "question": "What career opportunities are available for Telecommunication Engineering graduates?"
+      },
+      "expected_output": "Graduates can work in telecom industries, ICT sectors, regulatory bodies, banking, R&D organizations, academia, and emerging fields like IoT, AI, cloud computing, and network engineering.",
+      "context": "From Telecommunication Engineering careers"
+    },
+    {
+      "input": {
+        "question": "What research areas are covered in Telecommunication Engineering?"
+      },
+      "expected_output": "Research areas include applied electromagnetics, antenna design, wireless and satellite communication, IoT, signal processing, artificial intelligence, machine learning, cybersecurity, and digital forensics.",
+      "context": "From Telecommunication Engineering research"
+    },
+    {
+      "input": {
+        "question": "What technologies are shaping the future of Telecommunication Engineering?"
+      },
+      "expected_output": "Future technologies include 5G-Advanced, 6G, AI-driven networks, reconfigurable intelligent surfaces, and millimeter and terahertz communication systems.",
+      "context": "From Telecommunication Engineering future technologies"
+    },
+    {
+      "input": {
+        "question": "What laboratories are available in the Telecommunication Engineering department?"
+      },
+      "expected_output": "The department has Electronics Lab, Wireless Communication Lab, DSP Lab, Optical Fiber Communications Lab, Embedded Systems Lab, Control Systems Lab, and other shared labs.",
+      "context": "From Telecommunication Engineering labs"
+    },
+    {
+      "input": {
+        "question": "What is the importance of Telecommunication Engineering in modern society?"
+      },
+      "expected_output": "It enables global connectivity through mobile networks, internet systems, wireless communication, and emerging technologies like AI and IoT, transforming communication and digital infrastructure.",
+      "context": "From Telecommunication Engineering importance"
+    },
+    {
+      "input": {
+        "question": "What is the focus of the Computer Science department at UET Mardan?"
+      },
+      "expected_output": "The department focuses on Computer Science, Artificial Intelligence, Data Science, and Cyber Security to solve complex computing problems using modern tools, algorithms, and technologies.",
+      "context": "From Computer Science department focus"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the BS Artificial Intelligence program?"
+      },
+      "expected_output": "The mission is to produce professionals with advanced AI knowledge who can design intelligent systems and apply ethical principles and interpersonal skills in solving computing problems.",
+      "context": "From BS Artificial Intelligence mission"
+    },
+    {
+      "input": {
+        "question": "What academic programs are offered in the Computer Science department?"
+      },
+      "expected_output": "The department offers BS Artificial Intelligence, BS Computer Science with specializations in Data Science and Cyber Security, MS Computer Science, MS Artificial Intelligence, MS Information Security, and PhD Computer Science.",
+      "context": "From Computer Science programs"
+    },
+    {
+      "input": {
+        "question": "What are the Program Educational Objectives (PEOs) of BS Artificial Intelligence?"
+      },
+      "expected_output": "PEOs include applying AI and computing knowledge to real-world problems, understanding ethical implications of AI, and developing teamwork and leadership skills in multidisciplinary environments.",
+      "context": "From BS Artificial Intelligence PEOs"
+    },
+    {
+      "input": {
+        "question": "What are the PEOs of BS Computer Science?"
+      },
+      "expected_output": "PEOs include applying computing knowledge to solve real-world problems, working effectively in teams with communication skills, and practicing ethical and professional computing standards.",
+      "context": "From BS Computer Science PEOs"
+    },
+    {
+      "input": {
+        "question": "What are the Program Learning Outcomes (PLOs) of CS and AI programs?"
+      },
+      "expected_output": "PLOs include computing knowledge, problem analysis, system design, modern tool usage, teamwork, communication, professionalism, ethics, and lifelong learning.",
+      "context": "From CS/AI PLOs"
+    },
+    {
+      "input": {
+        "question": "What career opportunities are available for Computer Science graduates?"
+      },
+      "expected_output": "Graduates can work as AI engineers, machine learning specialists, data scientists, software developers, cybersecurity experts, IT consultants, system analysts, and database administrators in national and international organizations.",
+      "context": "From Computer Science careers"
+    },
+    {
+      "input": {
+        "question": "What research areas are covered in the Computer Science department?"
+      },
+      "expected_output": "Research areas include Artificial Intelligence, Machine Learning, NLP, Bioinformatics, HCI, Cloud Computing, Cyber Security, IoT, Semantic Web, and Information Security.",
+      "context": "From Computer Science research"
+    },
+    {
+      "input": {
+        "question": "What laboratories are available in the Computer Science department?"
+      },
+      "expected_output": "The department has AI & DS Lab, Computer Lab, Programming Labs, Digital Logic Design Lab, and Final Year Project Lab.",
+      "context": "From Computer Science labs"
+    },
+    {
+      "input": {
+        "question": "What are the degree requirements for CS and AI programs?"
+      },
+      "expected_output": "Students must complete at least 130 credit hours with a minimum CGPA of 2.0 to earn BS Artificial Intelligence or BS Computer Science degree.",
+      "context": "From CS/AI degree requirements"
+    },
+    {
+      "input": {
+        "question": "What is the focus of the Civil Engineering department at UET Mardan?"
+      },
+      "expected_output": "The Civil Engineering department focuses on sustainable planning, modern construction techniques, critical thinking, research skills, communication, and project-based learning to solve civil engineering problems.",
+      "context": "From Civil Engineering focus"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the Civil Engineering program?"
+      },
+      "expected_output": "The mission is to impart quality education in civil engineering fundamentals and skills through modern teaching tools to produce graduates with professional excellence and moral responsibility.",
+      "context": "From Civil Engineering mission"
+    },
+    {
+      "input": {
+        "question": "What academic program is offered in Civil Engineering?"
+      },
+      "expected_output": "The department offers a BSc Civil Engineering program.",
+      "context": "From Civil Engineering program"
+    },
+    {
+      "input": {
+        "question": "What are the Program Educational Objectives (PEOs) of Civil Engineering?"
+      },
+      "expected_output": "PEOs include strong technical knowledge with sustainability focus, teamwork and management skills, and ethical professional practice considering societal and environmental impacts.",
+      "context": "From Civil Engineering PEOs"
+    },
+    {
+      "input": {
+        "question": "What are the Program Learning Outcomes (PLOs) of Civil Engineering?"
+      },
+      "expected_output": "PLOs include engineering knowledge, problem analysis, design solutions, investigation, modern tools usage, societal understanding, sustainability, ethics, teamwork, communication, project management, and lifelong learning.",
+      "context": "From Civil Engineering PLOs"
+    },
+    {
+      "input": {
+        "question": "What career opportunities are available for Civil Engineering graduates?"
+      },
+      "expected_output": "Graduates can work in government and private sectors including C&W Department, NHA, NESPAK, irrigation, public health engineering, consulting firms, construction companies, and design organizations.",
+      "context": "From Civil Engineering careers"
+    },
+    {
+      "input": {
+        "question": "What research areas are covered in Civil Engineering?"
+      },
+      "expected_output": "Research areas include sustainable materials, pavement modeling, road safety, waste material reuse, hydrology, seismic rehabilitation, smart irrigation, and infrastructure development.",
+      "context": "From Civil Engineering research"
+    },
+    {
+      "input": {
+        "question": "What laboratories are available in Civil Engineering?"
+      },
+      "expected_output": "The department has Materials Testing Lab, Surveying Lab, Soil Mechanics & Highway Engineering Lab, Public Health Engineering Lab, Fluid Mechanics Lab, Engineering Drawing Lab, Computer Lab, and shared Electro-Mechanical Lab.",
+      "context": "From Civil Engineering labs"
+    },
+    {
+      "input": {
+        "question": "What types of skills are developed in Civil Engineering students?"
+      },
+      "expected_output": "Students develop skills in construction design, critical thinking, teamwork, communication, project management, and sustainable engineering practices.",
+      "context": "From Civil Engineering skills"
+    },
+    {
+      "input": {
+        "question": "What is the focus of the Mechanical Engineering department at UET Mardan?"
+      },
+      "expected_output": "The department focuses on designing and developing mechanical systems, energy projects, manufacturing processes, and integrated systems involving electronics, sensors, and control technologies to solve real-world engineering problems.",
+      "context": "From Mechanical Engineering focus"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the Mechanical Engineering department?"
+      },
+      "expected_output": "The mission is to develop a world-class mechanical engineering department that provides quality education and skills through modern teaching tools to produce graduates with professional excellence and moral responsibility.",
+      "context": "From Mechanical Engineering mission"
+    },
+    {
+      "input": {
+        "question": "What academic program is offered in Mechanical Engineering?"
+      },
+      "expected_output": "The department offers a BSc Mechanical Engineering program.",
+      "context": "From Mechanical Engineering program"
+    },
+    {
+      "input": {
+        "question": "What are the Program Educational Objectives (PEOs) of Mechanical Engineering?"
+      },
+      "expected_output": "PEOs include applying mechanical engineering knowledge to solve complex problems, demonstrating leadership and communication skills, and promoting sustainable solutions for socio-economic and environmental development.",
+      "context": "From Mechanical Engineering PEOs"
+    },
+    {
+      "input": {
+        "question": "What career opportunities are available for Mechanical Engineering graduates?"
+      },
+      "expected_output": "Graduates can work in automobile, aerospace, power plants, defense, manufacturing, textile, railways, energy sectors, and organizations like WAPDA, Atomic Energy Commission, OGDC, and various industries.",
+      "context": "From Mechanical Engineering careers"
+    },
+    {
+      "input": {
+        "question": "What research areas are covered in Mechanical Engineering?"
+      },
+      "expected_output": "Research areas include thermofluids, robotics, automation, materials, renewable energy, manufacturing, HVAC, combustion, aerodynamics, automotive engineering, and nanotechnology.",
+      "context": "From Mechanical Engineering research"
+    },
+    {
+      "input": {
+        "question": "What laboratories are available in Mechanical Engineering?"
+      },
+      "expected_output": "The department has Thermodynamics Lab, Mechanics of Materials Lab, CAD Lab, IC Engines Lab, HVAC Lab, Fluid Mechanics Lab, Robotics Lab, Manufacturing Lab, and other advanced engineering labs.",
+      "context": "From Mechanical Engineering labs"
+    },
+    {
+      "input": {
+        "question": "What skills do Mechanical Engineering graduates develop?"
+      },
+      "expected_output": "Graduates develop skills in mechanical design, system analysis, manufacturing, problem-solving, teamwork, communication, automation, and energy systems.",
+      "context": "From Mechanical Engineering skills"
+    },
+    {
+      "input": {
+        "question": "What is the purpose of the Department of Natural Sciences and Humanities at UET Mardan?"
+      },
+      "expected_output": "The department manages general education courses for engineering programs and supports academic departments in achieving their educational goals while contributing to the university's vision and mission.",
+      "context": "From Natural Sciences and Humanities purpose"
+    },
+    {
+      "input": {
+        "question": "What academic programs are offered in Natural Sciences and Humanities?"
+      },
+      "expected_output": "The department offers BS English and MS Mathematics programs.",
+      "context": "From Natural Sciences and Humanities programs"
+    },
+    {
+      "input": {
+        "question": "What is the vision of the Natural Sciences and Humanities department?"
+      },
+      "expected_output": "The vision is to adapt general education with instruction, communication, diversity, global perspective, and interdisciplinary learning aligned with academic majors.",
+      "context": "From Natural Sciences and Humanities vision"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the BS English program?"
+      },
+      "expected_output": "The mission is to provide quality education in language and literary arts, promote modern teaching methodologies, and prepare students for leadership roles globally.",
+      "context": "From BS English mission"
+    },
+    {
+      "input": {
+        "question": "How does the BS English program integrate technology?"
+      },
+      "expected_output": "The program integrates Artificial Intelligence and Digital Humanities, including NLP and computational linguistics for digital textual analysis and modern communication fields.",
+      "context": "From BS English technology integration"
+    },
+    {
+      "input": {
+        "question": "What career opportunities are available for BS English graduates?"
+      },
+      "expected_output": "Graduates can work in teaching, media, content writing, freelancing, applied linguistics, digital publishing, AI-assisted education, journalism, and communication fields.",
+      "context": "From BS English careers"
+    },
+    {
+      "input": {
+        "question": "What is the Center of Artificial Intelligence at UET Mardan?"
+      },
+      "expected_output": "The Center of Artificial Intelligence is a research and academic unit focused on AI innovation, research, and industry collaboration in fields like machine learning, NLP, robotics, and IoT.",
+      "context": "From AI Center description"
+    },
+    {
+      "input": {
+        "question": "What is the vision of the Center of Artificial Intelligence?"
+      },
+      "expected_output": "The vision is to become a leading center of excellence in AI research, innovation, and education that empowers individuals and industries through intelligent technologies.",
+      "context": "From AI Center vision"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the AI Center?"
+      },
+      "expected_output": "The mission is to provide AI education, conduct impactful research, strengthen industry collaboration, and promote entrepreneurship and innovation in AI technologies.",
+      "context": "From AI Center mission"
+    },
+    {
+      "input": {
+        "question": "What academic programs are associated with the AI Center?"
+      },
+      "expected_output": "The programs include BS Artificial Intelligence, BS Software Engineering, BS Computer Engineering, MS Artificial Intelligence (coming soon), and PhD Artificial Intelligence (coming soon).",
+      "context": "From AI Center programs"
+    },
+    {
+      "input": {
+        "question": "What research areas are covered by the AI Center?"
+      },
+      "expected_output": "Research areas include machine learning, computer vision, natural language processing, edge AI, smart cities, AI in healthcare and energy, AIoT, large language models, and genetic programming.",
+      "context": "From AI Center research"
+    },
+    {
+      "input": {
+        "question": "What is the BS Artificial Intelligence program about?"
+      },
+      "expected_output": "The BS Artificial Intelligence program focuses on AI concepts like machine learning, NLP, computer vision, robotics, and generative AI to prepare students for modern intelligent systems development.",
+      "context": "From BS AI program description"
+    },
+    {
+      "input": {
+        "question": "What is the vision of the BS Artificial Intelligence program?"
+      },
+      "expected_output": "The vision is to become a leading hub for AI education and innovation, producing graduates who contribute to ethical and impactful AI solutions globally.",
+      "context": "From BS AI vision"
+    },
+    {
+      "input": {
+        "question": "What is the mission of the BS Artificial Intelligence program?"
+      },
+      "expected_output": "The mission is to educate students in AI concepts, promote research and industry collaboration, develop ethical leaders, and align education with emerging AI trends.",
+      "context": "From BS AI mission"
+    },
+    {
+      "input": {
+        "question": "What is Software Engineering?"
+      },
+      "expected_output": "Software Engineering is the systematic approach to developing high-quality, reliable, and maintainable software systems.",
+      "context": "From Software Engineering definition"
+    },
+    {
+      "input": {
+        "question": "What is the focus of the BS Software Engineering (BSSE) program at UET Mardan?"
+      },
+      "expected_output": "The BSSE program focuses on developing practical software development skills, modern programming paradigms, software design, quality assurance, and project management in compliance with NCEAC standards.",
+      "context": "From BSSE program focus"
+    },
+    {
+      "input": {
+        "question": "What is the vision of the BS Software Engineering program?"
+      },
+      "expected_output": "The vision is to become a premier software engineering program recognized for excellence in education, research, and innovation, producing graduates who meet NCEAC standards and contribute to Pakistan's IT industry.",
+      "context": "From BSSE vision"
+    },
+    {
+      "input": {
+        "question": "What is the aim of the BS Software Engineering program?"
+      },
+      "expected_output": "The aim is to develop highly skilled software engineers who can design, develop, and maintain software systems, apply engineering approaches to complex problems, and work effectively in teams with professional ethics.",
+      "context": "From BSSE aim"
+    },
+    {
+      "input": {
+        "question": "What skills do BS Software Engineering graduates develop?"
+      },
+      "expected_output": "Graduates develop skills in software design, development, maintenance, problem-solving, teamwork, project management, and applying ethical practices in software engineering.",
+      "context": "From BSSE graduate skills"
+    },
+    {
+      "input": {
+        "question": "What standards does the BS Software Engineering program follow?"
+      },
+      "expected_output": "The program follows the National Computing Education Accreditation Council (NCEAC) standards to ensure quality education aligned with industry requirements.",
+      "context": "From BSSE standards"
+    },
+    {
+      "input": {
+        "question": "What areas are covered in the BS Software Engineering curriculum?"
+      },
+      "expected_output": "The curriculum covers software design, requirements engineering, quality assurance, programming, project management, and development of scalable and secure software systems.",
+      "context": "From BSSE curriculum"
+    },
+    {
+      "input": {
+        "question": "How does the BS Software Engineering program provide practical experience?"
+      },
+      "expected_output": "The program provides practical experience through hands-on projects, internships, and research opportunities that help students develop real-world software systems.",
+      "context": "From BSSE practical experience"
+    },
+    {
+      "input": {
+        "question": "What is Computer Engineering?"
+      },
+      "expected_output": "Computer Engineering bridges electrical engineering and computer science, focusing on designing and implementing computing systems including hardware, firmware, and software.",
+      "context": "From Computer Engineering definition"
+    },
+    {
+      "input": {
+        "question": "What is the focus of the BS Computer Engineering (BSCE) program at UET Mardan?"
+      },
+      "expected_output": "The BSCE program focuses on computer hardware, software, embedded systems, digital logic design, computer architecture, and system integration to solve modern computing challenges.",
+      "context": "From BSCE program focus"
+    },
+    {
+      "input": {
+        "question": "What is the vision of the BS Computer Engineering program?"
+      },
+      "expected_output": "The vision is to provide rigorous education in hardware and software domains, promote innovation through practical work, develop system design skills, and prepare students for lifelong learning.",
+      "context": "From BSCE vision"
+    },
+    {
+      "input": {
+        "question": "What is the aim of the BS Computer Engineering program?"
+      },
+      "expected_output": "The aim is to produce skilled computer engineers who can design efficient computing systems, apply engineering principles to real-world problems, work in teams, and follow ethical practices.",
+      "context": "From BSCE aim"
+    },
+    {
+      "input": {
+        "question": "What skills do BS Computer Engineering graduates develop?"
+      },
+      "expected_output": "Graduates develop skills in hardware and software integration, system design, embedded systems, problem-solving, teamwork, and technical communication.",
+      "context": "From BSCE graduate skills"
+    },
+    {
+      "input": {
+        "question": "What areas are covered in Computer Engineering?"
+      },
+      "expected_output": "The program covers embedded systems, digital logic design, computer architecture, system integration, and hardware-software co-design.",
+      "context": "From Computer Engineering areas"
+    },
+    {
+      "input": {
+        "question": "What career opportunities are available for Computer Engineering graduates?"
+      },
+      "expected_output": "Graduates can work in embedded systems development, hardware design, automation industries, consumer electronics, industrial systems, and software-hardware integration roles.",
+      "context": "From Computer Engineering careers"
+    },
+    {
+      "input": {
+        "question": "What makes Computer Engineering different from other computing fields?"
+      },
+      "expected_output": "Computer Engineering combines both hardware and software knowledge, unlike pure Computer Science or Software Engineering, focusing on integrated system design.",
+      "context": "From Computer Engineering differentiation"
+    },
+    {
+      "input": {
+        "question": "What is the eligibility criteria for PhD in Artificial Intelligence at UET Mardan?"
+      },
+      "expected_output": "For PhD in Artificial Intelligence, you need a Master's/M.Phil or equivalent degree (18 years of education) in a related field. Additionally, you must pass a subject test with score >= 60% from UATA or >= 70% from a University Committee.",
+      "context": "From 'Eligibility Criteria for Admission in MSc Artificial Intelligence' PhD section"
+    },
+    {
+      "input": {
+        "question": "How many credit hours are required for the PhD AI program?"
+      },
+      "expected_output": "The PhD in Artificial Intelligence requires 54 total credit hours: 18 credit hours from coursework and 36 credit hours of research work (thesis).",
+      "context": "From 'PhD Course Work' section"
+    },
+    {
+      "input": {
+        "question": "What is the minimum duration for completing a PhD at UET Mardan?"
+      },
+      "expected_output": "The minimum duration for the PhD program is 3 years (6 semesters).",
+      "context": "From 'Minimum Duration' for PhD"
+    },
+    {
+      "input": {
+        "question": "List 5 core courses offered in the PhD Artificial Intelligence program."
+      },
+      "expected_output": "Five core courses for PhD AI are: AI-801 Artificial Intelligence, AI-802 Machine Learning, AI-803 Mathematical Methods for Artificial Intelligence, AI-804 Probability and Random Signal and Noise, and AI-805 Computer Vision.",
+      "context": "From PhD 'Core Courses' list"
+    },
+    {
+      "input": {
+        "question": "What is the weightage distribution for merit calculation in Engineering programs?"
+      },
+      "expected_output": "For Engineering programs: 10% weightage to SSC marks, 50% weightage to Intermediate/DAE marks (adjusted), and 40% weightage to Entrance Test marks.",
+      "context": "From 'Determination of Merit' section 6.1(a)"
+    },
+    {
+      "input": {
+        "question": "What is the weightage distribution for merit calculation in Non-Engineering programs?"
+      },
+      "expected_output": "For Non-Engineering programs: 30% weightage to SSC marks and 70% weightage to Intermediate/DAE marks (adjusted).",
+      "context": "From 'Determination of Merit' section 6.1(b)"
+    },
+    {
+      "input": {
+        "question": "What is the policy on sexual harassment at UET Mardan?"
+      },
+      "expected_output": "UET Mardan has adopted the HEC harassment policy. Sexual harassment is strictly prohibited and includes unwelcome sexual advances, requests for sexual favors, or sexually demeaning conduct. The university has Focal Persons and an Inquiry Committee to investigate complaints. Penalties range from reprimand to expulsion.",
+      "context": "From 'Harassment Policy' section 11"
+    },
+    {
+      "input": {
+        "question": "What is the fee for foreign students at UET Mardan?"
+      },
+      "expected_output": "Foreign students must pay an additional USD 5,000 (or equivalent in PKR) in lump sum at the time of admission to the first semester, in addition to normal user charges for self-finance category.",
+      "context": "From 'Fee For Foreign Students' section 4.1"
+    },
+    {
+      "input": {
+        "question": "What is the refund policy if a student cancels admission before classes commence?"
+      },
+      "expected_output": "If a student cancels admission before commencement of classes, 100% of the fee (excluding security and admission charges) is refunded.",
+      "context": "From 'Refund Policy' Table 5"
+    }
+  ]
+}

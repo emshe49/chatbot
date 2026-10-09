@@ -15,7 +15,7 @@ PDF_ROOT = PROJECT_ROOT / "data" / "pdf"
 DATASET_CONFIG = {
     "staff": {
         "pdf_folder": PDF_ROOT / "staffData",
-        "namespace": "staff"
+        "namespace": "staffs"
     },
     "ug": {
         "pdf_folder": PDF_ROOT / "ug",

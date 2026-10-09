@@ -6,6 +6,7 @@ import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import AdminLogin from "./pages/auth/AdminLogin";
 import MainLayout from "./layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
+import ResetPassword from "./pages/ResetPassword";
 
 import Analytics from "./pages/Analytics";
 import UploadProspectus from "./pages/UploadProspectus";
@@ -18,37 +19,36 @@ import ChatbotUI from "./pages/ChatbotUI";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* ===== Admin Login ===== */}
-        <Route
-          path="/admin/login"
-          element={
-            <AdminAuthProvider>
-              <AdminLogin />
-            </AdminAuthProvider>
-          }
-        />
+      {/* ✅ Wrap ALL routes with AdminAuthProvider */}
+      <AdminAuthProvider>
+        <Routes>
 
-        {/* ===== Admin Protected Routes ===== */}
-        <Route
-          element={
-            <AdminAuthProvider>
+          {/* ===== Admin Login ===== */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* ===== Reset Password (IMPORTANT: PUBLIC ROUTE) ===== */}
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+
+          {/* ===== Admin Protected Routes ===== */}
+          <Route
+            element={
               <ProtectedAdminRoute>
                 <MainLayout />
               </ProtectedAdminRoute>
-            </AdminAuthProvider>
-          }
-        >
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/analytics" element={<Analytics />} />
-          <Route path="/admin/upload-prospectus" element={<UploadProspectus />} />
-          <Route path="/admin/settings" element={<Settings />} />
-          <Route path="/admin/auto-scraping" element={<AutoScraping />} />
-        </Route>
+            }
+          >
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/analytics" element={<Analytics />} />
+            <Route path="/admin/upload-prospectus" element={<UploadProspectus />} />
+            <Route path="/admin/settings" element={<Settings />} />
+            <Route path="/admin/auto-scraping" element={<AutoScraping />} />
+          </Route>
 
-        {/* ===== PUBLIC CHATBOT ===== */}
-        <Route path="/" element={<ChatbotUI />} />
-      </Routes>
+          {/* ===== PUBLIC CHATBOT ===== */}
+          <Route path="/" element={<ChatbotUI />} />
+
+        </Routes>
+      </AdminAuthProvider>
     </BrowserRouter>
   );
 }

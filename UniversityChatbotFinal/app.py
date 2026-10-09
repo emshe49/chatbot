@@ -1,12 +1,21 @@
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+import warnings
+warnings.filterwarnings("ignore")
+
+import tensorflow as tf
+tf.get_logger().setLevel('ERROR')
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Optional
 import uvicorn
-import time
 
-from rag_chatbot import ask_question, get_available_namespaces
+from rag_chatbot import ask_question, ask_question_stream, get_available_namespaces
 
 # --------------------------------------------------
 # APP CONFIG
@@ -29,6 +38,7 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     question: str
     namespace: Optional[str] = None
+    chat_history: Optional[list] = []
 
 
 class NamespacesResponse(BaseModel):
@@ -36,42 +46,55 @@ class NamespacesResponse(BaseModel):
 
 
 # --------------------------------------------------
-# GET AVAILABLE NAMESPACES (PUBLIC)
+# GET AVAILABLE NAMESPACES
 # --------------------------------------------------
 
 @app.get("/api/namespaces", response_model=NamespacesResponse)
 def api_get_namespaces():
-    """
-    Return all available namespaces (public)
-    """
     namespaces = get_available_namespaces()
     return {"namespaces": namespaces}
 
 
 # --------------------------------------------------
-# STREAMING CHAT ENDPOINT (PUBLIC)
+# REAL STREAMING CHAT ENDPOINT
 # --------------------------------------------------
 
 @app.post("/api/chat")
 async def api_chat(req: ChatRequest):
-
-    namespace = req.namespace
+    """
+    Streams tokens from the LLM as they are generated.
+    No fake word-splitting — every chunk is a real LLM token.
+    """
 
     def stream_generator():
-
-        answer = ask_question(
+        for token in ask_question_stream(
             question=req.question,
-            namespace=namespace,
-            user_type="public",   # no role now
-        )
-
-        words = answer.split(" ")
-
-        for word in words:
-            yield word + " "
-            time.sleep(0.02)
+            namespace=req.namespace,
+            user_type="public",
+            chat_history=req.chat_history,
+        ):
+            yield token
 
     return StreamingResponse(stream_generator(), media_type="text/plain")
+
+
+# --------------------------------------------------
+# NON-STREAMING ENDPOINT  (kept for internal use / testing)
+# --------------------------------------------------
+
+@app.post("/api/chat/full")
+async def api_chat_full(req: ChatRequest):
+    """
+    Returns the complete answer as a single JSON response.
+    Useful for internal tooling or clients that don't support streaming.
+    """
+    answer = ask_question(
+        question=req.question,
+        namespace=req.namespace,
+        user_type="public",
+        chat_history=req.chat_history,
+    )
+    return {"answer": answer}
 
 
 # --------------------------------------------------

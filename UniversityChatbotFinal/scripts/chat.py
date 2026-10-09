@@ -2,18 +2,17 @@ import json
 import os
 import sys
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --------------------------------------------------
-# LANGSMITH OBSERVABILITY (MUST BE AT TOP)
+# LANGSMITH (optional)
 # --------------------------------------------------
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = "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"
-os.environ["LANGCHAIN_PROJECT"] = "university-rag-observability"
-
 from langsmith import traceable
 
 # --------------------------------------------------
-# Project setup (AUTO ROOT DETECTION)
+# Project setup
 # --------------------------------------------------
 PROJECT_ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..")
@@ -32,181 +31,133 @@ from pipeline.llm import generate_answer
 # --------------------------------------------------
 from memory.chat_memory import (
     save_message,
-    load_history,
-    create_new_session,
-    list_sessions,
-    switch_session
+    create_new_session
 )
 
 # --------------------------------------------------
-# Paths
+# Stage 1: Pinecone Score Rerank (ONLY)
 # --------------------------------------------------
-HISTORY_DIR = os.path.join(PROJECT_ROOT, "data", "chat_history")
-os.makedirs(HISTORY_DIR, exist_ok=True)
+def rerank_stage1(matches, top_n=10):
+    return sorted(matches, key=lambda x: x["score"], reverse=True)[:top_n]
 
 # --------------------------------------------------
-# Pinecone helper
+# Context Builder
 # --------------------------------------------------
-def get_available_namespaces(pc):
-    stats = pc.index.describe_index_stats()
-    return list(stats.get("namespaces", {}).keys())
+def build_context(matches):
+    chunks = []
+    sources = set()
+
+    for match in matches:
+        meta = match.get("metadata", {})
+        if "text" in meta:
+            chunks.append(meta["text"])
+        if "source_file" in meta:
+            sources.add(meta["source_file"])
+
+    return "\n\n".join(chunks), sources
 
 # --------------------------------------------------
-# RAG QUESTION ANSWERING (FULLY OBSERVABLE)
+# FINAL ANSWER (STRICT PROMPT)
 # --------------------------------------------------
-@traceable(run_type="chain", name="University-RAG-Query")
-def ask_question(question: str, namespace: str, user_type: str, session_id: str):
+def generate_final_answer(context, question):
+    prompt = f"""
+You are a university assistant.
 
-    # ---- Greeting shortcut ----
-    if question.lower().strip() in ["hi", "hello", "hey"]:
-        return (
-            "Hello! 👋 I can help you with admissions, eligibility, programs, "
-            "fees, staff policies, awards, and other university information."
-        )
+Answer ONLY from the given context.
+
+Rules:
+- If answer is not in context → say "I don't know"
+- Do NOT guess
+- Be precise and short
+
+Context:
+{context}
+
+Question:
+{question}
+"""
+    return generate_answer("", prompt)
+
+# --------------------------------------------------
+# RAG Pipeline (UPDATED - NO STAGE 2)
+# --------------------------------------------------
+@traceable(run_type="chain", name="University-RAG-Fast")
+def ask_question(question, namespace, user_type, session_id):
+
+    # Greeting handling
+    if question.lower() in ["hi", "hello", "hey"]:
+        return "Hello! 👋 Ask me anything about the university."
 
     pc = PineconeClient()
 
-    # ---------------------------
-    # 1️⃣ EMBEDDING STEP
-    # ---------------------------
-    @traceable(run_type="embedding", name="Query-Embedding")
-    def embed_query(q):
-        return embed_texts([q])[0]
+    # 1️⃣ Embed Query
+    query_embedding = embed_texts([question])[0]
 
-    query_embedding = embed_query(question)
-
-    # ---------------------------
-    # 2️⃣ RETRIEVAL STEP
-    # ---------------------------
-    @traceable(run_type="retriever", name="Pinecone-Retrieval")
-    def retrieve_chunks(embedding):
-        return pc.index.query(
-            vector=embedding,
-            top_k=8,
-            namespace=namespace,
-            include_metadata=True
-        )
-
-    results = retrieve_chunks(query_embedding)
+    # 2️⃣ Retrieve from Pinecone
+    results = pc.index.query(
+        vector=query_embedding,
+        top_k=20,  # retrieve more for better filtering
+        namespace=namespace,
+        include_metadata=True
+    )
 
     if not results["matches"]:
-        return "The requested information is not available in the provided documents."
+        return "No relevant information found."
 
-    # ---------------------------
-    # 3️⃣ CONTEXT CONSTRUCTION
-    # ---------------------------
-    @traceable(run_type="chain", name="Context-Construction")
-    def build_context(matches):
-        chunks = []
-        sources = set()
+    # 3️⃣ Single Rerank (FAST)
+    final_matches = rerank_stage1(results["matches"], top_n=10)
 
-        for match in matches:
-            meta = match.get("metadata", {})
-            if "text" in meta:
-                chunks.append(meta["text"])
-            if "source_file" in meta:
-                sources.add(meta["source_file"])
+    # 4️⃣ Build Context
+    context, sources = build_context(final_matches)
 
-        return "\n\n".join(chunks), sources
+    # 5️⃣ Generate Answer
+    answer = generate_final_answer(context, question)
 
-    context, sources = build_context(results["matches"])
-
-    # ---------------------------
-    # 4️⃣ LLM GENERATION
-    # ---------------------------
-    @traceable(run_type="llm", name="Answer-Generation")
-    def generate_llm_answer(ctx, q):
-        return generate_answer(ctx, q)
-
-    answer = generate_llm_answer(context, question)
-
-    # ---------------------------
-    # Attach sources
-    # ---------------------------
+    # 6️⃣ Attach Sources
     if sources:
         answer += "\n\n📄 Sources:\n"
-        for src in sorted(sources):
-            answer += f"- {src}\n"
+        for s in sorted(sources):
+            answer += f"- {s}\n"
 
     return answer
 
 # --------------------------------------------------
-# MAIN CHAT LOOP
+# MAIN (CLI Testing)
 # --------------------------------------------------
 def main():
-    print("\n🎓 University Chatbot (RAG + Memory + FULL Observability)")
-    print("========================================================")
+    print("\n🎓 University Chatbot (FAST VERSION)")
+    print("====================================")
 
     pc = PineconeClient()
-    namespaces = get_available_namespaces(pc)
+    namespaces = list(pc.index.describe_index_stats()["namespaces"].keys())
 
-    if not namespaces:
-        print("❌ No namespaces found in Pinecone.")
-        sys.exit(1)
+    user_type = input("Student or Staff: ").strip().lower()
 
-    # -------------------------------
-    # Ask user type
-    # -------------------------------
-    user_type = ""
-    while user_type.lower() not in ["student", "staff"]:
-        user_type = input("\nAre you a Student or Staff? ").strip()
-
-    if user_type.lower() == "staff":
-        if "staff" not in namespaces:
-            print("❌ Staff namespace not found!")
-            sys.exit(1)
-        selected_namespace = "staff"
+    if user_type == "staff":
+        namespace = "staff"
     else:
-        student_namespaces = [ns for ns in namespaces if ns != "staff"]
-        print("\nAvailable student prospectuses:\n")
-        for i, ns in enumerate(student_namespaces, start=1):
-            print(f"{i}. {ns}")
+        print("Available Namespaces:")
+        for i, ns in enumerate(namespaces):
+            if ns != "staff":
+                print(f"{i}. {ns}")
+        choice = int(input("Select: "))
+        namespace = namespaces[choice]
 
-        while True:
-            try:
-                choice = int(input("\nSelect prospectus number: "))
-                selected_namespace = student_namespaces[choice - 1]
-                break
-            except Exception:
-                print("❌ Invalid selection, try again")
+    session_id = create_new_session()
 
-    # -------------------------------
-    # Start chat session
-    # -------------------------------
-    current_session = create_new_session()
-    print(f"\n🧠 New chat session started: {current_session}")
-
-    # -------------------------------
-    # Chat loop
-    # -------------------------------
     while True:
-        q = input("\nAsk a question: ").strip()
-
+        q = input("\nAsk: ")
         if q.lower() == "exit":
-            print("\n👋 Goodbye!")
             break
 
-        save_message("user", q, current_session)
+        save_message("user", q, session_id)
 
-        try:
-            answer = ask_question(
-                question=q,
-                namespace=selected_namespace,
-                user_type=user_type,
-                session_id=current_session
-            )
-        except Exception as e:
-            print("❌ Error:", e)
-            continue
+        answer = ask_question(q, namespace, user_type, session_id)
 
-        save_message("assistant", answer, current_session)
+        save_message("assistant", answer, session_id)
 
-        print("\nAnswer:\n")
-        print(answer)
-        print("-" * 60)
+        print("\nAnswer:\n", answer)
+        print("-" * 50)
 
-# --------------------------------------------------
-# ENTRY POINT
-# --------------------------------------------------
 if __name__ == "__main__":
     main()

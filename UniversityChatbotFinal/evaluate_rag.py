@@ -1,7 +1,7 @@
 import os
 from langsmith import Client
 from dotenv import load_dotenv
-from scripts.chat import ask_question  # Your RAG function
+from rag_chatbot import ask_question  # Your RAG function
 
 # --------------------------------------------------
 # LOAD ENV VARIABLES

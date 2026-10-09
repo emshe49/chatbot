@@ -46,7 +46,7 @@ def save_chunks_to_txt(chunks_pkl_path, output_txt_path):
 
 if __name__ == "__main__":
 
-    chunks_pkl = r"data/cache/notification/Scrutiny.17.03.2026.v1/table_summaries.pkl"
-    output_txt = r"data/cache/notification/Scrutiny.17.03.2026.v1/table_summaries.txt"
+    chunks_pkl = r"data/cache/ug/Prospectus_2025-26/chunks.pkl"
+    output_txt = r"data/cache/ug/Prospectus_2025-26/chunks.txt"
 
     save_chunks_to_txt(chunks_pkl, output_txt)

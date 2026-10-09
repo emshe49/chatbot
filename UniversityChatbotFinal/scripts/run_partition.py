@@ -46,8 +46,8 @@ def save_pkl(path: Path, data):
 def get_dataset_context(folder_path: Path):
     name = folder_path.name.lower()
 
-    if "staff" in name:
-        return {"dataset": "staff", "role": "staff"}
+    if "staffs" in name:
+        return {"dataset": "staffs", "role": "staffs"}
 
     if "ug" in name:
         batch = re.findall(r"\d{4}", name)
@@ -75,7 +75,10 @@ MIN_LENGTH = 80
 def is_garbage(text: str) -> bool:
     if len(re.findall(r"[A-Za-z]", text)) < 30:
         return True
-    if re.search(r"[©®#\[\]{}<>|]", text):
+
+    symbol_count = len(re.findall(r"[©®#\[\]{}<>|]", text))
+
+    if symbol_count > len(text) * 0.25:
         return True
     return False
 

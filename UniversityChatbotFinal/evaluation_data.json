@@ -1,0 +1,82 @@
+[
+  {
+    "question": "How is admission granted for BSc Engineering and BS degree programs at UET Mardan?",
+    "ground_truth": "Admission to BSc Engineering and BS modern technological degree programs at UET Mardan is granted on the basis of merit."
+  },
+  {
+    "question": "What is the total number of seats allocated by UET Mardan for 2024-25?",
+    "ground_truth": "The total number of allocated seats for the 2024-25 academic session is 680."
+  },
+  {
+    "question": "What happens if quota seats remain vacant at UET Mardan?",
+    "ground_truth": "If quota seats remain vacant, they are filled with regular applicants on merit as rationalized seats."
+  },
+  {
+    "question": "Are Erstwhile FATA candidates eligible for open merit admission?",
+    "ground_truth": "Yes, Erstwhile FATA candidates are eligible to apply directly for open merit, rationalized, and relevant program schemes."
+  },
+  {
+    "question": "What domicile is required for general admission to UET Mardan?",
+    "ground_truth": "Candidates must have domicile of Khyber Pakhtunkhwa settled areas before FATA merger."
+  },
+  {
+    "question": "What minimum marks are required for Engineering programs at UET Mardan?",
+    "ground_truth": "Candidates applying for engineering programs must have at least 60 percent unadjusted marks in Intermediate Pre-Engineering, Computer Science, DAE, or equivalent qualification with mathematics."
+  },
+  {
+    "question": "What minimum marks are required for BS Computer Science and BS Software Engineering?",
+    "ground_truth": "Candidates must have at least 50 percent unadjusted marks in Intermediate Pre-Engineering, Pre-Medical, Computer Science, General Science with mathematics or statistics, DAE, or equivalent qualification."
+  },
+  {
+    "question": "Can pre-medical students apply for engineering programs at UET Mardan?",
+    "ground_truth": "Yes, pre-medical students can apply as 40 percent of seats are reserved for them according to PEC policy."
+  },
+  {
+    "question": "What additional requirement is there for pre-medical students applying for BS Computer Engineering?",
+    "ground_truth": "Pre-medical students must pass deficiency courses of Mathematics worth 6 credit hours during the first two semesters."
+  },
+  {
+    "question": "Which test is required for admission to engineering programs at UET Mardan?",
+    "ground_truth": "Candidates must appear in the ETEA entrance test or an authorized testing agency nominated by PEC for the relevant academic session."
+  },
+  {
+    "question": "How long is the entrance test valid for admission?",
+    "ground_truth": "The entrance test is valid for one academic year."
+  },
+  {
+    "question": "What is required for overseas Pakistani children applying on reserved quota seats?",
+    "ground_truth": "They must meet OPF membership and foreign exchange remittance card requirements and apply through the relevant ministry."
+  },
+  {
+    "question": "What is the application correction fee for changing discipline preferences?",
+    "ground_truth": "Candidates must pay Rs. 500 to submit the correction or rectification form."
+  },
+  {
+    "question": "What documents are required with the online admission application?",
+    "ground_truth": "Required documents include SSC and HSSC DMCs, domicile certificate, CNIC or CRC, parent CNIC, character certificate, passport size photograph, and application processing fee challan."
+  },
+  {
+    "question": "What happens if a selected candidate does not appear for the admission interview?",
+    "ground_truth": "The candidate's name is removed from the merit list and the seat becomes vacant."
+  },
+  {
+    "question": "How is merit calculated for engineering programs?",
+    "ground_truth": "Engineering merit is calculated using 10 percent SSC marks, 50 percent Intermediate or DAE marks, and 40 percent entrance test marks."
+  },
+  {
+    "question": "How is merit calculated for non-engineering programs?",
+    "ground_truth": "Non-engineering merit is calculated using 30 percent SSC marks and 70 percent Intermediate or DAE marks."
+  },
+  {
+    "question": "How many marks are deducted for an additional attempt to improve Intermediate examination?",
+    "ground_truth": "Ten marks are deducted for each additional attempt, with a maximum deduction of twenty marks."
+  },
+  {
+    "question": "What benefit does a Hafiz-e-Quran candidate receive in merit calculation?",
+    "ground_truth": "A Hafiz-e-Quran candidate may receive up to 20 additional marks after presenting a valid certificate and qualifying the evaluation test."
+  },
+  {
+    "question": "How are tie cases resolved in admission merit positions?",
+    "ground_truth": "Tie cases are resolved by higher Intermediate or DAE marks, then higher SSC marks, and if still tied, the older candidate is given preference."
+  }
+]

@@ -7,6 +7,7 @@ function UploadProspectus() {
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState("");
   const [message, setMessage] = useState("");
+  const [uploadMessage, setUploadMessage] = useState(""); // New state for upload message
 
   let eventSourceRef = null;
 
@@ -30,6 +31,8 @@ function UploadProspectus() {
   const handleUpload = async () => {
     if (!file) return alert("Select a PDF first");
 
+    // Show upload starting message
+    setUploadMessage("📄 Your PDF is uploaded and the process is starting...");
     setProgress(0);
     setMessage("");
 
@@ -37,15 +40,39 @@ function UploadProspectus() {
     formData.append("file", file);
     formData.append("datasetType", datasetType);
 
-    const res = await fetch("http://localhost:5000/api/upload-pdf", {
-      method: "POST",
-      body: formData
-    });
+    try {
+      const res = await fetch("http://localhost:5000/api/upload-pdf", {
+        method: "POST",
+        body: formData
+      });
 
-    const result = await res.json();
+      const result = await res.json();
 
-    if (result.status === "uploaded") {
-      startProgress(result.filePath, result.datasetType);
+      if (result.status === "uploaded") {
+        // Clear the file input
+        setFile(null);
+        // Clear the file input field in the DOM
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = '';
+        
+        // Clear upload message after 3 seconds
+        setTimeout(() => {
+          setUploadMessage("");
+        }, 3000);
+        
+        startProgress(result.filePath, result.datasetType);
+      } else {
+        setUploadMessage("❌ Upload failed. Please try again.");
+        setTimeout(() => {
+          setUploadMessage("");
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Upload error:", error);
+      setUploadMessage("❌ Error uploading file. Please try again.");
+      setTimeout(() => {
+        setUploadMessage("");
+      }, 3000);
     }
   };
 
@@ -81,6 +108,7 @@ function UploadProspectus() {
 
     setMessage("Ingestion cancelled ❌");
     setProgress(0);
+    setUploadMessage("");
   };
 
   return (
@@ -110,35 +138,48 @@ function UploadProspectus() {
         <div className="mt-3 flex gap-3">
           <button
             onClick={handleUpload}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
           >
             Upload & Process
           </button>
 
           <button
             onClick={cancelIngestion}
-            className="bg-red-600 text-white px-4 py-2 rounded"
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
           >
             Cancel
           </button>
         </div>
 
+        {/* Upload message notification */}
+        {uploadMessage && (
+          <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-blue-700 font-medium">{uploadMessage}</p>
+          </div>
+        )}
+
         {progress > 0 && (
           <div className="mt-6">
-            <div className="w-full bg-gray-200 h-4 rounded">
+            <div className="w-full bg-gray-200 h-4 rounded overflow-hidden">
               <div
-                className="bg-blue-600 h-4 rounded"
+                className="bg-blue-600 h-4 rounded transition-all duration-300"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <p className="mt-2 text-sm">
+            <p className="mt-2 text-sm text-gray-600">
               {progress}% - {progressMessage}
             </p>
           </div>
         )}
 
         {message && (
-          <p className="mt-4 font-medium">{message}</p>
+          <div className={`mt-4 p-3 rounded-lg ${
+            message.includes("✅") ? "bg-green-50 border border-green-200 text-green-700" : 
+            message.includes("❌") ? "bg-red-50 border border-red-200 text-red-700" :
+            "bg-gray-50 border border-gray-200"
+          }`}>
+            <p className="font-medium">{message}</p>
+          </div>
         )}
       </div>
     </div>

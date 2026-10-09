@@ -1,0 +1,761 @@
+2026-04-13 19:51:35,546 [INFO] ============================================================
+2026-04-13 19:51:35,546 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-13 19:51:35
+2026-04-13 19:51:35,547 [INFO] ============================================================
+2026-04-13 19:51:38,281 [INFO] Scraping HOME PAGE for latest items...
+2026-04-13 19:52:25,027 [INFO] Opening EVENTS archive page 1
+2026-04-13 19:52:27,699 [INFO] Opening EVENTS archive page 2
+2026-04-13 19:52:29,665 [INFO] Opening EVENTS archive page 3
+2026-04-13 19:52:31,769 [INFO] Opening NEWS archive page 1
+2026-04-13 19:52:34,636 [INFO] Opening NEWS archive page 2
+2026-04-13 19:52:37,239 [INFO] Opening NEWS archive page 3
+2026-04-13 19:52:39,799 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collabo
+2026-04-13 19:52:53,526 [INFO]   [OK] Awareness Seminar on Anti-Drug measures in Collabo... | Date: Feb 2025
+2026-04-13 19:52:53,527 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-04-13 19:52:56,062 [INFO]   [OK] Unlocking the Power of Cloud: A Hands-On Workshop... | Date: Feb 2025
+2026-04-13 19:52:56,063 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis 
+2026-04-13 19:53:00,303 [INFO]   [OK] Seminar on Research Paper Writing from FYP Thesis ... | Date: Nov 2024
+2026-04-13 19:53:00,307 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-13 19:53:00,308 [INFO] New item found: Advertisment No 04/2026
+2026-04-13 19:53:03,125 [INFO]   [OK] Advertisment No 04/2026... | Date: Mar 2026
+2026-04-13 19:53:03,126 [INFO] New item found: Scruitny of the Candidates for the Position of Tre
+2026-04-13 19:53:05,686 [INFO]   [OK] Scruitny of the Candidates for the Position of Tre... | Date: Mar 2026
+2026-04-13 19:53:05,687 [INFO] New item found: Advertisment No. 03/2026
+2026-04-13 19:53:08,408 [INFO]   [OK] Advertisment No. 03/2026... | Date: Mar 2026
+2026-04-13 19:53:08,410 [INFO] New item found: Tender Advertised for Procurement, Customization, 
+2026-04-13 19:53:13,907 [INFO]   [OK] Tender Advertised for Procurement, Customization, ... | Date: Mar 2026
+2026-04-13 19:53:13,908 [INFO] New item found: Quantification of Candidates Applied for the Post 
+2026-04-13 19:53:16,652 [INFO]   [OK] Quantification of Candidates Applied for the Post ... | Date: Mar 2026
+2026-04-13 19:53:16,653 [INFO] New item found: MS/MSc/PhD Merit List - Phase-II - Spring 2026 - U
+2026-04-13 19:53:19,309 [INFO]   [OK] MS/MSc/PhD Merit List - Phase-II - Spring 2026 - U... | Date: Feb 2026
+2026-04-13 19:53:19,311 [INFO] New item found: PG Admission Test Result - Phase II
+2026-04-13 19:53:21,849 [INFO]   [OK] PG Admission Test Result - Phase II... | Date: Feb 2026
+2026-04-13 19:53:21,850 [INFO] New item found: Notice: Prime Minister’s Youth Laptop Scheme - Pha
+2026-04-13 19:53:24,384 [INFO]   [OK] Notice: Prime Minister’s Youth Laptop Scheme - Pha... | Date: Feb 2026
+2026-04-13 19:53:24,385 [INFO] New item found: MS/MSc/PhD Merit List - Spring 2026 - UET Mardan
+2026-04-13 19:53:26,877 [INFO]   [OK] MS/MSc/PhD Merit List - Spring 2026 - UET Mardan... | Date: Jan 2026
+2026-04-13 19:53:26,878 [INFO] New item found: GAT-General Test Result (MS/MSc and PhD) - Spring 
+2026-04-13 19:53:29,693 [INFO]   [OK] GAT-General Test Result (MS/MSc and PhD) - Spring ... | Date: Jan 2026
+2026-04-13 19:53:29,698 [INFO] Saved 10 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-13 19:53:30,019 [INFO] FINISHED in 114.5s
+2026-04-13 19:57:14,887 [INFO] ============================================================
+2026-04-13 19:57:14,888 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-13 19:57:14
+2026-04-13 19:57:14,888 [INFO] ============================================================
+2026-04-13 19:57:16,543 [INFO] Scraping HOME PAGE for latest items...
+2026-04-13 19:58:16,560 [ERROR] Error scraping home page: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/", waiting until "networkidle"
+
+2026-04-13 19:58:16,562 [INFO] Opening EVENTS archive page 1
+2026-04-13 19:58:35,544 [INFO] Opening EVENTS archive page 2
+2026-04-13 19:58:37,878 [INFO] Opening EVENTS archive page 3
+2026-04-13 19:58:40,256 [INFO] Opening NEWS archive page 1
+2026-04-13 19:58:45,801 [INFO] Opening NEWS archive page 2
+2026-04-13 19:58:48,954 [INFO] Opening NEWS archive page 3
+2026-04-13 19:58:52,475 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-13 19:58:52,479 [INFO] Saved 10 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-13 19:58:52,735 [INFO] FINISHED in 97.8s
+2026-04-13 20:33:13,072 [INFO] NumExpr defaulting to 8 threads.
+2026-04-13 20:33:51,842 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-13 20:33:53,070 [INFO] Use pytorch device_name: cpu
+2026-04-13 20:33:53,070 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-13 20:33:58,977 [INFO] ============================================================
+2026-04-13 20:33:58,977 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-13 20:33:58
+2026-04-13 20:33:58,977 [INFO] ============================================================
+2026-04-13 20:34:02,385 [INFO] Scraping HOME PAGE for latest items...
+2026-04-13 20:34:39,843 [INFO] Opening EVENTS archive page 1
+2026-04-13 20:34:42,085 [INFO] Opening EVENTS archive page 2
+2026-04-13 20:34:43,924 [INFO] Opening EVENTS archive page 3
+2026-04-13 20:34:45,779 [INFO] Opening NEWS archive page 1
+2026-04-13 20:34:48,288 [INFO] Opening NEWS archive page 2
+2026-04-13 20:34:50,641 [INFO] Opening NEWS archive page 3
+2026-04-13 20:34:52,976 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-13 20:34:52,982 [INFO] Saved 10 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-13 20:34:53,177 [INFO] FINISHED in 54.2s
+2026-04-20 20:25:33,588 [INFO] NumExpr defaulting to 8 threads.
+2026-04-20 20:26:06,037 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-20 20:26:07,065 [INFO] Use pytorch device_name: cpu
+2026-04-20 20:26:07,065 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-20 20:26:12,570 [INFO] ============================================================
+2026-04-20 20:26:12,570 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-20 20:26:12
+2026-04-20 20:26:12,571 [INFO] ============================================================
+2026-04-20 20:26:30,190 [INFO] Scraping HOME PAGE for latest items...
+2026-04-20 20:26:48,535 [INFO] Opening EVENTS archive page 1
+2026-04-20 20:26:50,714 [INFO] Opening EVENTS archive page 2
+2026-04-20 20:26:52,581 [INFO] Opening EVENTS archive page 3
+2026-04-20 20:26:54,767 [INFO] Opening NEWS archive page 1
+2026-04-20 20:26:57,471 [INFO] Opening NEWS archive page 2
+2026-04-20 20:27:00,017 [INFO] Opening NEWS archive page 3
+2026-04-20 20:27:02,571 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-20 20:27:02,594 [INFO] New item found: Advertisment No 05/2026
+2026-04-20 20:27:05,120 [INFO]   [OK] Advertisment No 05/2026... | Date: Apr 2026
+2026-04-20 20:27:05,122 [INFO] Saved 11 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-20 20:27:05,337 [INFO] FINISHED in 52.8s
+2026-04-22 22:29:58,697 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 22:30:40,766 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 22:30:42,392 [INFO] Use pytorch device_name: cpu
+2026-04-22 22:30:42,394 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 22:30:51,429 [INFO] ============================================================
+2026-04-22 22:30:51,430 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 22:30:51
+2026-04-22 22:30:51,430 [INFO] ============================================================
+2026-04-22 22:31:17,892 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 22:31:27,114 [INFO] Opening EVENTS archive page 1
+2026-04-22 22:31:29,179 [INFO] Opening EVENTS archive page 2
+2026-04-22 22:31:31,023 [INFO] Opening EVENTS archive page 3
+2026-04-22 22:31:32,935 [INFO] Opening NEWS archive page 1
+2026-04-22 22:31:35,240 [INFO] Opening NEWS archive page 2
+2026-04-22 22:31:37,534 [INFO] Opening NEWS archive page 3
+2026-04-22 22:31:40,205 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 22:31:40,520 [INFO] New item found: Updated Quantification of Applicants for the posit
+2026-04-22 22:31:43,065 [INFO]   [OK] Updated Quantification of Applicants for the posit... | Date: Apr 2026
+2026-04-22 22:31:43,068 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 22:31:44,086 [INFO] FINISHED in 52.7s
+2026-04-22 22:43:05,562 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 22:43:52,367 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 22:43:54,080 [INFO] Use pytorch device_name: cpu
+2026-04-22 22:43:54,080 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 22:44:02,763 [INFO] ============================================================
+2026-04-22 22:44:02,765 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 22:44:02
+2026-04-22 22:44:02,766 [INFO] ============================================================
+2026-04-22 22:44:04,912 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 22:44:22,580 [INFO] Opening EVENTS archive page 1
+2026-04-22 22:44:25,709 [INFO] Opening EVENTS archive page 2
+2026-04-22 22:44:27,734 [INFO] Opening EVENTS archive page 3
+2026-04-22 22:44:29,598 [INFO] Opening NEWS archive page 1
+2026-04-22 22:44:32,549 [INFO] Opening NEWS archive page 2
+2026-04-22 22:44:35,064 [INFO] Opening NEWS archive page 3
+2026-04-22 22:44:37,720 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 22:44:37,727 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 22:44:38,827 [INFO] FINISHED in 36.1s
+2026-04-22 22:45:27,888 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 22:46:11,950 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 22:46:13,839 [INFO] Use pytorch device_name: cpu
+2026-04-22 22:46:13,840 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 22:46:28,896 [INFO] ============================================================
+2026-04-22 22:46:28,896 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 22:46:28
+2026-04-22 22:46:28,896 [INFO] ============================================================
+2026-04-22 22:46:34,939 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 22:47:28,053 [INFO] Opening EVENTS archive page 1
+2026-04-22 22:47:33,064 [INFO] Opening EVENTS archive page 2
+2026-04-22 22:47:35,341 [INFO] Opening EVENTS archive page 3
+2026-04-22 22:47:37,495 [INFO] Opening NEWS archive page 1
+2026-04-22 22:47:40,587 [INFO] Opening NEWS archive page 2
+2026-04-22 22:47:43,577 [INFO] Opening NEWS archive page 3
+2026-04-22 22:47:46,712 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 22:47:46,727 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 22:47:47,450 [INFO] FINISHED in 78.6s
+2026-04-22 22:52:44,212 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 22:53:26,604 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 22:53:28,328 [INFO] Use pytorch device_name: cpu
+2026-04-22 22:53:28,328 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 22:53:37,753 [INFO] ============================================================
+2026-04-22 22:53:37,753 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 22:53:37
+2026-04-22 22:53:37,753 [INFO] ============================================================
+2026-04-22 22:53:40,272 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 22:53:50,784 [INFO] Opening EVENTS archive page 1
+2026-04-22 22:53:56,362 [INFO] Opening EVENTS archive page 2
+2026-04-22 22:53:58,667 [INFO] Opening EVENTS archive page 3
+2026-04-22 22:54:02,377 [INFO] Opening NEWS archive page 1
+2026-04-22 22:54:05,698 [INFO] Opening NEWS archive page 2
+2026-04-22 22:54:08,993 [INFO] Opening NEWS archive page 3
+2026-04-22 22:54:12,168 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 22:54:12,173 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 22:54:12,424 [INFO] FINISHED in 34.7s
+2026-04-22 22:58:13,186 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 22:58:57,022 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 22:58:57,902 [INFO] Use pytorch device_name: cpu
+2026-04-22 22:58:57,902 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 22:59:06,175 [INFO] ============================================================
+2026-04-22 22:59:06,175 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 22:59:06
+2026-04-22 22:59:06,175 [INFO] ============================================================
+2026-04-22 22:59:11,843 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 23:00:11,878 [ERROR] Error scraping home page: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/", waiting until "networkidle"
+
+2026-04-22 23:00:11,879 [INFO] Opening EVENTS archive page 1
+2026-04-22 23:00:35,179 [INFO] Opening EVENTS archive page 2
+2026-04-22 23:00:37,352 [INFO] Opening EVENTS archive page 3
+2026-04-22 23:00:39,346 [INFO] Opening NEWS archive page 1
+2026-04-22 23:00:42,638 [INFO] Opening NEWS archive page 2
+2026-04-22 23:00:45,441 [INFO] Opening NEWS archive page 3
+2026-04-22 23:00:48,013 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 23:00:48,019 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 23:00:48,719 [INFO] FINISHED in 102.5s
+2026-04-22 23:02:12,501 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 23:02:57,194 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 23:02:59,373 [INFO] Use pytorch device_name: cpu
+2026-04-22 23:02:59,373 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 23:03:09,473 [INFO] ============================================================
+2026-04-22 23:03:09,477 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 23:03:09
+2026-04-22 23:03:09,479 [INFO] ============================================================
+2026-04-22 23:03:11,247 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 23:03:20,303 [INFO] Opening EVENTS archive page 1
+2026-04-22 23:03:22,755 [INFO] Opening EVENTS archive page 2
+2026-04-22 23:03:24,814 [INFO] Opening EVENTS archive page 3
+2026-04-22 23:03:26,670 [INFO] Opening NEWS archive page 1
+2026-04-22 23:03:29,228 [INFO] Opening NEWS archive page 2
+2026-04-22 23:03:31,795 [INFO] Opening NEWS archive page 3
+2026-04-22 23:03:34,824 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 23:03:34,827 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 23:03:35,568 [INFO] FINISHED in 26.1s
+2026-04-22 23:09:42,979 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 23:10:24,781 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 23:10:27,031 [INFO] Use pytorch device_name: cpu
+2026-04-22 23:10:27,031 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 23:10:35,630 [INFO] ============================================================
+2026-04-22 23:10:35,632 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 23:10:35
+2026-04-22 23:10:35,633 [INFO] ============================================================
+2026-04-22 23:10:39,980 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 23:10:50,663 [INFO] Opening EVENTS archive page 1
+2026-04-22 23:10:52,835 [INFO] Opening EVENTS archive page 2
+2026-04-22 23:10:55,422 [INFO] Opening EVENTS archive page 3
+2026-04-22 23:10:57,254 [INFO] Opening NEWS archive page 1
+2026-04-22 23:10:59,760 [INFO] Opening NEWS archive page 2
+2026-04-22 23:11:02,486 [INFO] Opening NEWS archive page 3
+2026-04-22 23:11:05,161 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 23:11:05,176 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 23:11:06,093 [INFO] FINISHED in 30.5s
+2026-04-22 23:47:31,789 [INFO] NumExpr defaulting to 8 threads.
+2026-04-22 23:48:27,756 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-04-22 23:48:29,571 [INFO] Use pytorch device_name: cpu
+2026-04-22 23:48:29,571 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-04-22 23:48:39,066 [INFO] ============================================================
+2026-04-22 23:48:39,066 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-04-22 23:48:39
+2026-04-22 23:48:39,066 [INFO] ============================================================
+2026-04-22 23:48:40,590 [INFO] Scraping HOME PAGE for latest items...
+2026-04-22 23:49:40,623 [ERROR] Error scraping home page: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/", waiting until "networkidle"
+
+2026-04-22 23:49:40,624 [INFO] Opening EVENTS archive page 1
+2026-04-22 23:50:05,080 [INFO] Opening EVENTS archive page 2
+2026-04-22 23:50:06,996 [INFO] Opening EVENTS archive page 3
+2026-04-22 23:50:08,967 [INFO] Opening NEWS archive page 1
+2026-04-22 23:50:12,022 [INFO] Opening NEWS archive page 2
+2026-04-22 23:50:15,304 [INFO] Opening NEWS archive page 3
+2026-04-22 23:50:18,273 [INFO] Saved 3 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-04-22 23:50:18,278 [INFO] New item found: Updated Quantification of Applicants for the posit
+2026-04-22 23:50:21,227 [INFO]   [OK] Updated Quantification of Applicants for the posit... | Date: Apr 2026
+2026-04-22 23:50:21,233 [INFO] Saved 12 items to D:\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-04-22 23:50:21,475 [INFO] FINISHED in 102.4s
+2026-05-12 22:48:25,635 [INFO] NumExpr defaulting to 8 threads.
+2026-05-12 22:48:58,600 [INFO] TensorFlow version 2.20.0 available.
+2026-05-12 22:49:14,424 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-05-12 22:49:16,233 [INFO] Use pytorch device_name: cpu
+2026-05-12 22:49:16,233 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-05-12 22:49:24,337 [INFO] ============================================================
+2026-05-12 22:49:24,337 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-05-12 22:49:24
+2026-05-12 22:49:24,337 [INFO] ============================================================
+2026-05-12 22:49:53,616 [INFO] Scraping HOME PAGE for latest items...
+2026-05-12 22:50:03,559 [INFO] Opening EVENTS archive page 1
+2026-05-12 22:50:05,752 [INFO] Opening EVENTS archive page 2
+2026-05-12 22:50:07,852 [INFO] Opening EVENTS archive page 3
+2026-05-12 22:50:09,887 [INFO] Opening NEWS archive page 1
+2026-05-12 22:50:12,510 [INFO] Opening NEWS archive page 2
+2026-05-12 22:50:15,049 [INFO] Opening NEWS archive page 3
+2026-05-12 22:50:17,921 [INFO] Saved 3 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-05-12 22:50:17,966 [INFO] New item found: Auction Notice
+2026-05-12 22:50:20,586 [INFO]   [OK] Auction Notice... | Date: May 2026
+2026-05-12 22:50:20,587 [INFO] New item found: Meeting Minutes of Technical Evaluation for the De
+2026-05-12 22:50:23,289 [INFO]   [OK] Meeting Minutes of Technical Evaluation for the De... | Date: May 2026
+2026-05-12 22:50:23,290 [INFO] New item found: Quantification of Candidates Applied for the Posit
+2026-05-12 22:50:26,099 [INFO]   [OK] Quantification of Candidates Applied for the Posit... | Date: Apr 2026
+2026-05-12 22:50:26,105 [INFO] Saved 15 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-05-12 22:50:26,379 [INFO] FINISHED in 62.0s
+2026-05-15 14:00:25,516 [INFO] NumExpr defaulting to 8 threads.
+2026-05-15 14:01:08,017 [INFO] TensorFlow version 2.20.0 available.
+2026-05-15 14:01:23,331 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-05-15 14:01:24,976 [INFO] Use pytorch device_name: cpu
+2026-05-15 14:01:24,976 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-05-15 14:01:31,905 [INFO] ============================================================
+2026-05-15 14:01:31,905 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-05-15 14:01:31
+2026-05-15 14:01:31,906 [INFO] ============================================================
+2026-05-15 14:01:38,660 [INFO] Scraping HOME PAGE for latest items...
+2026-05-15 14:01:53,483 [INFO] Opening EVENTS archive page 1
+2026-05-15 14:01:55,929 [INFO] Opening EVENTS archive page 2
+2026-05-15 14:02:01,032 [INFO] Opening EVENTS archive page 3
+2026-05-15 14:02:10,470 [INFO] Opening NEWS archive page 1
+2026-05-15 14:02:13,853 [INFO] Opening NEWS archive page 2
+2026-05-15 14:02:16,405 [INFO] Opening NEWS archive page 3
+2026-05-15 14:02:19,059 [INFO] Saved 3 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-05-15 14:02:19,072 [INFO] Saved 15 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-05-15 14:02:19,335 [INFO] FINISHED in 47.4s
+2026-05-16 23:31:54,339 [INFO] NumExpr defaulting to 8 threads.
+2026-05-16 23:32:29,185 [INFO] TensorFlow version 2.20.0 available.
+2026-05-16 23:32:51,532 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-05-16 23:32:53,239 [INFO] Use pytorch device_name: cpu
+2026-05-16 23:32:53,240 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-05-16 23:33:00,644 [INFO] ============================================================
+2026-05-16 23:33:00,644 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-05-16 23:33:00
+2026-05-16 23:33:00,645 [INFO] ============================================================
+2026-05-16 23:33:40,754 [INFO] Scraping HOME PAGE for latest items...
+2026-05-16 23:33:52,977 [INFO] Opening EVENTS archive page 1
+2026-05-16 23:33:56,350 [INFO] Opening EVENTS archive page 2
+2026-05-16 23:33:58,559 [INFO] Opening EVENTS archive page 3
+2026-05-16 23:34:01,066 [INFO] Opening NEWS archive page 1
+2026-05-16 23:34:04,691 [INFO] Opening NEWS archive page 2
+2026-05-16 23:34:07,321 [INFO] Opening NEWS archive page 3
+2026-05-16 23:34:09,902 [INFO] Saved 3 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-05-16 23:34:09,906 [INFO] Saved 15 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-05-16 23:34:10,427 [INFO] FINISHED in 69.8s
+2026-05-16 23:49:45,714 [INFO] NumExpr defaulting to 8 threads.
+2026-05-16 23:50:23,088 [INFO] TensorFlow version 2.20.0 available.
+2026-05-16 23:50:39,321 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-05-16 23:50:41,020 [INFO] Use pytorch device_name: cpu
+2026-05-16 23:50:41,020 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-05-16 23:50:56,186 [INFO] ============================================================
+2026-05-16 23:50:56,187 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-05-16 23:50:56
+2026-05-16 23:50:56,187 [INFO] ============================================================
+2026-05-16 23:51:01,104 [INFO] Scraping HOME PAGE for latest items...
+2026-05-16 23:51:20,574 [INFO] Opening EVENTS archive page 1
+2026-05-16 23:51:23,194 [INFO] Opening EVENTS archive page 2
+2026-05-16 23:51:25,085 [INFO] Opening EVENTS archive page 3
+2026-05-16 23:51:26,901 [INFO] Opening NEWS archive page 1
+2026-05-16 23:51:29,505 [INFO] Opening NEWS archive page 2
+2026-05-16 23:51:32,482 [INFO] Opening NEWS archive page 3
+2026-05-16 23:51:35,550 [INFO] Saved 3 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-05-16 23:51:35,554 [INFO] Saved 15 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-05-16 23:51:35,813 [INFO] FINISHED in 39.6s
+2026-05-17 00:08:47,452 [INFO] NumExpr defaulting to 8 threads.
+2026-05-17 00:09:27,393 [INFO] TensorFlow version 2.20.0 available.
+2026-05-17 00:09:46,716 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-05-17 00:09:48,442 [INFO] Use pytorch device_name: cpu
+2026-05-17 00:09:48,443 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-05-17 00:09:56,087 [INFO] ============================================================
+2026-05-17 00:09:56,087 [INFO] UET MARDAN SCRAPER v5 STARTED at 2026-05-17 00:09:56
+2026-05-17 00:09:56,087 [INFO] ============================================================
+2026-05-17 00:10:01,382 [INFO] Scraping HOME PAGE for latest items...
+2026-05-17 00:10:11,643 [INFO] Opening EVENTS archive page 1
+2026-05-17 00:10:13,837 [INFO] Opening EVENTS archive page 2
+2026-05-17 00:10:16,012 [INFO] Opening EVENTS archive page 3
+2026-05-17 00:10:18,291 [INFO] Opening NEWS archive page 1
+2026-05-17 00:10:20,962 [INFO] Opening NEWS archive page 2
+2026-05-17 00:10:23,815 [INFO] Opening NEWS archive page 3
+2026-05-17 00:10:26,856 [INFO] Saved 3 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\events.json
+2026-05-17 00:10:26,870 [INFO] Saved 15 items to D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\output\news.json
+2026-05-17 00:10:27,296 [INFO] FINISHED in 31.2s
+2026-06-12 23:19:55,300 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:20:12,561 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:20:46,932 [INFO] TensorFlow version 2.20.0 available.
+2026-06-12 23:21:03,992 [WARNING] From D:\anaconda3\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2026-06-12 23:21:05,887 [INFO] Use pytorch device_name: cpu
+2026-06-12 23:21:05,888 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-12 23:30:12,355 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:30:19,062 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-12 23:30:22,424 [ERROR] Future exception was never retrieved
+future: <Future finished exception=OSError(22, 'The paging file is too small for this operation to complete', None, 1455, None)>
+Traceback (most recent call last):
+  File "D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\scripts\run_notifications.py", line 21, in <module>
+    new_items = run_scraper()
+                ^^^^^^^^^^^^^
+  File "D:\Unversity Slidse\current working chatbot\fyp chatbot\UniversityChatbotFinal\pipeline\notification_pipeline\scraper.py", line 184, in run_scraper
+    with sync_playwright() as p:
+         ^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\playwright\sync_api\_context_manager.py", line 77, in __enter__
+    dispatcher_fiber.switch()
+  File "D:\anaconda3\Lib\site-packages\playwright\sync_api\_context_manager.py", line 56, in greenlet_main
+    self._loop.run_until_complete(self._connection.run_as_sync())
+  File "D:\anaconda3\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 303, in run_as_sync
+    await self.run()
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 312, in run
+    await self._transport.connect()
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_transport.py", line 133, in connect
+    raise exc
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_transport.py", line 120, in connect
+    self._proc = await asyncio.create_subprocess_exec(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "D:\anaconda3\Lib\asyncio\subprocess.py", line 224, in create_subprocess_exec
+    transport, protocol = await loop.subprocess_exec(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        stderr=stderr, **kwds)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\asyncio\base_events.py", line 1794, in subprocess_exec
+    transport = await self._make_subprocess_transport(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        protocol, popen_args, False, stdin, stdout, stderr,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        bufsize, **kwargs)
+        ^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\asyncio\windows_events.py", line 401, in _make_subprocess_transport
+    transp = _WindowsSubprocessTransport(self, protocol, args, shell,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+                                         **kwargs)
+                                         ^^^^^^^^^
+  File "D:\anaconda3\Lib\asyncio\base_subprocess.py", line 39, in __init__
+    self._start(args=args, shell=shell, stdin=stdin, stdout=stdout,
+                stderr=stderr, bufsize=bufsize, **kwargs)
+  File "D:\anaconda3\Lib\asyncio\windows_events.py", line 879, in _start
+    self._proc = windows_utils.Popen(
+                 ^^^^^^^^^^^^^^^^^^^^
+        args, shell=shell, stdin=stdin, stdout=stdout, stderr=stderr,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        bufsize=bufsize, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\asyncio\windows_utils.py", line 153, in __init__
+    super().__init__(args, stdin=stdin_rfd, stdout=stdout_wfd,
+                     stderr=stderr_wfd, **kwds)
+  File "D:\anaconda3\Lib\subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ...<7 lines>...
+                        start_new_session, process_group)
+  File "D:\anaconda3\Lib\subprocess.py", line 1554, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+                             startupinfo)
+                             ^^^^^^^^^^^^
+OSError: [WinError 1455] The paging file is too small for this operation to complete
+2026-06-12 23:40:09,876 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:40:15,303 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-12 23:44:09,619 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:44:14,874 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-12 23:48:13,629 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:48:23,833 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-12 23:52:10,294 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:52:16,036 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-12 23:56:10,697 [INFO] NumExpr defaulting to 8 threads.
+2026-06-12 23:56:16,310 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-12 23:56:29,203 [INFO] New item: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-12 23:56:29,577 [INFO] New item: Seminar on Professional Development & Career Counselling
+2026-06-12 23:56:29,986 [INFO] New item: UET Mardan Holds Solidarity Event for kashmir
+2026-06-12 23:56:30,291 [INFO] New item: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-12 23:56:31,902 [INFO] FINISHED in 14.3s
+2026-06-12 23:56:40,726 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-13 00:00:14,528 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:00:23,393 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:00:36,644 [INFO] FINISHED in 11.5s
+2026-06-13 00:04:14,047 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:04:22,192 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:04:25,241 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<Connection.run.<locals>.init() done, defined at D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py:309> exception=Exception('Connection.init: Connection closed while reading from the driver')>
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 310, in init
+    self.playwright_future.set_result(await self._root_object.initialize())
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 251, in initialize
+    await self._channel.send(
+    ...<5 lines>...
+    )
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+Exception: Connection.init: Connection closed while reading from the driver
+2026-06-13 00:08:13,707 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:08:23,170 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:12:12,886 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:12:21,350 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:16:14,812 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:16:24,112 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:20:17,189 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:20:27,161 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:24:15,125 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:24:24,367 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:24:29,631 [WARNING] Navigation error: Page.goto: net::ERR_INSUFFICIENT_RESOURCES at https://www.uetmardan.edu.pk/uetm/
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/", waiting until "domcontentloaded"
+
+2026-06-13 00:28:15,840 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:28:25,134 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:32:12,870 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:32:20,899 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:36:15,303 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:36:24,703 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:40:16,222 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:40:24,559 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:44:12,827 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:44:20,785 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:48:15,431 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:48:24,313 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:52:15,048 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:52:24,021 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:53:27,433 [WARNING] Timeout retry 1/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-13 00:55:24,450 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 00:55:34,811 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-13 00:56:15,734 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 23:04:13,382 [INFO] NumExpr defaulting to 8 threads.
+2026-06-13 23:04:20,402 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 12:00:12,404 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 12:00:18,804 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 13:00:17,695 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 13:00:27,303 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:00:19,789 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:00:29,936 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:08:10,170 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:08:15,927 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:09:19,394 [WARNING] Timeout retry 1/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-14 22:10:19,410 [WARNING] Timeout retry 2/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-14 22:11:05,056 [INFO] FINISHED in 167.8s
+2026-06-14 22:12:17,504 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:12:27,492 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:13:31,520 [WARNING] Timeout retry 1/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-14 22:14:31,548 [WARNING] Timeout retry 2/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-14 22:15:03,366 [INFO] FINISHED in 153.7s
+2026-06-14 22:16:16,851 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:16:25,807 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:54:21,209 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:54:30,753 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:55:18,437 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:55:29,341 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:57:13,629 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:57:20,193 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:57:21,598 [INFO] 🚀 Scraper started
+2026-06-14 22:58:53,215 [INFO] FINISHED in 91.6s
+2026-06-14 22:59:22,969 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 22:59:32,864 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 22:59:35,065 [INFO] 🚀 Scraper started
+2026-06-14 23:00:21,268 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:00:30,319 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:00:32,625 [INFO] 🚀 Scraper started
+2026-06-14 23:00:37,417 [INFO] Timeout retry 1/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-14 23:01:10,026 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:01:10,759 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:01:16,911 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:01:34,505 [INFO] Timeout retry 1/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-14 23:01:43,960 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:01:44,325 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:01:50,832 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:01:55,872 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:02:02,893 [INFO] FINISHED in 147.8s
+2026-06-14 23:02:12,108 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-14 23:02:34,555 [INFO] Timeout retry 2/3: https://www.uetmardan.edu.pk/uetm/
+2026-06-14 23:12:53,273 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:13:01,999 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:13:03,955 [INFO] 🚀 Scraper started
+2026-06-14 23:17:20,135 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:17:28,492 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:17:30,417 [INFO] 🚀 Scraper started
+2026-06-14 23:17:48,971 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:17:49,451 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:17:50,103 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:17:56,575 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:17:56,957 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:17:59,234 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:18:00,060 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:18:05,612 [INFO] FINISHED in 35.2s
+2026-06-14 23:22:31,669 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:22:39,566 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:22:41,262 [INFO] 🚀 Scraper started
+2026-06-14 23:23:02,173 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:23:02,663 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:23:03,922 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:23:13,772 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:23:14,768 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:23:16,868 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:23:17,502 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:23:20,471 [INFO] FINISHED in 39.2s
+2026-06-14 23:25:09,822 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:25:18,179 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:25:19,767 [INFO] 🚀 Scraper started
+2026-06-14 23:25:36,175 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:25:36,651 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:25:37,528 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:25:53,398 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:25:53,751 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:25:56,922 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:25:58,430 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:26:04,705 [INFO] FINISHED in 44.9s
+2026-06-14 23:27:06,379 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:27:16,579 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:27:18,460 [INFO] 🚀 Scraper started
+2026-06-14 23:27:31,000 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:27:31,923 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:27:32,541 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:27:37,031 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:27:37,581 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:27:38,488 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:27:39,009 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:27:40,319 [INFO] FINISHED in 21.9s
+2026-06-14 23:27:49,079 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-14 23:30:50,675 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:30:58,868 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:31:00,429 [INFO] 🚀 Scraper started
+2026-06-14 23:31:15,825 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:31:16,585 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:31:17,094 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:31:19,451 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:31:19,865 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:31:20,886 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:31:21,346 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:31:22,616 [INFO] FINISHED in 22.2s
+2026-06-14 23:32:47,767 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:32:55,516 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:32:57,077 [INFO] 🚀 Scraper started
+2026-06-14 23:33:09,624 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:33:10,176 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:33:10,800 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:33:14,169 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:33:14,650 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:33:16,177 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:33:16,725 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:33:18,476 [INFO] FINISHED in 21.4s
+2026-06-14 23:33:58,034 [INFO] NumExpr defaulting to 8 threads.
+2026-06-14 23:34:07,802 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-14 23:34:10,647 [INFO] 🚀 Scraper started
+2026-06-14 23:34:21,029 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-14 23:34:21,781 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-14 23:34:22,193 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-14 23:34:25,555 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-14 23:34:25,919 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-14 23:34:27,899 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-14 23:34:28,647 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-14 23:34:30,276 [INFO] FINISHED in 19.6s
+2026-06-14 23:34:38,539 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-15 21:00:17,220 [INFO] NumExpr defaulting to 8 threads.
+2026-06-15 21:00:27,715 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-15 21:00:29,784 [INFO] 🚀 Scraper started
+2026-06-15 21:01:31,355 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/", waiting until "domcontentloaded"
+
+2026-06-15 21:01:31,400 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:31,428 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:31,466 [INFO] FAILED: https://www.uetmardan.edu.pk/uetm/
+2026-06-15 21:01:31,831 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:31,866 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:31,908 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:31,951 [INFO] FAILED: https://www.uetmardan.edu.pk/uetm/News/events_archive/1
+2026-06-15 21:01:31,989 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:32,011 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:32,053 [INFO] Navigation error: Page.goto: Target page, context or browser has been closed
+2026-06-15 21:01:32,092 [INFO] FAILED: https://www.uetmardan.edu.pk/uetm/News/news_archive/1
+2026-06-15 21:01:32,274 [INFO] FINISHED in 62.5s
+2026-06-15 23:00:15,225 [INFO] NumExpr defaulting to 8 threads.
+2026-06-15 23:00:24,061 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-15 23:00:25,757 [INFO] 🚀 Scraper started
+2026-06-15 23:01:09,187 [INFO] Navigation error: Page.goto: net::ERR_INSUFFICIENT_RESOURCES at https://www.uetmardan.edu.pk/uetm/News/events_archive/3
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/News/events_archive/3", waiting until "domcontentloaded"
+
+2026-06-15 23:01:09,393 [INFO] Navigation error: Page.goto: net::ERR_INSUFFICIENT_RESOURCES at https://www.uetmardan.edu.pk/uetm/News/events_archive/3
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/News/events_archive/3", waiting until "domcontentloaded"
+
+2026-06-15 23:01:09,607 [INFO] Navigation error: Page.goto: net::ERR_INSUFFICIENT_RESOURCES at https://www.uetmardan.edu.pk/uetm/News/events_archive/3
+Call log:
+  - navigating to "https://www.uetmardan.edu.pk/uetm/News/events_archive/3", waiting until "domcontentloaded"
+
+2026-06-15 23:01:09,629 [INFO] FAILED: https://www.uetmardan.edu.pk/uetm/News/events_archive/3
+2026-06-15 23:01:10,248 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-15 23:01:10,784 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-15 23:01:11,246 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-15 23:01:15,995 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-15 23:01:19,417 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-15 23:01:22,850 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-15 23:01:26,250 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-15 23:01:29,977 [INFO] FINISHED in 64.2s
+2026-06-15 23:01:41,128 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16 11:00:12,141 [INFO] NumExpr defaulting to 8 threads.
+2026-06-16 11:00:19,202 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-16 11:00:20,886 [INFO] 🚀 Scraper started
+2026-06-16 11:00:35,067 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-16 11:00:35,737 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-16 11:00:38,306 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-16 11:00:41,448 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-16 11:00:42,333 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-16 11:00:43,446 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-16 11:00:43,855 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-16 11:00:44,554 [INFO] New item found: Scruitny of Deputy Director Finance (BPS-18) on Regular Basis
+2026-06-16 11:00:45,758 [INFO] FINISHED in 24.9s
+2026-06-16 11:00:54,572 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16 12:00:21,035 [INFO] NumExpr defaulting to 8 threads.
+2026-06-16 12:00:32,657 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-16 12:00:34,978 [INFO] 🚀 Scraper started
+2026-06-16 12:00:49,145 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-16 12:00:49,765 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-16 12:00:50,277 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-16 12:00:50,977 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-16 12:00:51,449 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-16 12:00:51,903 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-16 12:00:52,367 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-16 12:00:53,129 [INFO] FINISHED in 18.2s
+2026-06-16 12:01:01,246 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16 22:36:30,767 [INFO] NumExpr defaulting to 8 threads.
+2026-06-16 22:36:42,880 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-16 22:36:45,252 [INFO] 🚀 Scraper started
+2026-06-16 22:37:01,835 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-06-16 22:37:02,363 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-06-16 22:37:02,966 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-06-16 22:37:03,446 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-06-16 22:37:04,086 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-06-16 22:37:04,808 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-06-16 22:37:05,227 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-06-16 22:37:06,276 [INFO] FINISHED in 21.0s
+2026-06-16 22:37:17,147 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-06-17 00:00:12,617 [INFO] NumExpr defaulting to 8 threads.
+2026-06-17 00:00:19,684 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-17 00:00:21,394 [INFO] 🚀 Scraper started
+2026-06-17 00:00:25,329 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<Connection.run.<locals>.init() done, defined at D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py:309> exception=Exception('Connection.init: Connection closed while reading from the driver')>
+Traceback (most recent call last):
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 310, in init
+    self.playwright_future.set_result(await self._root_object.initialize())
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 251, in initialize
+    await self._channel.send(
+    ...<5 lines>...
+    )
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "D:\anaconda3\Lib\site-packages\playwright\_impl\_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+Exception: Connection.init: Connection closed while reading from the driver
+2026-06-17 15:13:15,098 [INFO] NumExpr defaulting to 8 threads.
+2026-06-17 15:13:31,249 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-06-17 15:13:34,670 [INFO] 🚀 Scraper started
+2026-07-12 06:01:35,466 [INFO] NumExpr defaulting to 8 threads.
+2026-07-12 06:02:19,307 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-07-12 06:02:28,118 [INFO] 🚀 Scraper started
+2026-07-12 06:03:14,511 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-07-12 06:03:15,055 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-07-12 06:03:15,626 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-07-12 06:03:16,216 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-07-12 06:03:16,642 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-07-12 06:03:17,072 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-07-12 06:03:17,575 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-07-12 06:03:18,480 [INFO] FINISHED in 50.4s
+2026-07-12 06:03:28,681 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-07-12 07:00:16,924 [INFO] NumExpr defaulting to 8 threads.
+2026-07-12 07:00:26,746 [INFO] Disabling Tensorflow because USE_TORCH is set
+2026-07-12 07:00:29,159 [INFO] 🚀 Scraper started
+2026-07-12 07:00:40,923 [INFO] New item found: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-07-12 07:00:41,293 [INFO] New item found: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-07-12 07:00:41,574 [INFO] New item found: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-07-12 07:00:42,956 [INFO] New item found: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-07-12 07:00:43,233 [INFO] New item found: Seminar on Professional Development & Career Counselling
+2026-07-12 07:00:43,541 [INFO] New item found: UET Mardan Holds Solidarity Event for kashmir
+2026-07-12 07:00:43,866 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-07-12 07:00:44,363 [INFO] FINISHED in 15.2s
+2026-07-12 07:00:51,422 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2

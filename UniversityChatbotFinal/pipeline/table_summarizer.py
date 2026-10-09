@@ -1,12 +1,11 @@
 # --------------------------------------------------
-# FIXED: Groq LLM Table Summarization
-# FIX 1: Changed model from llama-3.1-8b-instant → llama-3.3-70b-versatile
-# FIX 2: Prompt now forces EXACT numeric preservation (no paraphrasing)
-# FIX 3: Structured row-by-row output so RAG can find exact values
+# UPDATED: Groq LLM Table Summarization with Llama 4 Scout
+# CHANGE: Switched from langchain_groq to direct Groq API with streaming
+# MODEL: meta-llama/llama-4-scout-17b-16e-instruct (17B parameters)
+# BENEFITS: Better accuracy, streaming support, multimodal capabilities
 # --------------------------------------------------
 
-from langchain_groq import ChatGroq
-from langchain_core.messages import HumanMessage
+from groq import Groq
 from dotenv import load_dotenv
 import os
 
@@ -16,21 +15,14 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 if not GROQ_API_KEY:
     raise ValueError("GROQ_API_KEY not found in .env file!")
 
-# --------------------------------------------------
-# FIX 1: Use a larger, more accurate model
-# llama-3.1-8b-instant was too small → hallucinated numbers
-# llama-3.3-70b-versatile is much better for numeric precision
-# --------------------------------------------------
-llm = ChatGroq(
-    api_key=GROQ_API_KEY,
-    model_name="llama-3.3-70b-versatile",  # FIXED: was llama-3.1-8b-instant
-    temperature=0                            # Keep 0 for factual accuracy
-)
+# Initialize Groq client
+client = Groq(api_key=GROQ_API_KEY)
 
 # --------------------------------------------------
-# Safe truncation (row-aware, unchanged)
+# Safe truncation (row-aware)
 # --------------------------------------------------
 def safe_truncate_table(table_text: str, max_chars: int = 3500) -> str:
+    """Truncate table while preserving row integrity"""
     if len(table_text) <= max_chars:
         return table_text
     rows = table_text.split("\n")
@@ -43,14 +35,19 @@ def safe_truncate_table(table_text: str, max_chars: int = 3500) -> str:
 
 
 # --------------------------------------------------
-# FIX 2: New prompt that forces exact numeric copying
-# OLD prompt asked for "bullet points" → LLM rewrote numbers
-# NEW prompt forces structured KEY=VALUE format per row
+# Main summarization function with streaming
 # --------------------------------------------------
-def summarize_table(table_text: str) -> str:
+def summarize_table(table_text: str, use_streaming: bool = True) -> str:
     """
     Convert university prospectus table into structured text.
     Every number, code, and value is copied EXACTLY as written.
+    
+    Args:
+        table_text (str): The table data to summarize
+        use_streaming (bool): Whether to use streaming for real-time output
+    
+    Returns:
+        str: Structured summary of the table
     """
 
     if not table_text or not table_text.strip():
@@ -92,19 +89,66 @@ TABLE DATA:
 
 STRUCTURED OUTPUT (one sentence per row, exact values only):"""
 
-    response = llm.invoke([HumanMessage(content=prompt)])
-    summary = response.content.strip()
+    try:
+        if use_streaming:
+            # Use streaming for real-time output
+            summary = ""
+            print("Processing with streaming...\n")
+            
+            completion = client.chat.completions.create(
+                model="meta-llama/llama-4-scout-17b-16e-instruct",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0,  # Keep 0 for factual accuracy
+                max_completion_tokens=2048,
+                top_p=1,
+                stream=True,
+                stop=None
+            )
+            
+            # Stream and accumulate the response
+            for chunk in completion:
+                if chunk.choices[0].delta.content:
+                    content = chunk.choices[0].delta.content
+                    print(content, end="", flush=True)
+                    summary += content
+            
+            print("\n")  # New line after streaming
+            return summary
+        
+        else:
+            # Non-streaming mode
+            completion = client.chat.completions.create(
+                model="meta-llama/llama-4-scout-17b-16e-instruct",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0,  # Keep 0 for factual accuracy
+                max_completion_tokens=2048,
+                top_p=1,
+                stream=False,
+                stop=None
+            )
+            
+            summary = completion.choices[0].message.content.strip()
+            return summary
 
-    if len(summary.split()) < 10:
-        return f"Table data (raw): {table_text[:500]}"
-
-    return summary
+    except Exception as e:
+        return f"Error during summarization: {str(e)}"
 
 
 # --------------------------------------------------
 # Example usage
 # --------------------------------------------------
 if __name__ == "__main__":
+    # Sample course table
     example_table = """
     Course Code | Course Title                          | Theory | Lab | Cr.Hrs. | Prerequisite (if any)
     SE-103      | Discrete Structures                   | 3      | 0   | 3       | None
@@ -115,5 +159,18 @@ if __name__ == "__main__":
     BSH-***     | General Education Elective-I          | 3      | 0   | 3       | None
     """
 
-    summary = summarize_table(example_table)
-    print("Summary:\n", summary)
+    print("=" * 60)
+    print("GROQ TABLE SUMMARIZER - Llama 4 Scout Model")
+    print("=" * 60)
+    print("\nInput Table:\n")
+    print(example_table)
+    print("\n" + "=" * 60)
+    print("SUMMARY OUTPUT (with streaming):")
+    print("=" * 60 + "\n")
+    
+    # Run with streaming enabled (default)
+    summary = summarize_table(example_table, use_streaming=True)
+    
+    print("\n" + "=" * 60)
+    print("Summary generated successfully!")
+    print("=" * 60)

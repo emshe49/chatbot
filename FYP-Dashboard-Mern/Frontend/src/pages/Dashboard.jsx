@@ -806,42 +806,7 @@ const Dashboard = () => {
           />
         </div>
 
-        {/* Additional Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-purple-50 rounded-lg">
-                <Layers size={24} className="text-purple-600" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 mb-1">Total Chunks</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalChunks.toLocaleString()}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-indigo-50 rounded-lg">
-                <BarChart3 size={24} className="text-indigo-600" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 mb-1">Total Embeddings</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.totalEmbeddings.toLocaleString()}</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
-            <div className="flex items-center gap-4">
-              <div className="p-3 bg-emerald-50 rounded-lg">
-                <Upload size={24} className="text-emerald-600" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600 mb-1">Average Processing Time</p>
-                <p className="text-2xl font-bold text-gray-900">2.4s</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Filters and View Toggle */}
         <div className="flex items-center justify-between mb-4">

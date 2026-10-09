@@ -11,6 +11,8 @@ const adminAuthRoutes = require("./routes/adminAuth");
 // User routes
 const scraperRoutes = require("./routes/scraperRoutes");
 
+const scraperLogsRoute = require("./routes/scraperLogs");
+
 
 // Models
 const Ingestion = require("./models/Ingestion"); // For analytics
@@ -18,6 +20,8 @@ const Ingestion = require("./models/Ingestion"); // For analytics
 const chatRoutes = require("./routes/chat");
 
 const app = express();
+
+require("./scheduler/notificationScheduler");
 
 // Middleware
 app.use(cors());
@@ -52,10 +56,14 @@ app.post("/api/cancel-ingestion", ingestionProgress.cancelIngestion);
 app.use("/api/ingestion-history", ingestionHistoryRoute);
 app.use("/api", chatRoutes);
 app.use("/api/scraper", scraperRoutes);
+app.use("/api/scraperlog", scraperLogsRoute);
 // ---------------------------
 // Authentication Routes
 // ---------------------------
 app.use("/api/auth", adminAuthRoutes); // Admin login
+
+
+
 
 
 // ---------------------------

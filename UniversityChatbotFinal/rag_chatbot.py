@@ -1,13 +1,8 @@
 import os
 import sys
-
-# --------------------------------------------------
-# LANGSMITH OBSERVABILITY (OPTIONAL)
-# --------------------------------------------------
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_PROJECT"] = "university-rag-observability"
-
-from langsmith import traceable
+import re
+from functools import lru_cache
+from typing import Generator
 
 # --------------------------------------------------
 # PROJECT ROOT AUTO-DETECTION
@@ -20,125 +15,303 @@ sys.path.insert(0, PROJECT_ROOT)
 # --------------------------------------------------
 from pipeline.embedder import embed_texts
 from pipeline.pinecone_index import PineconeClient
-from pipeline.llm import generate_answer
+from pipeline.llm import generate_answer, rewrite_query
+
+# --------------------------------------------------
+# 🔥 RERANKER IMPORT (NEW)
+# --------------------------------------------------
+try:
+    from sentence_transformers import CrossEncoder
+    _reranker = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
+except Exception as e:
+    print("Reranker not loaded, fallback to normal ranking:", e)
+    _reranker = None
+
+
+# --------------------------------------------------
+# GLOBAL PINECONE CLIENT
+# --------------------------------------------------
+_pc = PineconeClient()
 
 
 # --------------------------------------------------
 # GET AVAILABLE NAMESPACES
 # --------------------------------------------------
-
 def get_available_namespaces():
-    pc = PineconeClient()
-    stats = pc.index.describe_index_stats()
+    stats = _pc.index.describe_index_stats()
     return list(stats.get("namespaces", {}).keys())
 
 
 # --------------------------------------------------
-# RAG QUESTION ANSWERING (NO MEMORY)
+# CACHED EMBEDDING
 # --------------------------------------------------
+@lru_cache(maxsize=512)
+def get_embedding(text: str):
+    return embed_texts([text])[0]
 
-@traceable(run_type="chain", name="University-RAG-Query")
-def ask_question(question: str, namespace: str, user_type: str):
-    """
-    Core RAG pipeline.
-    No session storage.
-    No memory saving.
-    Pure retrieval + generation.
-    """
 
-    # ---------------------------
-    # Greeting shortcut
-    # ---------------------------
+# ==================================================
+# 🔥 RERANKING FUNCTION (NEW CORE LOGIC)
+# ==================================================
+def rerank_results(query: str, matches: list, top_k: int = 10):
+    """
+    Rerank Pinecone results using Cross-Encoder
+    """
+    if not _reranker or not matches:
+        return matches[:top_k]
+
+    scored = []
+
+    for m in matches:
+        meta = m.get("metadata", {})
+        text = meta.get("text", "")
+
+        if not text:
+            continue
+
+        score = _reranker.predict([(query, text)])[0]
+        scored.append((score, m))
+
+    # Sort by reranker score
+    scored.sort(key=lambda x: x[0], reverse=True)
+
+    return [m for _, m in scored[:top_k]]
+
+
+# ==================================================
+# MEMORY FUNCTIONS
+# ==================================================
+def build_memory_context(chat_history: list) -> str:
+    if not chat_history:
+        return ""
+
+    memory = []
+    for msg in chat_history[-4:]:
+        role = "User" if msg["sender"] == "user" else "Assistant"
+        memory.append(f"{role}: {msg['text']}")
+
+    return "\n".join(memory)
+
+
+def rewrite_question_with_memory(question: str, memory_context: str) -> str:
+    if not memory_context:
+        return question
+    return rewrite_query(memory_context, question)
+
+
+def handle_special_memory_questions(question: str, chat_history: list):
+    q = question.lower().strip()
+
+    meta_triggers = [
+        "what question did i ask before",
+        "what did i ask before",
+        "what was my previous question",
+        "what did i ask previously",
+        "what was my last question",
+    ]
+
+    if any(trigger in q for trigger in meta_triggers):
+        user_messages = [
+            msg["text"]
+            for msg in chat_history
+            if msg["sender"] == "user"
+        ]
+
+        if len(user_messages) >= 2:
+            return f'Your previous question was: "{user_messages[-2]}"'
+
+        return "You have not asked any previous question in this session."
+
+    return None
+
+
+# ==================================================
+# SMART INTENT DETECTION
+# ==================================================
+def is_notification_query(text: str):
+    text = text.lower()
+    keywords = [
+        "notification", "notifications",
+        "announcement", "announcements",
+        "news", "update", "updates",
+        "latest", "recent",
+        "tender", "auction",
+        "pm", "prime minister", "laptop scheme",
+        "seminar", "event",
+        "result", "merit list",
+        "admission", "notice"
+    ]
+    return any(k in text for k in keywords)
+
+
+# ==================================================
+# LIMIT DETECTION
+# ==================================================
+def detect_limit(text: str):
+    text = text.lower()
+
+    if any(x in text for x in ["all", "full list", "everything", "complete list"]):
+        return "all"
+
+    match = re.search(r"(\d+)", text)
+    if match:
+        return int(match.group(1))
+
+    if any(x in text for x in ["recent", "latest", "new"]):
+        return 5
+
+    return 1
+
+
+# ==================================================
+# RAG BUILDER
+# ==================================================
+def _build_rag_prompt(question: str, namespace: str, chat_history: list = None) -> dict:
+
     if question.lower().strip() in ["hi", "hello", "hey"]:
-        return (
-            "Hello! 👋 I can help you with admissions, eligibility, programs, "
-            "fees, staff policies, awards, and other university information."
-        )
+        return {
+            "early_return": "Hello! 👋 I can help you with admissions, programs, fees, and notifications."
+        }
 
-    pc = PineconeClient()
+    if chat_history:
+        special = handle_special_memory_questions(question, chat_history)
+        if special:
+            return {"early_return": special}
 
-    # ---------------------------
-    # 1️⃣ EMBEDDING
-    # ---------------------------
+    memory_context = build_memory_context(chat_history)
 
-    @traceable(run_type="embedding", name="Query-Embedding")
-    def embed_query(q):
-        return embed_texts([q])[0]
+    rewritten_question = (
+        rewrite_question_with_memory(question, memory_context)
+        if memory_context else question
+    )
 
-    query_embedding = embed_query(question)
+    query_embedding = get_embedding(rewritten_question)
 
-    # ---------------------------
-    # 2️⃣ RETRIEVAL
-    # ---------------------------
-
-    @traceable(run_type="retriever", name="Pinecone-Retrieval")
-    def retrieve_chunks(embedding):
-        return pc.index.query(
-            vector=embedding,
-            top_k=12,
-            namespace=namespace,
-            include_metadata=True,
-        )
-
-    results = retrieve_chunks(query_embedding)
+    # ==================================================
+    # STEP 1: Retrieve from Pinecone
+    # ==================================================
+    results = _pc.index.query(
+        vector=query_embedding,
+        top_k=15,
+        namespace=namespace,
+        include_metadata=True,
+    )
 
     if not results.get("matches"):
-        return "The requested information is not available in the provided documents."
+        return {"early_return": "The requested information is not available."}
 
-    # ---------------------------
-    # 3️⃣ BUILD CONTEXT
-    # ---------------------------
+    raw_matches = results["matches"]
 
-    @traceable(run_type="chain", name="Context-Construction")
-    def build_context(matches):
-        chunks = []
-        sources = set()
+    # ==================================================
+    # 🔥 STEP 2: RERANK RESULTS (NEW)
+    # ==================================================
+    reranked_matches = rerank_results(rewritten_question, raw_matches, top_k=10)
 
-        for match in matches:
-            metadata = match.get("metadata", {})
-            if "text" in metadata:
-                chunks.append(metadata["text"])
-            if "source_file" in metadata:
-                sources.add(metadata["source_file"])
+    # --------------------------------------------------
+    # NOTIFICATION EXTRACTION
+    # --------------------------------------------------
+    notification_links = []
+    for match in reranked_matches:
+        meta = match.get("metadata", {})
+        title = meta.get("title")
+        url = meta.get("url")
 
-        return "\n\n".join(chunks), sources
+        if title and url:
+            notification_links.append((title, url))
 
-    context, sources = build_context(results["matches"])
+    # --------------------------------------------------
+    # SMART NOTIFICATION RESPONSE
+    # --------------------------------------------------
+    if notification_links and is_notification_query(question):
 
-    # ---------------------------
-    # 4️⃣ GENERATE ANSWER
-    # ---------------------------
+        limit = detect_limit(question)
 
-    @traceable(run_type="llm", name="Answer-Generation")
-    def generate_llm_answer(ctx, q):
-        return generate_answer(ctx, q)
+        if limit == "all":
+            selected = notification_links
+        elif isinstance(limit, int):
+            selected = notification_links[:limit]
+        else:
+            selected = notification_links[:1]
 
-    answer = generate_llm_answer(context, question)
+        answer = "Recent notifications from UET Mardan:\n\n"
 
-    # ---------------------------
-    # Attach Sources
-    # ---------------------------
+        for i, (title, url) in enumerate(selected):
+            answer += f"{i+1}. **{title}**\n\n[Click here]({url})\n\n"
 
-    if sources:
-        answer += "\n\n📄 Sources:\n"
-        for src in sorted(sources):
+        return {"early_return": answer}
+
+    # --------------------------------------------------
+    # NORMAL RAG FLOW
+    # --------------------------------------------------
+    chunks, sources = [], set()
+
+    for match in reranked_matches:
+        meta = match.get("metadata", {})
+        if "text" in meta:
+            chunks.append(meta["text"])
+        if "source_file" in meta:
+            sources.add(meta["source_file"])
+
+    context = "\n\n".join(chunks[:7])
+
+    if memory_context:
+        full_prompt = (
+            "You are a helpful university assistant.\n\n"
+            f"Conversation History:\n{memory_context}\n\n"
+            f"Retrieved Context:\n{context}\n\n"
+            f"Question:\n{question}"
+        )
+    else:
+        full_prompt = f"Retrieved Context:\n{context}\n\nQuestion:\n{question}"
+
+    return {
+        "early_return": None,
+        "full_prompt": full_prompt,
+        "chunks": chunks,
+        "sources": sources,
+    }
+
+
+# ==================================================
+# NON-STREAMING
+# ==================================================
+def ask_question(question, namespace, user_type, chat_history=None, return_context=False):
+
+    rag = _build_rag_prompt(question, namespace, chat_history)
+
+    if rag.get("early_return"):
+        if return_context:
+            return {"answer": rag["early_return"], "contexts": []}
+        return rag["early_return"]
+
+    answer = generate_answer(rag["full_prompt"])
+
+    if rag["sources"]:
+        answer += "\n\nSources:\n"
+        for src in sorted(rag["sources"]):
             answer += f"- {src}\n"
+
+    if return_context:
+        return {"answer": answer, "contexts": rag["chunks"]}
 
     return answer
 
 
-# --------------------------------------------------
-# TEST (OPTIONAL)
-# --------------------------------------------------
+# ==================================================
+# STREAMING
+# ==================================================
+def ask_question_stream(question, namespace, user_type, chat_history=None):
 
-if __name__ == "__main__":
-    namespaces = get_available_namespaces()
-    selected_namespace = namespaces[0] if namespaces else "staff"
+    rag = _build_rag_prompt(question, namespace, chat_history)
 
-    response = ask_question(
-        question="What programs are available?",
-        namespace=selected_namespace,
-        user_type="student",
-    )
+    if rag.get("early_return"):
+        yield rag["early_return"]
+        return
 
-    print(response)
+    for token in generate_answer(rag["full_prompt"], stream=True):
+        yield token
+
+    if rag.get("sources"):
+        yield "\n\nSources:\n"
+        for src in sorted(rag["sources"]):
+            yield f"- {src}\n"
