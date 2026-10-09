@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Admin
 import { AdminAuthProvider } from "./context/AdminContext";
+import { ToastProvider } from "./context/ToastContext";
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 import AdminLogin from "./pages/auth/AdminLogin";
 import MainLayout from "./layout/MainLayout";
@@ -19,9 +20,10 @@ import ChatbotUI from "./pages/ChatbotUI";
 function App() {
   return (
     <BrowserRouter>
-      {/* ✅ Wrap ALL routes with AdminAuthProvider */}
+      {/* ✅ Wrap ALL routes with AdminAuthProvider & ToastProvider */}
       <AdminAuthProvider>
-        <Routes>
+        <ToastProvider>
+          <Routes>
 
           {/* ===== Admin Login ===== */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -48,6 +50,7 @@ function App() {
           <Route path="/" element={<ChatbotUI />} />
 
         </Routes>
+        </ToastProvider>
       </AdminAuthProvider>
     </BrowserRouter>
   );

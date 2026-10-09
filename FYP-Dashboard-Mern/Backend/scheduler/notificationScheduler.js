@@ -1,6 +1,7 @@
 const cron = require("node-cron");
 const { spawn } = require("child_process");
 const path = require("path");
+const getPythonPath = require("../utils/pythonPath");
 
 let isRunning = false;
 
@@ -23,10 +24,21 @@ function runNotificationPipeline() {
         "../../../UniversityChatbotFinal/scripts/run_notifications.py"
     );
 
+    const pythonExecutable = getPythonPath();
+    console.log("Using Python executable:", pythonExecutable);
+
     const pythonProcess = spawn(
-        "D:\\anaconda3\\python.exe",
+        pythonExecutable,
         ["-u", scriptPath]
     );
+
+    // =========================
+    // PROCESS ERROR HANDLER (PREVENTS CRASHES)
+    // =========================
+    pythonProcess.on("error", (err) => {
+        console.error("❌ Failed to spawn Python notification script:", err.message);
+        isRunning = false;
+    });
 
     // =========================
     // STDOUT
@@ -46,26 +58,24 @@ function runNotificationPipeline() {
     // PROCESS END
     // =========================
     pythonProcess.on("close", (code) => {
-
         console.log(`\n✅ Pipeline Finished (Exit Code: ${code})`);
         console.log("=================================\n");
-
         isRunning = false;
     });
 
     // =========================
-    // SAFETY TIMEOUT (IMPORTANT)
+    // SAFETY TIMEOUT
     // =========================
     setTimeout(() => {
-
         if (isRunning) {
             console.log("⚠ Force stopping pipeline (timeout reached)");
-
-            pythonProcess.kill("SIGKILL");
-
+            try {
+                pythonProcess.kill("SIGKILL");
+            } catch (e) {
+                // Ignore kill errors
+            }
             isRunning = false;
         }
-
     }, 1000 * 60 * 20); // 20 minutes max runtime
 }
 
@@ -73,14 +83,11 @@ function runNotificationPipeline() {
 =================================
 CRON JOB
 =================================
-Runs every 30 minutes
+Runs every 360 minutes
 */
 cron.schedule("*/360 * * * *", () => {
-
     console.log("\n⏰ Cron Triggered");
-
     runNotificationPipeline();
-
 });
 
 console.log("✅ Notification Scheduler Started");

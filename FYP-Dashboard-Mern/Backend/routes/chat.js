@@ -82,13 +82,20 @@ router.post("/chat", async (req, res) => {
 
     let fullAIResponse = "";
 
-    for await (const chunk of aiResponse.body) {
-      const textChunk = chunk.toString();
-      fullAIResponse += textChunk;
-      res.write(textChunk);
+    try {
+      for await (const chunk of aiResponse.body) {
+        const textChunk = chunk.toString();
+        fullAIResponse += textChunk;
+        res.write(textChunk);
+      }
+      res.end();
+    } catch (streamErr) {
+      if (streamErr.code === "ERR_STREAM_PREMATURE_CLOSE" || streamErr.name === "AbortError") {
+        console.warn("Stream closed or aborted by client:", streamErr.message);
+      } else {
+        throw streamErr;
+      }
     }
-
-    res.end();
 
     /* ============================================
        Save user message AFTER AI processing

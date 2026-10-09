@@ -1,6 +1,7 @@
 const express = require("express");
 const { spawn } = require("child_process");
 const path = require("path");
+const getPythonPath = require("../utils/pythonPath");
 
 const router = express.Router();
 
@@ -22,7 +23,22 @@ router.get("/run-scraper", (req, res) => {
     "../../../UniversityChatbotFinal/scripts/run_notifications.py"
   );
 
-  const pythonProcess = spawn("D:\\anaconda3\\python.exe", ["-u", scriptPath]);
+  const pythonExecutable = getPythonPath();
+  const pythonProcess = spawn(pythonExecutable, ["-u", scriptPath]);
+
+  // =========================
+  // ERROR EVENT HANDLER
+  // =========================
+  pythonProcess.on("error", (err) => {
+    console.error("❌ Scraper spawn error:", err.message);
+    res.write(`event: log\n`);
+    res.write(`data: ${JSON.stringify({
+      message: `Failed to spawn Python process: ${err.message}`,
+      step: "error",
+      time: new Date().toLocaleTimeString()
+    })}\n\n`);
+    res.end();
+  });
 
   // =========================
   // CLEAN FUNCTION
@@ -76,7 +92,6 @@ router.get("/run-scraper", (req, res) => {
   // SEND LOG
   // =========================
   const sendLog = (line) => {
-
     const message = clean(line);
     if (!message) return;
 
@@ -98,28 +113,21 @@ router.get("/run-scraper", (req, res) => {
   pythonProcess.stdout.setEncoding("utf8");
 
   pythonProcess.stdout.on("data", (data) => {
-
     const buffer = data.toString();
 
     buffer.split(/\r?\n/).forEach((line) => {
-
       const msg = clean(line);
       if (!msg) return;
 
       // Progress handling
       if (msg.startsWith("PROGRESS:")) {
-
         const percent = msg.replace("PROGRESS:", "").trim();
-
         res.write(`event: progress\n`);
         res.write(`data: ${percent}\n\n`);
-
       } else {
         sendLog(msg);
       }
-
     });
-
   });
 
   // =========================
@@ -133,19 +141,21 @@ router.get("/run-scraper", (req, res) => {
   // CLOSE
   // =========================
   pythonProcess.on("close", () => {
-
     res.write(`event: log\n`);
     res.write(`data: ${JSON.stringify({
       message: "Pipeline completed successfully 🎉",
       step: "done",
       time: new Date().toLocaleTimeString()
     })}\n\n`);
-
     res.end();
   });
 
   req.on("close", () => {
-    pythonProcess.kill();
+    try {
+      pythonProcess.kill();
+    } catch (e) {
+      // Ignore kill error
+    }
   });
 
 });

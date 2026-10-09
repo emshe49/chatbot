@@ -1,19 +1,15 @@
 # pipeline/notification_pipeline/embed_notifications.py
-
 import json
-from tqdm import tqdm
 import os
-from langchain_core.documents import Document
-from langchain_pinecone import PineconeVectorStore
+import sys
+from tqdm import tqdm
 from pipeline.embedder import embed_texts
 from pipeline.pinecone_index import PineconeClient
-
 
 # ===============================
 # PATHS
 # ===============================
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROCESSED_FILE = os.path.join(
     BASE_DIR,
     "data",
@@ -24,190 +20,109 @@ PROCESSED_FILE = os.path.join(
 
 NAMESPACE = "Notification"
 
-
-# ===============================
-# LANGCHAIN EMBEDDING WRAPPER
-# ===============================
-class CustomEmbedding:
-    """
-    Wrapper so LangChain retriever can use our embed_texts() function.
-    """
-
-    def embed_documents(self, texts):
-        return embed_texts(texts)
-
-    def embed_query(self, text):
-        return embed_texts([text])[0]
-
-
 # ===============================
 # HELPER FUNCTION TO CLEAN METADATA
 # ===============================
 def sanitize_metadata(meta: dict) -> dict:
-    """Ensure all metadata values are valid for Pinecone."""
-
     clean_meta = {}
-
     for k, v in meta.items():
-
         if v is None:
             clean_meta[k] = ""
-
         elif isinstance(v, (str, bool, int, float)):
             clean_meta[k] = v
-
         elif isinstance(v, list):
             clean_meta[k] = [str(x) for x in v if x is not None]
-
         else:
             clean_meta[k] = str(v)
-
     return clean_meta
-
 
 # ===============================
 # INCREMENTAL EMBEDDING FUNCTION
 # ===============================
 def run_embedding():
+    print("\n========== INCREMENTAL EMBEDDING ==========", flush=True)
+    print("PROGRESS: 75", flush=True)
 
     if not os.path.exists(PROCESSED_FILE):
-        print(" Processed chunks file not found. Run chunking first.")
-        return
+        print("Processed chunks file not found. Run chunking first.", flush=True)
+        return 0
 
-    print(f"\nLoading processed chunks from {PROCESSED_FILE}")
-
-    with open(PROCESSED_FILE, "r", encoding="utf-8") as f:
-        chunks = json.load(f)
+    try:
+        with open(PROCESSED_FILE, "r", encoding="utf-8") as f:
+            chunks = json.load(f)
+    except Exception as e:
+        print(f"Error loading {PROCESSED_FILE}: {e}", flush=True)
+        return 0
 
     if not chunks:
-        print(" No chunks found to embed.")
-        return
+        print("No chunks found to embed.", flush=True)
+        return 0
 
-    print(f" Total chunks loaded: {len(chunks)}")
+    print(f"Total chunks in library: {len(chunks)}", flush=True)
 
-    # Connect to Pinecone
     pc = PineconeClient()
 
-    # ===============================
-    # CHECK ALREADY EMBEDDED CHUNKS
-    # ===============================
+    # Fast ID existence check via fetch in batches of 100
     existing_ids = set()
+    print("Verifying vector state in Pinecone...", flush=True)
 
-    print("Checking for already embedded chunks in Pinecone...")
+    batch_size = 100
+    for i in range(0, len(chunks), batch_size):
+        chunk_batch = chunks[i:i + batch_size]
+        id_batch = [c["chunk_id"] for c in chunk_batch if c.get("chunk_id")]
+        try:
+            fetch_res = pc.index.fetch(ids=id_batch, namespace=NAMESPACE)
+            found = set(fetch_res.get("vectors", {}).keys())
+            existing_ids.update(found)
+        except Exception as e:
+            # If fetch fails, proceed conservatively
+            print(f"Batch fetch notice: {e}", flush=True)
 
-    for c in tqdm(chunks, desc="Checking existing chunks"):
-
-        res = pc.index.query(
-            vector=[0.0] * 384,
-            top_k=1,
-            namespace=NAMESPACE,
-            filter={"chunk_id": {"$eq": c["chunk_id"]}},
-            include_metadata=False
-        )
-
-        if res.get("matches"):
-            existing_ids.add(c["chunk_id"])
-
-    # ===============================
-    # FILTER NEW CHUNKS
-    # ===============================
-    new_chunks = [c for c in chunks if c["chunk_id"] not in existing_ids]
+    new_chunks = [c for c in chunks if c.get("chunk_id") not in existing_ids]
 
     if not new_chunks:
-        print(" All chunks are already embedded. Nothing to do.")
+        print("All chunks are already embedded in Pinecone index.", flush=True)
+        print("PROGRESS: 95", flush=True)
+        return 0
 
-    else:
+    print(f"New chunks to embed and upsert: {len(new_chunks)}", flush=True)
+    print("PROGRESS: 80", flush=True)
 
-        print(f" New chunks to embed: {len(new_chunks)}")
+    # Embed and upsert in batches of 50
+    upsert_batch_size = 50
+    total_upserted = 0
 
-        # ===============================
-        # CREATE DOCUMENTS
-        # ===============================
-        documents = []
+    for i in range(0, len(new_chunks), upsert_batch_size):
+        sub_batch = new_chunks[i:i + upsert_batch_size]
+        texts = [c["text"] for c in sub_batch]
 
-        for c in new_chunks:
-
-            doc = Document(
-                page_content=c["text"],
-                metadata=c.get("metadata", {})
-            )
-
-            documents.append(doc)
-
-        # ===============================
-        # GENERATE EMBEDDINGS
-        # ===============================
-        texts = [doc.page_content for doc in documents]
-
-        print("Generating embeddings for new chunks...")
-
+        print(f"Generating embeddings for batch {i // upsert_batch_size + 1} ({len(texts)} chunks)...", flush=True)
         embeddings = embed_texts(texts)
 
-        # ===============================
-        # PREPARE VECTORS
-        # ===============================
         vectors = []
-
-        for i, emb in enumerate(embeddings):
-
-            meta = sanitize_metadata(documents[i].metadata)
-
-            # IMPORTANT: LangChain requires "text"
-            meta["text"] = documents[i].page_content
-
-            meta["chunk_id"] = new_chunks[i]["chunk_id"]
+        for j, emb in enumerate(embeddings):
+            meta = sanitize_metadata(sub_batch[j].get("metadata", {}))
+            meta["text"] = sub_batch[j]["text"]
+            meta["chunk_id"] = sub_batch[j]["chunk_id"]
+            meta["title"] = sub_batch[j].get("title", "")
+            meta["url"] = sub_batch[j].get("metadata", {}).get("url", "")
+            meta["date"] = sub_batch[j].get("metadata", {}).get("date", "")
 
             vectors.append({
-                "id": new_chunks[i]["chunk_id"],
+                "id": sub_batch[j]["chunk_id"],
                 "values": emb,
                 "metadata": meta
             })
 
-        # ===============================
-        # UPSERT TO PINECONE
-        # ===============================
-        print(f"Upserting embeddings to Pinecone namespace '{NAMESPACE}'...")
+        pc.upsert(vectors=vectors, namespace=NAMESPACE)
+        total_upserted += len(vectors)
+        pct = 80 + int((total_upserted / len(new_chunks)) * 15)
+        print(f"PROGRESS: {pct}", flush=True)
 
-        for i in tqdm(range(0, len(vectors), 50), desc="Upserting"):
-            pc.upsert(vectors[i:i+50], namespace=NAMESPACE)
+    print(f"✅ Successfully upserted {total_upserted} vectors to Pinecone namespace '{NAMESPACE}'.", flush=True)
+    print("PROGRESS: 95", flush=True)
+    return total_upserted
 
-        print(f" Incremental embedding complete for {len(vectors)} new chunks.")
-
-    # ===============================
-    # TEST RETRIEVER
-    # ===============================
-    print("\n===============================")
-    print("TESTING RETRIEVER")
-    print("===============================")
-
-    try:
-
-        embeddings = CustomEmbedding()
-
-        vectorstore = PineconeVectorStore(
-            index=pc.index,
-            embedding=embeddings,
-            namespace=NAMESPACE
-        )
-
-        retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
-
-        docs = retriever.invoke("latest news of uet mardan")
-
-        print("\n Retrieved Documents:", len(docs))
-
-        if docs:
-            print("\n First Document Content:\n")
-            print(docs[0].page_content[:500])
-        else:
-            print("No documents retrieved. Check embeddings or metadata.")
-
-    except Exception as e:
-        print("Retriever test failed:", str(e))
-
-
-# ===============================
-# RUN SCRIPT
-# ===============================
 if __name__ == "__main__":
-    run_embedding()
+    count = run_embedding()
+    print(f"Embedding finished with {count} upserted vectors.")

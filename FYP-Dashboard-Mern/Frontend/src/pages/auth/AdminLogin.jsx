@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAdminAuth } from "../../context/AdminContext";
+import { useToast } from "../../context/ToastContext";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ const AdminLogin = () => {
   const [resetMessage, setResetMessage] = useState("");
 
   const { login } = useAdminAuth();
+  const toast = useToast();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -27,11 +29,12 @@ const AdminLogin = () => {
       );
 
       login({ token: data.token, email: data.email, role: "admin" });
+      toast.success("Welcome back to Admin Portal!", "Access Granted");
       navigate("/admin/dashboard");
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Login failed. Please check your credentials."
-      );
+      const errMsg = err.response?.data?.message || "Login failed. Please check your credentials.";
+      setError(errMsg);
+      toast.error(errMsg, "Authentication Error");
     } finally {
       setIsLoading(false);
     }
@@ -46,16 +49,18 @@ const AdminLogin = () => {
       await axios.post("http://localhost:5000/api/auth/forgot-password", {
         email: resetEmail,
       });
-      setResetMessage("Password reset link sent to your email!");
+      const msg = "Password reset link sent to your email!";
+      setResetMessage(msg);
+      toast.success(msg, "Reset Link Sent");
       setTimeout(() => {
         setShowForgotPassword(false);
         setResetEmail("");
         setResetMessage("");
       }, 3000);
     } catch (err) {
-      setResetMessage(
-        err.response?.data?.message || "Failed to send reset link. Please try again."
-      );
+      const errMsg = err.response?.data?.message || "Failed to send reset link. Please try again.";
+      setResetMessage(errMsg);
+      toast.error(errMsg, "Reset Failed");
     } finally {
       setIsLoading(false);
     }

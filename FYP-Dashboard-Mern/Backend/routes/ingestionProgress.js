@@ -1,6 +1,7 @@
 const { spawn } = require("child_process");
 const path = require("path");
 const Ingestion = require("../models/Ingestion");
+const getPythonPath = require("../utils/pythonPath");
 
 let activeProcess = null;
 
@@ -32,8 +33,22 @@ module.exports = async (req, res) => {
 
   const recordId = record._id;
 
-  const py = spawn("python", ["-u", scriptPath, pdfPath, datasetType]);
+  const py = spawn(getPythonPath(), ["-u", scriptPath, pdfPath, datasetType]);
   activeProcess = py;
+
+  py.on("error", async (err) => {
+    console.error("❌ Ingestion spawn error:", err.message);
+    await Ingestion.findByIdAndUpdate(recordId, { status: "Failed" });
+    res.write(
+      `data: ${JSON.stringify({
+        progress: 0,
+        message: `Python spawn error: ${err.message}`,
+        done: true
+      })}\n\n`
+    );
+    activeProcess = null;
+    res.end();
+  });
 
   py.stdout.on("data", async (data) => {
     const lines = data.toString().split("\n");

@@ -23,6 +23,7 @@ import {
   Trash2,
   AlertTriangle
 } from "lucide-react";
+import { useToast } from "../context/ToastContext";
 
 // ==================== CONSTANTS ====================
 const API_BASE_URL = "http://localhost:5000/api";
@@ -542,6 +543,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, totalRecords, start
 // ==================== MAIN COMPONENT ====================
 
 const Dashboard = () => {
+  const toast = useToast();
   // State management
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -631,16 +633,17 @@ const Dashboard = () => {
       // Update records state
       setRecords(prevRecords => prevRecords.filter(r => r._id !== record._id));
       
-      // Show success message (you can add a toast notification here)
-      console.log('Record deleted successfully:', data.message);
+      // Show success toast notification
+      toast.delete(`"${record.fileName || 'Record'}" was deleted successfully.`);
       
     } catch (err) {
       console.error("Failed to delete record:", err);
       setError(err.message);
+      toast.error(err.message || "Failed to delete record");
     } finally {
       setDeleteLoading(false);
     }
-  }, []);
+  }, [toast]);
 
   // Initial fetch and polling
   useEffect(() => {

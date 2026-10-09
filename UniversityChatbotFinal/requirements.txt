@@ -1,0 +1,18 @@
+# University RAG Chatbot Requirements
+fastapi
+uvicorn
+pydantic
+python-dotenv
+groq
+openai
+pinecone
+sentence-transformers
+torch
+transformers
+scikit-learn
+numpy
+pandas
+pypdf
+python-docx
+requests
+playwright

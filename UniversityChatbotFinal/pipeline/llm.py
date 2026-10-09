@@ -110,9 +110,27 @@ Rewritten Question:
 # ==================================================
 # MAIN ANSWER GENERATOR
 # ==================================================
-def generate_answer(prompt: str) -> str:
+def _generate_answer_stream(prompt: str, system_prompt: str):
+    response = client.chat.completions.create(
+        model=MODEL_NAME,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": prompt},
+        ],
+        temperature=0,
+        max_tokens=1100,
+        stream=True,
+    )
+    for chunk in response:
+        delta = chunk.choices[0].delta
+        if delta and delta.content:
+            yield delta.content
+
+
+def generate_answer(prompt: str, stream: bool = False):
     """
     Generates final chatbot answer from fully prepared prompt.
+    Supports both non-streaming (returns str) and streaming (returns generator).
     """
 
     system_prompt = """
@@ -158,6 +176,9 @@ Bad formats:
 markdown
 HTML tags
 """
+
+    if stream:
+        return _generate_answer_stream(prompt, system_prompt)
 
     response = client.chat.completions.create(
         model=MODEL_NAME,

@@ -5,8 +5,11 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import warnings
 warnings.filterwarnings("ignore")
 
-import tensorflow as tf
-tf.get_logger().setLevel('ERROR')
+try:
+    import tensorflow as tf
+    tf.get_logger().setLevel('ERROR')
+except ImportError:
+    pass
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware

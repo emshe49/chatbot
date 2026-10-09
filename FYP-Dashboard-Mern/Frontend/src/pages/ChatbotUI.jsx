@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Link } from "react-router-dom";
 import {
   FiSend,
   FiPlus,
@@ -9,14 +10,22 @@ import {
   FiX,
   FiClock,
   FiUser,
-  FiCpu,
-  FiMoreVertical,
-  FiLayers,
   FiTrash2,
-
+  FiLayers,
+  FiCopy,
+  FiCheck,
+  FiExternalLink,
+  FiBookOpen,
+  FiBell,
+  FiShield,
+  FiCornerDownLeft,
+  FiInfo,
 } from "react-icons/fi";
+import { Sparkles, Bot, GraduationCap, Users } from "lucide-react";
+import { useToast } from "../context/ToastContext";
 
 export default function ChatbotUI() {
+  const toast = useToast();
   const [sessionId, setSessionId] = useState("");
   const [messages, setMessages] = useState([]);
   const [chatList, setChatList] = useState([]);
@@ -26,12 +35,12 @@ export default function ChatbotUI() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
+  const [copiedIndex, setCopiedIndex] = useState(null);
 
-  // ── NEW STATES ──────────────────────────────────────────────────────────────
+  // Pending question state for namespace lock
   const [pendingQuestion, setPendingQuestion] = useState("");
   const [showNamespaceSelector, setShowNamespaceSelector] = useState(false);
   const [namespaceLocked, setNamespaceLocked] = useState(false);
-  // ────────────────────────────────────────────────────────────────────────────
 
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -47,7 +56,7 @@ export default function ChatbotUI() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, scrollToBottom]);
+  }, [messages, isTyping, scrollToBottom]);
 
   /* ================= LOAD NAMESPACES ================= */
   useEffect(() => {
@@ -56,7 +65,6 @@ export default function ChatbotUI() {
       .then((data) => {
         const list = data.namespaces || [];
         setNamespaces(list);
-        // ✅ Do NOT auto-select the first namespace
       })
       .catch((err) => console.error("Namespace error:", err));
   }, []);
@@ -74,15 +82,24 @@ export default function ChatbotUI() {
     }
   };
 
-  // ✅ Removed the useEffect that auto-called loadSessions + startNewChat on namespace change
-
   /* ================= LOAD CHAT ================= */
   const loadChat = async (session_id) => {
     setSessionId(session_id);
-    const res = await fetch(`${API_BASE_URL}/chat-history/${session_id}`);
-    const history = await res.json();
-    setMessages(Array.isArray(history) ? history : []);
-    if (window.innerWidth < 768) setIsSidebarOpen(false);
+    try {
+      const res = await fetch(`${API_BASE_URL}/chat-history/${session_id}`);
+      const history = await res.json();
+      setMessages(Array.isArray(history) ? history : []);
+      if (window.innerWidth < 768) setIsSidebarOpen(false);
+    } catch (err) {
+      console.error("Load chat error:", err);
+    }
+  };
+
+  /* ================= COPY MESSAGE ================= */
+  const copyToClipboard = (text, index) => {
+    navigator.clipboard.writeText(text);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
   };
 
   /* ================= SEND ACTUAL MESSAGE (streaming) ================= */
@@ -100,6 +117,8 @@ export default function ChatbotUI() {
           session_id: sid,
         }),
       });
+
+      if (!res.body) throw new Error("No response body");
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder("utf-8");
@@ -127,18 +146,18 @@ export default function ChatbotUI() {
 
       setIsTyping(false);
 
-      // Update sidebar title from AI response
+      // Update sidebar title dynamically
       setChatList((prev) =>
         prev.map((chat) =>
           chat.sessionId === sid && chat.title === "New Chat"
             ? {
-              ...chat,
-              title:
-                botText.length > 40
-                  ? botText.substring(0, 40) + "..."
-                  : botText,
-              timestamp: new Date().toISOString(),
-            }
+                ...chat,
+                title:
+                  botText.length > 40
+                    ? botText.substring(0, 40) + "..."
+                    : botText,
+                timestamp: new Date().toISOString(),
+              }
             : chat
         )
       );
@@ -149,7 +168,7 @@ export default function ChatbotUI() {
         ...prev,
         {
           sender: "assistant",
-          text: "⚠️ Sorry, I encountered an error. Please try again.",
+          text: "⚠️ Sorry, I encountered an error connecting to the AI engine. Please ensure the server is running and try again.",
           timestamp: new Date(),
           isError: true,
         },
@@ -162,22 +181,19 @@ export default function ChatbotUI() {
 
   /* ================= HANDLE NAMESPACE SELECTION ================= */
   const handleNamespaceSelection = async (namespace) => {
-    // 1. Lock the namespace for this session
     setSelectedNamespace(namespace);
     setNamespaceLocked(true);
     setShowNamespaceSelector(false);
 
-    // 2. Confirm message in chat
     setMessages((prev) => [
       ...prev,
       {
         sender: "assistant",
-        text: `✅ Namespace selected: **${namespace}**`,
+        text: `Department selected: **${namespace.toUpperCase()}**. Answering your query now...`,
         timestamp: new Date(),
       },
     ]);
 
-    // 3. Create a new session via backend
     let newSessionId = "";
     try {
       const res = await fetch(`${API_BASE_URL}/new_session`, {
@@ -198,14 +214,12 @@ export default function ChatbotUI() {
         ...prev,
       ]);
 
-      // Also load sessions list for this namespace
       loadSessions(namespace);
     } catch (err) {
       console.error("New session error:", err);
       return;
     }
 
-    // 4. Automatically send the pending question
     if (pendingQuestion) {
       await sendActualMessage(pendingQuestion, namespace, newSessionId);
       setPendingQuestion("");
@@ -213,29 +227,26 @@ export default function ChatbotUI() {
   };
 
   /* ================= SEND MESSAGE ================= */
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (overrideText = null) => {
+    const textToSend = (overrideText !== null ? overrideText : input).trim();
+    if (!textToSend || isLoading) return;
 
-    const userText = input.trim();
     setInput("");
 
-    // Add user message to chat immediately
     setMessages((prev) => [
       ...prev,
-      { sender: "user", text: userText, timestamp: new Date() },
+      { sender: "user", text: textToSend, timestamp: new Date() },
     ]);
 
-    // ── No namespace selected yet ──────────────────────────────────────────
     if (!namespaceLocked) {
-      setPendingQuestion(userText);
+      setPendingQuestion(textToSend);
       setShowNamespaceSelector(true);
 
-      // Add assistant message with namespace selector UI
       setMessages((prev) => [
         ...prev,
         {
           sender: "assistant",
-          text: "Please select a department/namespace to continue:",
+          text: "To give you the most accurate official information, please select a department or data source:",
           timestamp: new Date(),
           isNamespaceSelector: true,
         },
@@ -243,8 +254,7 @@ export default function ChatbotUI() {
       return;
     }
 
-    // ── Namespace already locked — send directly ───────────────────────────
-    await sendActualMessage(userText, selectedNamespace, sessionId);
+    await sendActualMessage(textToSend, selectedNamespace, sessionId);
   };
 
   /* ================= NEW CHAT ================= */
@@ -277,326 +287,396 @@ export default function ChatbotUI() {
     return date.toLocaleDateString([], { month: "short", day: "numeric" });
   };
 
-  /* ================= NAMESPACE SELECTOR BUTTONS ================= */
-  const NamespaceSelectorButtons = () => (
-    <div className="mt-3 flex flex-wrap gap-2">
-      {namespaces.map((ns) => (
-        <button
-          key={ns}
-          onClick={() => handleNamespaceSelection(ns)}
-          className="
-            px-4 py-2 rounded-xl text-sm font-semibold
-            bg-gradient-to-r from-blue-50 to-blue-100
-            border border-blue-200 text-blue-700
-            hover:from-blue-600 hover:to-blue-700 hover:text-white hover:border-blue-600
-            hover:shadow-md hover:scale-105
-            active:scale-95
-            transition-all duration-200 ease-out
-            capitalize
-          "
-        >
-          {ns}
-        </button>
-      ))}
-    </div>
-  );
-
   const deleteChat = async (session_id, e) => {
     e.stopPropagation();
-
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this conversation?"
-    );
-
-    if (!confirmDelete) return;
-
     try {
       await fetch(`${API_BASE_URL}/delete-session/${session_id}`, {
         method: "DELETE",
       });
 
-      setChatList((prev) =>
-        prev.filter((chat) => chat.sessionId !== session_id)
-      );
-
-      if (sessionId === session_id) {
-        startNewChat();
-      }
-
+      setChatList((prev) => prev.filter((chat) => chat.sessionId !== session_id));
+      if (sessionId === session_id) startNewChat();
+      toast.delete("Conversation deleted");
     } catch (error) {
       console.error("Delete error:", error);
+      toast.error("Failed to delete conversation");
     }
   };
 
-  /* ================= UI ================= */
-  return (
-    <div className="flex h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      {/* Mobile Sidebar Toggle */}
-      <button
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="fixed top-4 left-4 z-50 md:hidden bg-white p-2 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
-      >
-        {isSidebarOpen ? <FiX size={20} /> : <FiMenu size={20} />}
-      </button>
+  /* ================= NAMESPACE ICON HELPER ================= */
+  const getNamespaceMeta = (ns) => {
+    const lower = ns.toLowerCase();
+    if (lower.includes("ug") || lower.includes("undergrad")) {
+      return {
+        label: "Undergraduate (UG)",
+        desc: "Admissions, BS Programs, Fees & Quota",
+        icon: <GraduationCap className="w-5 h-5 text-blue-600" />,
+        color: "from-blue-50 to-indigo-50 border-blue-200 text-blue-700",
+      };
+    }
+    if (lower.includes("pg") || lower.includes("postgrad")) {
+      return {
+        label: "Postgraduate (PG)",
+        desc: "MS/PhD Programs, Research, Evening Shifts",
+        icon: <FiBookOpen className="w-5 h-5 text-purple-600" />,
+        color: "from-purple-50 to-pink-50 border-purple-200 text-purple-700",
+      };
+    }
+    if (lower.includes("notif")) {
+      return {
+        label: "Announcements & News",
+        desc: "Live Scraped Notices, Tenders, Events",
+        icon: <FiBell className="w-5 h-5 text-amber-600" />,
+        color: "from-amber-50 to-orange-50 border-amber-200 text-amber-700",
+      };
+    }
+    return {
+      label: ns.toUpperCase(),
+      desc: "University Information & Records",
+      icon: <Users className="w-5 h-5 text-emerald-600" />,
+      color: "from-emerald-50 to-teal-50 border-emerald-200 text-emerald-700",
+    };
+  };
 
-      {/* SIDEBAR */}
+  /* ================= NAMESPACE SELECTOR CARDS ================= */
+  const NamespaceSelectorCards = () => (
+    <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+      {namespaces.map((ns) => {
+        const meta = getNamespaceMeta(ns);
+        return (
+          <button
+            key={ns}
+            onClick={() => handleNamespaceSelection(ns)}
+            className={`
+              p-3.5 rounded-xl border text-left transition-all duration-200
+              hover:shadow-md hover:scale-[1.02] active:scale-[0.98]
+              flex items-start gap-3 bg-gradient-to-br ${meta.color}
+            `}
+          >
+            <div className="p-2 bg-white rounded-lg shadow-xs flex-shrink-0">
+              {meta.icon}
+            </div>
+            <div className="min-w-0">
+              <h4 className="font-semibold text-sm text-slate-800 flex items-center gap-1.5">
+                {meta.label}
+              </h4>
+              <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">
+                {meta.desc}
+              </p>
+            </div>
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  /* ================= SUGGESTIONS LIST ================= */
+  const quickSuggestions = [
+    {
+      title: "Undergraduate Admissions",
+      desc: "Eligibility criteria & entry test requirements",
+      icon: <GraduationCap className="w-4 h-4 text-blue-600" />,
+      prompt: "What are the eligibility criteria and admission requirements for undergraduate programs?",
+    },
+    {
+      title: "Fee Structure & Quota",
+      desc: "Semester tuition & self-finance breakdown",
+      icon: <FiBookOpen className="w-4 h-4 text-indigo-600" />,
+      prompt: "What is the fee structure for Open Merit and Self-Finance seats?",
+    },
+    {
+      title: "Recent Announcements",
+      desc: "Official merit lists and student updates",
+      icon: <FiBell className="w-4 h-4 text-amber-600" />,
+      prompt: "Show me the latest notifications and recent announcements from UET Mardan",
+    },
+    {
+      title: "Degree Programs",
+      desc: "Engineering & Computing departments",
+      icon: <Sparkles className="w-4 h-4 text-purple-600" />,
+      prompt: "What undergraduate engineering and computing programs are offered?",
+    },
+  ];
+
+  return (
+    <div className="flex h-screen bg-slate-900 font-sans overflow-hidden antialiased text-slate-800">
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div
+          onClick={() => setIsSidebarOpen(false)}
+          className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-30 md:hidden"
+        />
+      )}
+
+      {/* ================= SIDEBAR ================= */}
       <aside
         ref={sidebarRef}
         className={`
           fixed md:relative z-40 h-screen
-          transform transition-transform duration-300 ease-in-out
-          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
-          md:translate-x-0
-          w-80 bg-white/80 backdrop-blur-xl shadow-2xl flex flex-col border-r border-gray-200/50
+          transform transition-all duration-300 ease-in-out
+          ${isSidebarOpen ? "translate-x-0 w-72 lg:w-80" : "-translate-x-full md:translate-x-0 md:w-0"}
+          bg-slate-900 border-r border-slate-800 flex flex-col flex-shrink-0 text-slate-200
         `}
       >
-        {/* Sidebar Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-white/20 rounded-xl">
-              <FiMessageSquare className="w-6 h-6" />
+        {/* Sidebar Brand Header */}
+        <div className="p-4 border-b border-slate-800/80 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white">
+              <Bot className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-bold text-lg">UNIGUIDE BOT</h2>
-              <p className="text-blue-100 text-xs">Your intelligent companion</p>
+              <div className="flex items-center gap-1.5">
+                <span className="font-bold text-sm tracking-wide text-white">UniGuide AI</span>
+                <span className="text-[10px] font-semibold uppercase bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded border border-blue-500/30">
+                  RAG
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400">UET Mardan Portal</p>
             </div>
           </div>
-        </div>
-
-        {/* New Chat Button */}
-        <div className="p-4 border-b border-gray-100">
           <button
-            onClick={startNewChat}
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-xl font-medium 
-                     flex items-center justify-center space-x-2 hover:from-blue-700 hover:to-blue-800 
-                     transform hover:scale-[1.02] transition-all duration-200 shadow-lg hover:shadow-xl"
+            onClick={() => setIsSidebarOpen(false)}
+            className="md:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
           >
-            <FiPlus className="w-5 h-5" />
-            <span>New Conversation</span>
+            <FiX className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Chat History */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-2">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">
-            Recent Chats
-          </p>
+        {/* New Chat Button */}
+        <div className="p-3">
+          <button
+            onClick={startNewChat}
+            className="
+              w-full py-2.5 px-3.5 rounded-xl font-medium text-sm
+              bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500
+              text-white shadow-md shadow-blue-600/20 hover:shadow-blue-600/30
+              flex items-center justify-center gap-2 transition-all duration-200
+              active:scale-[0.98]
+            "
+          >
+            <FiPlus className="w-4 h-4" />
+            <span>New Chat</span>
+          </button>
+        </div>
 
-          {Array.from(
-            new Set(chatList.map((chat) => formatDate(chat.timestamp)))
-          ).map((date) => (
-            <div key={date} className="space-y-1">
-              <p className="text-xs text-gray-400 px-3 py-2">{date}</p>
-              {chatList
-                .filter((chat) => formatDate(chat.timestamp) === date)
-                .map((chat) => (
-                  <div
-                    key={chat.sessionId}
-                    onClick={() => loadChat(chat.sessionId)}
-                    className={`
-                      group relative p-3 rounded-xl cursor-pointer transition-all duration-200
-                      ${sessionId === chat.sessionId
-                        ? "bg-gradient-to-r from-blue-50 to-blue-100/50 border-l-4 border-blue-600 shadow-md"
-                        : "hover:bg-gray-50 hover:shadow-sm border-l-4 border-transparent"
-                      }
-                    `}
-                  >
-                    <div className="flex items-start space-x-3">
-                      <FiMessageSquare
-                        className={`mt-1 w-4 h-4 flex-shrink-0 ${sessionId === chat.sessionId
-                          ? "text-blue-600"
-                          : "text-gray-400"
-                          }`}
-                      />
-                      <div className="flex-1 min-w-0">
-                        <p
-                          className={`text-sm font-medium truncate ${sessionId === chat.sessionId
-                            ? "text-blue-900"
-                            : "text-gray-700"
+        {/* Sessions History List */}
+        <div className="flex-1 overflow-y-auto px-3 py-2 space-y-3 custom-scrollbar">
+          {chatList.length > 0 ? (
+            Array.from(new Set(chatList.map((chat) => formatDate(chat.timestamp)))).map(
+              (date) => (
+                <div key={date} className="space-y-1">
+                  <div className="px-2 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+                    {date}
+                  </div>
+                  {chatList
+                    .filter((chat) => formatDate(chat.timestamp) === date)
+                    .map((chat) => (
+                      <div
+                        key={chat.sessionId}
+                        onClick={() => loadChat(chat.sessionId)}
+                        className={`
+                          group relative px-3 py-2.5 rounded-xl cursor-pointer text-xs
+                          flex items-center justify-between gap-2 transition-all duration-150
+                          ${
+                            sessionId === chat.sessionId
+                              ? "bg-slate-800/90 text-white font-medium border border-slate-700 shadow-sm"
+                              : "text-slate-400 hover:bg-slate-800/50 hover:text-slate-200"
+                          }
+                        `}
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <FiMessageSquare
+                            className={`w-3.5 h-3.5 flex-shrink-0 ${
+                              sessionId === chat.sessionId ? "text-blue-400" : "text-slate-500"
                             }`}
-                        >
-                          {chat.title || "New Chat"}
-                        </p>
-                        {chat.timestamp && (
-                          <p className="text-xs text-gray-400 mt-1">
-                            <FiClock className="inline w-3 h-3 mr-1" />
-                            {formatTime(chat.timestamp)}
-                          </p>
-                        )}
-                      </div>
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                          />
+                          <span className="truncate">{chat.title || "New Conversation"}</span>
+                        </div>
                         <button
                           onClick={(e) => deleteChat(chat.sessionId, e)}
-                          className="p-1 hover:bg-red-100 rounded"
+                          className="opacity-0 group-hover:opacity-100 p-1 text-slate-500 hover:text-red-400 hover:bg-red-500/10 rounded transition-all"
                           title="Delete chat"
                         >
-                          <FiTrash2 className="w-4 h-4 text-red-500" />
+                          <FiTrash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-          ))}
-
-          {chatList.length === 0 && (
-            <div className="text-center py-8 px-4">
-              <div className="bg-gray-50 rounded-full w-16 h-16 mx-auto mb-3 flex items-center justify-center">
-                <FiMessageSquare className="w-8 h-8 text-gray-400" />
-              </div>
-              <p className="text-gray-500 text-sm">No conversations yet</p>
-              <p className="text-gray-400 text-xs mt-1">Start a new chat to begin</p>
+                    ))}
+                </div>
+              )
+            )
+          ) : (
+            <div className="text-center py-12 px-4 text-slate-500">
+              <FiMessageSquare className="w-8 h-8 mx-auto mb-2 text-slate-600" />
+              <p className="text-xs">No previous chats</p>
+              <p className="text-[11px] text-slate-600 mt-1">Start a conversation anytime</p>
             </div>
           )}
         </div>
 
-        {/* Sidebar Footer */}
-        <div className="p-4 border-t border-gray-100 bg-gray-50/50">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-xs font-bold">
-              AI
-            </div>
-            <div>
-              <p className="text-sm font-medium text-gray-700">UNIGUIDE BOT</p>
-              <p className="text-xs text-gray-400">Online</p>
-            </div>
+        {/* Sidebar Footer & Admin Link */}
+        <div className="p-3 border-t border-slate-800/80 bg-slate-950/40 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-xs text-slate-400">System Ready</span>
           </div>
+          <Link
+            to="/admin/login"
+            className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-blue-400 transition-colors py-1 px-2 rounded-lg hover:bg-slate-800"
+            title="Open Admin Dashboard"
+          >
+            <FiShield className="w-3.5 h-3.5" />
+            <span>Admin</span>
+          </Link>
         </div>
       </aside>
 
-      {/* MAIN CONTENT */}
-      <main className="flex-1 flex flex-col h-screen overflow-hidden">
-        {/* TOP BAR */}
-        <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/50 px-4 md:px-6 py-4 flex justify-between items-center shadow-sm">
-          <div className="flex items-center space-x-4">
-            <div className="w-8 md:hidden" />
-            <h1 className="text-xl font-semibold text-gray-800">
-              <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                UNIGUIDE BOT
+      {/* ================= MAIN CHAT AREA ================= */}
+      <main className="flex-1 flex flex-col h-screen bg-slate-50 relative overflow-hidden">
+        {/* Top Navigation Bar */}
+        <header className="h-14 border-b border-slate-200/80 bg-white/90 backdrop-blur-md px-4 flex items-center justify-between z-20 shadow-xs">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              title="Toggle Sidebar"
+            >
+              <FiMenu className="w-5 h-5" />
+            </button>
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-slate-800 text-sm md:text-base tracking-tight">
+                UET Mardan Academic Assistant
               </span>
-            </h1>
+              <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                Active Knowledge
+              </span>
+            </div>
           </div>
 
-          {/* ✅ Active namespace badge (replaces dropdown) */}
-          {selectedNamespace ? (
-            <div className="flex items-center space-x-2 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-xl text-sm font-medium">
-              <FiLayers className="w-3.5 h-3.5" />
-              <span className="capitalize">{selectedNamespace}</span>
-            </div>
-          ) : (
-            <div className="text-xs text-gray-400 italic">
-              No namespace selected
-            </div>
-          )}
-        </div>
+          {/* Department badge & New Chat button */}
+          <div className="flex items-center gap-2">
+            {selectedNamespace && (
+              <div className="flex items-center gap-1.5 bg-blue-50 border border-blue-200 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+                <FiLayers className="w-3 h-3 text-blue-600" />
+                <span>{selectedNamespace.toUpperCase()}</span>
+              </div>
+            )}
+            <button
+              onClick={startNewChat}
+              className="p-1.5 sm:px-3 sm:py-1 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 flex items-center gap-1.5 transition-colors"
+              title="Reset conversation"
+            >
+              <FiPlus className="w-4 h-4" />
+              <span className="hidden sm:inline">Reset</span>
+            </button>
+          </div>
+        </header>
 
-        {/* MESSAGES AREA */}
-        <div className="flex-1 overflow-y-auto bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-4xl mx-auto p-4 md:p-6 space-y-6">
+        {/* Message Stream Container */}
+        <div className="flex-1 overflow-y-auto px-4 py-6 md:px-8">
+          <div className="max-w-3xl mx-auto space-y-6">
             {messages.length === 0 ? (
-              // Welcome Screen
-              <div className="h-full flex items-center justify-center py-20">
-                <div className="text-center max-w-md">
-                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center shadow-xl">
-                    <FiCpu className="w-10 h-10 text-white" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-3">
-                    Welcome to UNIGUIDE BOT
-                  </h2>
-                  <p className="text-gray-500 mb-8">
-                    Ask a question to get started. You'll be prompted to select
-                    a department on your first message.
-                  </p>
-                  <div className="grid gap-3">
-                    {[
-                      "What are the admission criteria?",
-                      "Tell me about available programs",
-                      "How do I get started?",
-                    ].map((suggestion, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setInput(suggestion)}
-                        className="text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-xl border border-gray-200 
-                                 hover:border-blue-300 transition-all hover:shadow-md group"
-                      >
-                        <span className="text-gray-700 group-hover:text-blue-600">
-                          {suggestion}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
+              /* Welcome Hero Screen */
+              <div className="py-8 md:py-12 flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-xl shadow-blue-500/25 mb-4 transform hover:scale-105 transition-transform">
+                  <Bot className="w-8 h-8" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
+                  Welcome to UniGuide AI
+                </h2>
+                <p className="text-slate-500 text-sm max-w-lg mt-2 mb-8 leading-relaxed">
+                  Your university companion grounded in official UET Mardan prospectuses, admission regulations, and real-time scraped notifications.
+                </p>
+
+                {/* Quick Prompts Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl text-left">
+                  {quickSuggestions.map((item, i) => (
+                    <button
+                      key={i}
+                      onClick={() => sendMessage(item.prompt)}
+                      className="
+                        p-3.5 rounded-xl border border-slate-200/90 bg-white hover:bg-slate-50/80
+                        hover:border-blue-300 hover:shadow-md transition-all duration-200
+                        flex items-start gap-3 group
+                      "
+                    >
+                      <div className="p-2 rounded-lg bg-slate-100 group-hover:bg-blue-50 transition-colors">
+                        {item.icon}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-semibold text-xs text-slate-800 group-hover:text-blue-600 transition-colors">
+                          {item.title}
+                        </div>
+                        <div className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                          {item.desc}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
                 </div>
               </div>
             ) : (
-              // Message List
-              messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"
-                    } animate-fadeIn`}
-                >
+              /* Conversation Messages */
+              messages.map((msg, index) => {
+                const isUser = msg.sender === "user";
+                return (
                   <div
-                    className={`flex max-w-[85%] md:max-w-[70%] ${msg.sender === "user" ? "flex-row-reverse" : "flex-row"
-                      } items-start gap-3`}
+                    key={index}
+                    className={`flex items-start gap-3 ${isUser ? "flex-row-reverse" : "flex-row"} group`}
                   >
                     {/* Avatar */}
                     <div
                       className={`
-                        flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
-                        ${msg.sender === "user"
-                          ? "bg-gradient-to-r from-gray-700 to-gray-900 text-white"
-                          : "bg-gradient-to-r from-blue-600 to-blue-700 text-white"
+                        w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 text-xs font-semibold
+                        ${
+                          isUser
+                            ? "bg-slate-800 text-white shadow-sm"
+                            : "bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20"
                         }
-                        ${msg.isError ? "!bg-red-500" : ""}
                       `}
                     >
-                      {msg.sender === "user" ? (
-                        <FiUser className="w-4 h-4" />
-                      ) : (
-                        <FiCpu className="w-4 h-4" />
-                      )}
+                      {isUser ? <FiUser className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                     </div>
 
-                    {/* Message Bubble */}
+                    {/* Message Bubble Card */}
                     <div
                       className={`
-                        group relative p-4 rounded-2xl shadow-sm
-                        ${msg.sender === "user"
-                          ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white"
-                          : msg.isError
-                            ? "bg-red-50 border border-red-200 text-red-800"
-                            : "bg-white border border-gray-200 text-gray-800"
+                        max-w-[85%] md:max-w-[78%] rounded-2xl p-4 text-sm leading-relaxed relative
+                        ${
+                          isUser
+                            ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-600/15 rounded-tr-xs"
+                            : msg.isError
+                            ? "bg-red-50 border border-red-200 text-red-700 rounded-tl-xs"
+                            : "bg-white border border-slate-200/80 text-slate-800 shadow-xs rounded-tl-xs"
                         }
                       `}
                     >
-                      {/* ✅ Namespace Selector — rendered inside message bubble */}
+                      {/* Namespace Selection Interactivity */}
                       {msg.isNamespaceSelector ? (
                         <div>
-                          <p className="text-sm text-gray-700 mb-1">
-                            {msg.text}
-                          </p>
-                          <NamespaceSelectorButtons />
+                          <p className="font-medium text-slate-700">{msg.text}</p>
+                          <NamespaceSelectorCards />
                         </div>
                       ) : (
-                        <div className="prose prose-sm max-w-none">
+                        <div className={`prose prose-sm max-w-none ${isUser ? "prose-invert" : ""}`}>
                           <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
                             components={{
                               a: ({ node, ...props }) => (
                                 <a
                                   {...props}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  style={{
-                                    color: "#3b82f6",
-                                    fontWeight: "600",
-                                    textDecoration: "underline",
-                                    display: "inline-block",
-                                    marginTop: "6px"
-                                  }}
+                                  className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-semibold underline underline-offset-2 my-1"
                                 >
-                                  {props.children}
+                                  <span>{props.children}</span>
+                                  <FiExternalLink className="w-3.5 h-3.5 inline" />
                                 </a>
-                              )
+                              ),
+                              p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                              ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1">{children}</ul>,
+                              ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1">{children}</ol>,
+                              li: ({ children }) => <li className="text-slate-700">{children}</li>,
                             }}
                           >
                             {msg.text}
@@ -604,49 +684,46 @@ export default function ChatbotUI() {
                         </div>
                       )}
 
-                      {/* Timestamp */}
-                      {msg.timestamp && (
-                        <div
-                          className={`
-                            absolute bottom-1 right-2 text-[10px] opacity-0 group-hover:opacity-100 transition-opacity
-                            ${msg.sender === "user"
-                              ? "text-blue-200"
-                              : "text-gray-400"
-                            }
-                          `}
-                        >
-                          {formatTime(msg.timestamp)}
+                      {/* Bottom action row (Copy button & timestamp) */}
+                      {!isUser && !msg.isNamespaceSelector && (
+                        <div className="flex items-center justify-between pt-2 mt-2 border-t border-slate-100 text-[11px] text-slate-400">
+                          <span>{formatTime(msg.timestamp)}</span>
+                          <button
+                            onClick={() => copyToClipboard(msg.text, index)}
+                            className="flex items-center gap-1 hover:text-slate-700 transition-colors p-1 rounded"
+                            title="Copy response"
+                          >
+                            {copiedIndex === index ? (
+                              <>
+                                <FiCheck className="w-3.5 h-3.5 text-emerald-600" />
+                                <span className="text-emerald-600">Copied</span>
+                              </>
+                            ) : (
+                              <>
+                                <FiCopy className="w-3.5 h-3.5" />
+                                <span>Copy</span>
+                              </>
+                            )}
+                          </button>
                         </div>
                       )}
                     </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
 
-            {/* Typing Indicator */}
+            {/* Typing shimmer effect */}
             {isTyping && (
-              <div className="flex justify-start animate-fadeIn">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center">
-                    <FiCpu className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="bg-white border border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
-                    <div className="flex space-x-1">
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "0ms" }}
-                      />
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "150ms" }}
-                      />
-                      <div
-                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                        style={{ animationDelay: "300ms" }}
-                      />
-                    </div>
-                  </div>
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                  <Bot className="w-4 h-4" />
+                </div>
+                <div className="bg-white border border-slate-200/80 rounded-2xl rounded-tl-xs p-3.5 shadow-xs flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-2 h-2 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <span className="w-2 h-2 rounded-full bg-purple-600 animate-bounce" style={{ animationDelay: "300ms" }} />
+                  <span className="text-xs text-slate-400 font-medium ml-1">Consulting knowledge base...</span>
                 </div>
               </div>
             )}
@@ -655,101 +732,92 @@ export default function ChatbotUI() {
           </div>
         </div>
 
-        {/* INPUT AREA */}
-        <div className="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 p-4 shadow-lg">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex gap-3 items-end">
-              <div className="flex-1 relative">
-                <textarea
-                  ref={inputRef}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      sendMessage();
-                    }
-                  }}
-                  rows="1"
-                  className="w-full border border-gray-200 rounded-xl pl-4 pr-12 py-3.5
-                           focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500
-                           hover:border-gray-300 transition-colors resize-none max-h-32
-                           placeholder:text-gray-400"
-                  placeholder={
-                    namespaceLocked
-                      ? `Ask about ${selectedNamespace}...`
-                      : "Ask anything to get started..."
+        {/* ================= FLOATING INPUT BAR ================= */}
+        <footer className="p-3 md:p-4 bg-white/80 backdrop-blur-md border-t border-slate-200/70 z-20">
+          <div className="max-w-3xl mx-auto">
+            <div
+              className={`
+                flex items-center gap-2 bg-white rounded-2xl border px-3.5 py-2.5 shadow-md transition-all
+                ${
+                  showNamespaceSelector
+                    ? "border-amber-300 ring-2 ring-amber-100"
+                    : "border-slate-200/90 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100"
+                }
+              `}
+            >
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
                   }
-                  disabled={isLoading || showNamespaceSelector}
-                  style={{ overflow: "auto", maxHeight: "120px" }}
-                  onInput={(e) => {
-                    e.target.style.height = "auto";
-                    e.target.style.height =
-                      Math.min(e.target.scrollHeight, 120) + "px";
-                  }}
-                />
-                {isLoading && (
-                  <div className="absolute right-3 bottom-3">
-                    <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-                  </div>
-                )}
-              </div>
+                }}
+                rows={1}
+                disabled={isLoading || showNamespaceSelector}
+                placeholder={
+                  showNamespaceSelector
+                    ? "Please select a department above..."
+                    : namespaceLocked
+                    ? `Ask anything about ${selectedNamespace.toUpperCase()}...`
+                    : "Ask about admissions, fee structures, notices, or degree programs..."
+                }
+                className="flex-1 bg-transparent border-none outline-none resize-none text-sm text-slate-800 placeholder-slate-400 max-h-28 custom-scrollbar"
+                style={{ height: "24px" }}
+                onInput={(e) => {
+                  e.target.style.height = "auto";
+                  e.target.style.height = `${Math.min(e.target.scrollHeight, 120)}px`;
+                }}
+              />
+
               <button
-                onClick={sendMessage}
+                onClick={() => sendMessage()}
                 disabled={isLoading || !input.trim() || showNamespaceSelector}
                 className={`
-                  px-6 py-3.5 rounded-xl font-medium flex items-center justify-center space-x-2
-                  transition-all duration-200 min-w-[100px]
-                  ${!input.trim() || isLoading || showNamespaceSelector
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-md hover:shadow-lg transform hover:scale-[1.02]"
+                  p-2.5 rounded-xl text-white transition-all duration-200 flex items-center justify-center
+                  ${
+                    !input.trim() || isLoading || showNamespaceSelector
+                      ? "bg-slate-200 text-slate-400 cursor-not-allowed"
+                      : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-md shadow-blue-500/25 active:scale-95"
                   }
                 `}
+                title="Send message"
               >
                 {isLoading ? (
-                  <span>Sending...</span>
+                  <div className="w-4 h-4 border-2 border-white/60 border-t-white rounded-full animate-spin" />
                 ) : (
-                  <>
-                    <FiSend className="w-4 h-4" />
-                    <span className="hidden sm:inline">Send</span>
-                  </>
+                  <FiSend className="w-4 h-4" />
                 )}
               </button>
             </div>
 
-            {/* Input Footer */}
-            <div className="flex justify-between items-center mt-2 px-1">
-              <p className="text-xs text-gray-400">
-                {showNamespaceSelector
-                  ? "Select a namespace above to continue"
-                  : "Press Enter to send, Shift + Enter for new line"}
-              </p>
-              {selectedNamespace && (
-                <p className="text-xs text-gray-400">
-                  Context:{" "}
-                  <span className="font-medium text-blue-600 capitalize">
-                    {selectedNamespace}
-                  </span>
-                </p>
-              )}
+            {/* Input Disclaimer & Hint */}
+            <div className="flex items-center justify-between text-[11px] text-slate-400 mt-2 px-1">
+              <span>Press <kbd className="px-1 py-0.5 bg-slate-100 border rounded text-slate-600">Enter</kbd> to send</span>
+              <span className="flex items-center gap-1">
+                <FiInfo className="w-3 h-3 text-slate-400" />
+                Grounded in official UET Mardan data
+              </span>
             </div>
           </div>
-        </div>
+        </footer>
       </main>
 
       <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 5px;
         }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out forwards;
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 9999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #94a3b8;
         }
       `}</style>
     </div>

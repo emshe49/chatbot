@@ -759,3 +759,95 @@ Exception: Connection.init: Connection closed while reading from the driver
 2026-07-12 07:00:43,866 [INFO] New item found: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
 2026-07-12 07:00:44,363 [INFO] FINISHED in 15.2s
 2026-07-12 07:00:51,422 [INFO] Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-10-10 01:08:17,994 [INFO] ==========================================
+2026-10-10 01:08:18,267 [INFO] 🚀 UET MARDAN LIVE SCRAPER STARTED
+2026-10-10 01:08:18,283 [INFO] ==========================================
+2026-10-10 01:08:18,299 [INFO] Scanning UET Mardan homepage for active notifications...
+2026-10-10 01:08:19,666 [INFO] Homepage scan found 7 events and 11 news links.
+2026-10-10 01:08:19,679 [INFO] Scanning UET Mardan events archives (up to 2 pages)...
+2026-10-10 01:08:21,064 [INFO] HTTP 500 fetching https://www.uetmardan.edu.pk/uetm/News/events_archive/1
+2026-10-10 01:08:21,078 [INFO] Archive scan for events found 0 items.
+2026-10-10 01:08:21,092 [INFO] Scanning UET Mardan news archives (up to 2 pages)...
+2026-10-10 01:08:23,498 [INFO] Archive scan for news found 24 items.
+2026-10-10 01:08:23,523 [INFO] Scraping new events notice: Inauguration of the National Outreach Program for Faculty at UET Mardan
+2026-10-10 01:08:28,242 [INFO] Scraping new events notice: Awareness Seminar on Anti-Drug measures in Collaboration with the Anti-Narcotics Force (ANF), the Higher Education Regulatory Authority (HERA), and the Anti-Counter Violence and Extremism Department
+2026-10-10 01:08:29,411 [INFO] Scraping new events notice: Unlocking the Power of Cloud: A Hands-On Workshop
+2026-10-10 01:08:30,724 [INFO] Scraping new events notice: Seminar on Research Paper Writing from FYP Thesis Held at UET Mardan
+2026-10-10 01:08:31,843 [INFO] Scraping new events notice: Seminar on Professional Development & Career Counselling
+2026-10-10 01:08:32,898 [INFO] Scraping new events notice: UET Mardan Holds Solidarity Event for kashmir
+2026-10-10 01:08:33,952 [INFO] Scraping new events notice: UET Mardan Student Wining 3rd position at Pakistan Engineering Council Capstone Expo-2024
+2026-10-10 01:08:34,970 [INFO] Saved 23 events items (7 newly scraped).
+2026-10-10 01:08:34,991 [INFO] Scraping new news notice: 📅 Computer Science Self-Sustain Merit List Click here to Download Computer Science Self-Sustain Merit List for Vacant Seats
+2026-10-10 01:08:36,006 [INFO] Scraping new news notice: Merit Lists for Admissions in BS Computer Science (Vacant Self-Sustain Seats)
+2026-10-10 01:08:37,637 [INFO] Scraping new news notice: Advertisement No 15/2026
+2026-10-10 01:08:38,702 [INFO] Scraping new news notice: Advertisement No 14/2026
+2026-10-10 01:08:39,831 [INFO] Scraping new news notice: Quantification of Candidates Applied for the Post of ERP Assistant on Fixed Pay Basis, UET Mardan
+2026-10-10 01:08:41,010 [INFO] Scraping new news notice: PhD. Merit List for Admission in Post Graduate Programs (Intake Fall 2026 Semester)
+2026-10-10 01:08:48,396 [INFO] Scraping new news notice: MS/M.Sc Merits List for Admission in Post Graduate Programs (Intake Fall 2026 Semester)
+2026-10-10 01:08:49,478 [INFO] Scraping new news notice: Scruitny of the Candidates for the Position of ERP Assistant on Fixed Pay Basis in UET Mardan
+2026-10-10 01:08:50,661 [INFO] Scraping new news notice: GAT-General Phase 2 Test Result (MS/MSc and PhD) - Fall 2026 - UET Mardan
+2026-10-10 01:08:51,724 [INFO] Scraping new news notice: GAT-General Test Result (MS/MSc and PhD) - Fall 2026 - UET Mardan
+2026-10-10 01:08:52,942 [INFO] Scraping new news notice: Advertisment No 13/2026
+2026-10-10 01:08:54,198 [INFO] Saved 27 news items (11 newly scraped).
+2026-10-10 01:08:54,231 [INFO] ✅ Scraping completed in 36.2s. New items added: 18
+2026-10-10 01:08:55,204 [INFO] Listing indexes
+2026-10-10 01:08:56,343 [INFO] HTTP Request: GET https://api.pinecone.io/indexes "HTTP/1.1 200 OK"
+2026-10-10 01:08:56,351 [INFO] Describing index 'uet-mardan-chatbot'
+2026-10-10 01:08:56,862 [INFO] HTTP Request: GET https://api.pinecone.io/indexes/uet-mardan-chatbot "HTTP/1.1 200 OK"
+2026-10-10 01:08:57,453 [INFO] Index client created for host https://uet-mardan-chatbot-swrg2w9.svc.aped-4627-b74a.pinecone.io
+2026-10-10 01:08:57,453 [INFO] Fetching 100 vectors
+2026-10-10 01:09:01,730 [INFO] HTTP Request: GET https://uet-mardan-chatbot-swrg2w9.svc.aped-4627-b74a.pinecone.io/vectors/fetch?ids=events-102_chunk_1&ids=events-100_chunk_1&ids=news-5772_chunk_1&ids=news-5770_chunk_1&ids=news-5769_chunk_1&ids=news-5768_chunk_1&ids=news-5766_chunk_1&ids=news-5764_chunk_1&ids=news-5776_chunk_1&ids=news-5778_chunk_1&ids=news-5777_chunk_1&ids=news-1_chunk_1&ids=news-2_chunk_1&ids=news-3_chunk_1&ids=news-4_chunk_1&ids=news-5_chunk_1&ids=news-5780_chunk_1&ids=events-103_chunk_1&ids=events-1_chunk_1&ids=events-2_chunk_1&ids=events-3_chunk_1&ids=events-4_chunk_1&ids=events-5_chunk_1&ids=events-6_chunk_1&ids=news-5821_chunk_1&ids=news-5821_chunk_1&ids=news-5818_chunk_1&ids=news-5817_chunk_1&ids=news-5816_chunk_1&ids=news-5815_chunk_1&ids=news-5814_chunk_1&ids=news-5813_chunk_1&ids=events-7_chunk_1&ids=events-8_chunk_1&ids=events-9_chunk_1&ids=events-10_chunk_1&ids=events-11_chunk_1&ids=events-12_chunk_1&ids=events-13_chunk_1&ids=events-14_chunk_1&ids=events-15_chunk_1&ids=events-16_chunk_1&ids=events-17_chunk_1&ids=events-18_chunk_1&ids=events-19_chunk_1&ids=events-20_chunk_1&ids=events-21_chunk_1&ids=events-23_chunk_1&ids=events-24_chunk_1&ids=events-24_chunk_2&ids=events-25_chunk_1&ids=events-26_chunk_1&ids=events-27_chunk_1&ids=events-28_chunk_1&ids=events-29_chunk_1&ids=events-30_chunk_1&ids=events-31_chunk_1&ids=events-32_chunk_1&ids=events-33_chunk_1&ids=events-34_chunk_1&ids=events-35_chunk_1&ids=events-36_chunk_1&ids=events-37_chunk_1&ids=events-38_chunk_1&ids=events-39_chunk_1&ids=events-40_chunk_1&ids=events-41_chunk_1&ids=events-42_chunk_1&ids=events-42_chunk_2&ids=events-43_chunk_1&ids=events-44_chunk_1&ids=events-45_chunk_1&ids=events-46_chunk_1&ids=events-46_chunk_2&ids=events-47_chunk_1&ids=events-48_chunk_1&ids=events-49_chunk_1&ids=events-50_chunk_1&ids=events-51_chunk_1&ids=events-52_chunk_1&ids=events-53_chunk_1&ids=events-53_chunk_2&ids=events-55_chunk_1&ids=events-56_chunk_1&ids=events-57_chunk_1&ids=events-58_chunk_1&ids=events-59_chunk_1&ids=events-60_chunk_1&ids=events-61_chunk_1&ids=events-62_chunk_1&ids=events-63_chunk_1&ids=events-64_chunk_1&ids=events-65_chunk_1&ids=events-66_chunk_1&ids=events-66_chunk_2&ids=events-67_chunk_1&ids=events-68_chunk_1&ids=events-69_chunk_1&ids=events-70_chunk_1&ids=events-71_chunk_1&namespace=Notification "HTTP/1.1 200 OK"
+2026-10-10 01:09:04,750 [INFO] Fetching 34 vectors
+2026-10-10 01:09:05,025 [INFO] HTTP Request: GET https://uet-mardan-chatbot-swrg2w9.svc.aped-4627-b74a.pinecone.io/vectors/fetch?ids=events-72_chunk_1&ids=events-73_chunk_1&ids=events-74_chunk_1&ids=events-75_chunk_1&ids=events-76_chunk_1&ids=events-77_chunk_1&ids=events-78_chunk_1&ids=events-79_chunk_1&ids=events-80_chunk_1&ids=events-81_chunk_1&ids=events-81_chunk_2&ids=events-82_chunk_1&ids=events-83_chunk_1&ids=events-84_chunk_1&ids=events-85_chunk_1&ids=events-86_chunk_1&ids=events-87_chunk_1&ids=events-88_chunk_1&ids=events-88_chunk_2&ids=events-89_chunk_1&ids=events-90_chunk_1&ids=events-90_chunk_2&ids=events-90_chunk_3&ids=events-91_chunk_1&ids=events-92_chunk_1&ids=events-93_chunk_1&ids=events-94_chunk_1&ids=events-95_chunk_1&ids=events-96_chunk_1&ids=news-6_chunk_1&ids=news-7_chunk_1&ids=news-8_chunk_1&ids=news-9_chunk_1&ids=news-10_chunk_1&namespace=Notification "HTTP/1.1 200 OK"
+2026-10-10 01:09:06,204 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-10 01:09:06,206 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-10 01:09:06,263 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-10 01:09:06,607 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-10 01:09:06,660 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-10 01:09:06,663 [INFO] Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-10-10 01:09:06,927 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-10 01:09:06,978 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-10 01:09:07,243 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-10 01:09:07,294 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%2244af2e3b0fa3a0b6239e48422972bf755f28fde0%22 "HTTP/1.1 200 OK"
+2026-10-10 01:09:07,556 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-10 01:09:07,621 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-10 01:09:07,976 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-10 01:09:08,030 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%2259d594003bf59880a884c574bf88ef7555bb0202%22 "HTTP/1.1 200 OK"
+2026-10-10 01:09:08,380 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-10 01:09:08,706 [INFO] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-10 01:09:08,995 [INFO] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-10 01:09:09,770 [INFO] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-10 01:09:10,059 [INFO] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-10 01:09:10,330 [INFO] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-10 01:09:10,999 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-10 01:09:11,125 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+2026-10-10 01:09:11,392 [INFO] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-10 01:09:11,737 [INFO] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-10 01:09:16,236 [INFO] Upserting 50 vectors into namespace 'Notification'
+2026-10-10 01:09:23,200 [INFO] Upserting 50 vectors into namespace 'Notification'
+2026-10-10 01:09:25,681 [INFO] Upserting 23 vectors into namespace 'Notification'
+2026-10-10 01:14:43,942 [INFO] ==========================================
+2026-10-10 01:14:44,022 [INFO] 🚀 UET MARDAN LIVE SCRAPER STARTED
+2026-10-10 01:14:44,050 [INFO] ==========================================
+2026-10-10 01:14:44,059 [INFO] Scanning UET Mardan homepage for active notifications...
+2026-10-10 01:14:45,755 [INFO] Homepage scan found 7 events and 11 news links.
+2026-10-10 01:14:45,781 [INFO] Scanning UET Mardan events archives (up to 2 pages)...
+2026-10-10 01:14:47,317 [INFO] HTTP 500 fetching https://www.uetmardan.edu.pk/uetm/News/events_archive/1
+2026-10-10 01:14:47,348 [INFO] Archive scan for events found 0 items.
+2026-10-10 01:14:47,364 [INFO] Scanning UET Mardan news archives (up to 2 pages)...
+2026-10-10 01:14:50,294 [INFO] Archive scan for news found 24 items.
+2026-10-10 01:14:50,311 [INFO] Saved 23 events items (0 newly scraped).
+2026-10-10 01:14:50,347 [INFO] Scraping new news notice: Advertisement No 15/2026
+2026-10-10 01:14:53,671 [INFO] Scraping new news notice: Advertisement No 14/2026
+2026-10-10 01:14:55,158 [INFO] Scraping new news notice: Advertisment No 13/2026
+2026-10-10 01:14:57,333 [INFO] Saved 27 news items (3 newly scraped).
+2026-10-10 01:14:57,369 [INFO] ✅ Scraping completed in 13.4s. New items added: 3
+2026-10-10 01:14:58,757 [INFO] Listing indexes
+2026-10-10 01:15:00,143 [INFO] HTTP Request: GET https://api.pinecone.io/indexes "HTTP/1.1 200 OK"
+2026-10-10 01:15:00,268 [INFO] Describing index 'uet-mardan-chatbot'
+2026-10-10 01:15:00,562 [INFO] HTTP Request: GET https://api.pinecone.io/indexes/uet-mardan-chatbot "HTTP/1.1 200 OK"
+2026-10-10 01:15:01,447 [INFO] Index client created for host https://uet-mardan-chatbot-swrg2w9.svc.aped-4627-b74a.pinecone.io
+2026-10-10 01:15:01,448 [INFO] Fetching 100 vectors
+2026-10-10 01:15:03,274 [INFO] HTTP Request: GET https://uet-mardan-chatbot-swrg2w9.svc.aped-4627-b74a.pinecone.io/vectors/fetch?ids=events-102_chunk_1&ids=events-100_chunk_1&ids=news-5772_chunk_1&ids=news-5770_chunk_1&ids=news-5769_chunk_1&ids=news-5768_chunk_1&ids=news-5766_chunk_1&ids=news-5764_chunk_1&ids=news-5776_chunk_1&ids=news-5778_chunk_1&ids=news-5777_chunk_1&ids=news-1_chunk_1&ids=news-2_chunk_1&ids=news-3_chunk_1&ids=news-4_chunk_1&ids=news-5_chunk_1&ids=news-5780_chunk_1&ids=events-103_chunk_1&ids=events-1_chunk_1&ids=events-2_chunk_1&ids=events-3_chunk_1&ids=events-4_chunk_1&ids=events-5_chunk_1&ids=events-6_chunk_1&ids=news-5821_chunk_1&ids=news-5821_chunk_1&ids=news-5818_chunk_1&ids=news-5817_chunk_1&ids=news-5816_chunk_1&ids=news-5815_chunk_1&ids=news-5814_chunk_1&ids=news-5813_chunk_1&ids=events-7_chunk_1&ids=events-8_chunk_1&ids=events-9_chunk_1&ids=events-10_chunk_1&ids=events-11_chunk_1&ids=events-12_chunk_1&ids=events-13_chunk_1&ids=events-14_chunk_1&ids=events-15_chunk_1&ids=events-16_chunk_1&ids=events-17_chunk_1&ids=events-18_chunk_1&ids=events-19_chunk_1&ids=events-20_chunk_1&ids=events-21_chunk_1&ids=events-23_chunk_1&ids=events-24_chunk_1&ids=events-24_chunk_2&ids=events-25_chunk_1&ids=events-26_chunk_1&ids=events-27_chunk_1&ids=events-28_chunk_1&ids=events-29_chunk_1&ids=events-30_chunk_1&ids=events-31_chunk_1&ids=events-32_chunk_1&ids=events-33_chunk_1&ids=events-34_chunk_1&ids=events-35_chunk_1&ids=events-36_chunk_1&ids=events-37_chunk_1&ids=events-38_chunk_1&ids=events-39_chunk_1&ids=events-40_chunk_1&ids=events-41_chunk_1&ids=events-42_chunk_1&ids=events-42_chunk_2&ids=events-43_chunk_1&ids=events-44_chunk_1&ids=events-45_chunk_1&ids=events-46_chunk_1&ids=events-46_chunk_2&ids=events-47_chunk_1&ids=events-48_chunk_1&ids=events-49_chunk_1&ids=events-50_chunk_1&ids=events-51_chunk_1&ids=events-52_chunk_1&ids=events-53_chunk_1&ids=events-53_chunk_2&ids=events-55_chunk_1&ids=events-56_chunk_1&ids=events-57_chunk_1&ids=events-58_chunk_1&ids=events-59_chunk_1&ids=events-60_chunk_1&ids=events-61_chunk_1&ids=events-62_chunk_1&ids=events-63_chunk_1&ids=events-64_chunk_1&ids=events-65_chunk_1&ids=events-66_chunk_1&ids=events-66_chunk_2&ids=events-67_chunk_1&ids=events-68_chunk_1&ids=events-69_chunk_1&ids=events-70_chunk_1&ids=events-71_chunk_1&namespace=Notification "HTTP/1.1 200 OK"
+2026-10-10 01:15:04,331 [INFO] Fetching 34 vectors
+2026-10-10 01:15:04,707 [INFO] HTTP Request: GET https://uet-mardan-chatbot-swrg2w9.svc.aped-4627-b74a.pinecone.io/vectors/fetch?ids=events-72_chunk_1&ids=events-73_chunk_1&ids=events-74_chunk_1&ids=events-75_chunk_1&ids=events-76_chunk_1&ids=events-77_chunk_1&ids=events-78_chunk_1&ids=events-79_chunk_1&ids=events-80_chunk_1&ids=events-81_chunk_1&ids=events-81_chunk_2&ids=events-82_chunk_1&ids=events-83_chunk_1&ids=events-84_chunk_1&ids=events-85_chunk_1&ids=events-86_chunk_1&ids=events-87_chunk_1&ids=events-88_chunk_1&ids=events-88_chunk_2&ids=events-89_chunk_1&ids=events-90_chunk_1&ids=events-90_chunk_2&ids=events-90_chunk_3&ids=events-91_chunk_1&ids=events-92_chunk_1&ids=events-93_chunk_1&ids=events-94_chunk_1&ids=events-95_chunk_1&ids=events-96_chunk_1&ids=news-6_chunk_1&ids=news-7_chunk_1&ids=news-8_chunk_1&ids=news-9_chunk_1&ids=news-10_chunk_1&namespace=Notification "HTTP/1.1 200 OK"
