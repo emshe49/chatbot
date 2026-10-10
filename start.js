@@ -127,7 +127,8 @@ process.on('exit', () => shutdown(0));
 // Spawn all active services
 activeServices.forEach((service) => {
   try {
-    const child = spawn(service.command, service.args, {
+    const fullCmd = [service.command, ...service.args].join(' ');
+    const child = spawn(fullCmd, {
       cwd: service.cwd,
       shell: true,
       env: { ...process.env, FORCE_COLOR: '1' }
