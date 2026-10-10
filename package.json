@@ -1,0 +1,23 @@
+{
+  "name": "fyp-chatbot-project",
+  "version": "1.0.0",
+  "description": "FYP Chatbot Full System - Backend, Frontend & Python Chatbot",
+  "main": "start.js",
+  "scripts": {
+    "start": "node start.js",
+    "dev": "node start.js",
+    "start:all": "node start.js --all",
+    "start:mern": "node start.js --mern",
+    "backend": "npm --prefix FYP-Dashboard-Mern/Backend start",
+    "frontend": "npm --prefix FYP-Dashboard-Mern/Frontend start",
+    "chatbot": "node start.js --chatbot"
+  },
+  "keywords": [
+    "fyp",
+    "chatbot",
+    "mern",
+    "fastapi"
+  ],
+  "author": "",
+  "license": "ISC"
+}

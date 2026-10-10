@@ -1,0 +1,12 @@
+{
+  "name": "fyp-dashboard-mern",
+  "version": "1.0.0",
+  "description": "FYP Dashboard MERN stack (Backend & Frontend)",
+  "scripts": {
+    "start": "node ../start.js --mern",
+    "dev": "node ../start.js --mern",
+    "backend": "npm --prefix Backend start",
+    "frontend": "npm --prefix Frontend start"
+  },
+  "license": "ISC"
+}

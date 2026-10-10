@@ -164,6 +164,122 @@ def detect_limit(text: str):
 
 
 # ==================================================
+# REFERENCE EXTRACTION HELPERS
+# ==================================================
+def extract_chunk_references(match: dict) -> dict:
+    """
+    Extracts document name, clean section, clause/rule numbers, and table references
+    from a match's metadata and chunk text.
+    """
+    meta = match.get("metadata", {})
+    text = meta.get("text", "")
+    source_file = meta.get("source_file", "University Document")
+
+    # 1. Section extraction
+    raw_section = meta.get("section", "")
+    section = None
+    if raw_section and raw_section != "general":
+        if len(raw_section) <= 45:
+            section = raw_section.strip()
+        else:
+            if "hostel" in raw_section.lower():
+                section = "Hostels"
+            elif "admission" in raw_section.lower():
+                section = "Admissions"
+            elif "fee" in raw_section.lower() or "scholarship" in raw_section.lower():
+                section = "Fees & Scholarships"
+            elif "discipline" in raw_section.lower():
+                section = "Discipline"
+            else:
+                m = re.match(r"^(\d+(?:\.\d+)*\.?\s*[A-Za-z\s]{3,35})", raw_section)
+                if m:
+                    s = m.group(1).strip()
+                    s = re.sub(r"\s+(?:in|of|for|to|with|and|the|a|an|Tab|Table)\s*$", "", s, flags=re.I)
+                    section = s
+                else:
+                    words = raw_section[:35].split()
+                    section = " ".join(words[:-1]) if len(words) > 1 else raw_section[:30]
+
+    # 2. Table references extraction
+    tables = set()
+    if meta.get("table_number"):
+        tables.add(f"Table {meta['table_number']}")
+    if meta.get("table_name"):
+        tables.add(str(meta["table_name"]))
+
+    found_tables = re.findall(
+        r"Table\s*\(?(\d+)\)?(?:\s*[:\-–]\s*([A-Za-z\s]{3,30}))?",
+        text,
+        re.IGNORECASE,
+    )
+    for num, name in found_tables:
+        if name and len(name.strip()) > 2 and len(name.strip()) <= 30:
+            tables.add(f"Table {num} ({name.strip()})")
+        else:
+            tables.add(f"Table {num}")
+
+    # 3. Clauses / Rules (only validated rules)
+    rules = set()
+    found_clauses = re.findall(
+        r"\b(?:Clause|Rule|Section)\s*(\d+(?:\.\d+)*)\b",
+        text,
+        re.IGNORECASE,
+    )
+    for c in found_clauses:
+        rules.add(c)
+    leading_nums = re.findall(r"^\s*(\d+\.\d+)\.?\s+[A-Z]", text, re.MULTILINE)
+    for c in leading_nums:
+        rules.add(c)
+
+    return {
+        "source_file": source_file,
+        "section": section,
+        "tables": sorted(list(tables)),
+        "rules": sorted(
+            list(rules),
+            key=lambda x: [int(p) if p.isdigit() else 0 for p in x.split(".")],
+        ),
+    }
+
+
+def format_sources_output(doc_refs: dict) -> str:
+    """
+    Renders formatted Sources section with sections, clauses, and table numbers.
+    """
+    if not doc_refs:
+        return ""
+
+    lines = ["\n\nSources:"]
+    for src, details in sorted(doc_refs.items()):
+        sub_items = []
+        if details.get("sections"):
+            seen = set()
+            clean_secs = []
+            for s in sorted(list(details["sections"])):
+                s_lower = s.lower().strip()
+                if s_lower not in seen:
+                    seen.add(s_lower)
+                    clean_secs.append(s.title() if s.isupper() else s)
+            if clean_secs:
+                sub_items.append(f"Section: {', '.join(clean_secs[:2])}")
+        if details.get("rules"):
+            rules = sorted(list(details["rules"]))[:4]
+            sub_items.append(f"Rules/Clauses: {', '.join(rules)}")
+        if details.get("tables"):
+            tbls = sorted(list(details["tables"]))[:3]
+            sub_items.append(f"Tables: {', '.join(tbls)}")
+
+        if sub_items:
+            lines.append(f"- **{src}**")
+            for sub in sub_items:
+                lines.append(f"  - {sub}")
+        else:
+            lines.append(f"- **{src}**")
+
+    return "\n".join(lines) + "\n"
+
+
+# ==================================================
 # RAG BUILDER
 # ==================================================
 def _build_rag_prompt(question: str, namespace: str, chat_history: list = None) -> dict:
@@ -243,16 +359,41 @@ def _build_rag_prompt(question: str, namespace: str, chat_history: list = None) 
     # --------------------------------------------------
     # NORMAL RAG FLOW
     # --------------------------------------------------
-    chunks, sources = [], set()
+    chunks = []
+    doc_refs = {}
 
-    for match in reranked_matches:
+    for match in reranked_matches[:7]:
         meta = match.get("metadata", {})
-        if "text" in meta:
-            chunks.append(meta["text"])
-        if "source_file" in meta:
-            sources.add(meta["source_file"])
+        text = meta.get("text")
+        if not text:
+            continue
 
-    context = "\n\n".join(chunks[:7])
+        ref = extract_chunk_references(match)
+        src = ref["source_file"]
+
+        if src not in doc_refs:
+            doc_refs[src] = {"sections": set(), "tables": set(), "rules": set()}
+
+        if ref["section"]:
+            doc_refs[src]["sections"].add(ref["section"])
+        for t in ref["tables"]:
+            doc_refs[src]["tables"].add(t)
+        for r in ref["rules"]:
+            doc_refs[src]["rules"].add(r)
+
+        # Build chunk tag for LLM
+        tag_parts = [f"Source: {src}"]
+        if ref["section"]:
+            tag_parts.append(f"Section: {ref['section']}")
+        if ref["rules"]:
+            tag_parts.append(f"Rules/Clauses: {', '.join(ref['rules'][:3])}")
+        if ref["tables"]:
+            tag_parts.append(f"Tables: {', '.join(ref['tables'])}")
+
+        header = f"[Context Document: {' | '.join(tag_parts)}]"
+        chunks.append(f"{header}\n{text}")
+
+    context = "\n\n".join(chunks)
 
     if memory_context:
         full_prompt = (
@@ -268,7 +409,9 @@ def _build_rag_prompt(question: str, namespace: str, chat_history: list = None) 
         "early_return": None,
         "full_prompt": full_prompt,
         "chunks": chunks,
-        "sources": sources,
+        "sources": set(doc_refs.keys()),
+        "doc_refs": doc_refs,
+        "formatted_sources": format_sources_output(doc_refs),
     }
 
 
@@ -286,7 +429,9 @@ def ask_question(question, namespace, user_type, chat_history=None, return_conte
 
     answer = generate_answer(rag["full_prompt"])
 
-    if rag["sources"]:
+    if rag.get("formatted_sources"):
+        answer += rag["formatted_sources"]
+    elif rag.get("sources"):
         answer += "\n\nSources:\n"
         for src in sorted(rag["sources"]):
             answer += f"- {src}\n"
@@ -311,7 +456,9 @@ def ask_question_stream(question, namespace, user_type, chat_history=None):
     for token in generate_answer(rag["full_prompt"], stream=True):
         yield token
 
-    if rag.get("sources"):
+    if rag.get("formatted_sources"):
+        yield rag["formatted_sources"]
+    elif rag.get("sources"):
         yield "\n\nSources:\n"
         for src in sorted(rag["sources"]):
             yield f"- {src}\n"

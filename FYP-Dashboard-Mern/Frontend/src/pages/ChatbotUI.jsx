@@ -20,6 +20,10 @@ import {
   FiShield,
   FiCornerDownLeft,
   FiInfo,
+  FiMic,
+  FiMicOff,
+  FiVolume2,
+  FiVolumeX,
 } from "react-icons/fi";
 import { Sparkles, Bot, GraduationCap, Users } from "lucide-react";
 import { useToast } from "../context/ToastContext";
@@ -41,6 +45,11 @@ export default function ChatbotUI() {
   const [pendingQuestion, setPendingQuestion] = useState("");
   const [showNamespaceSelector, setShowNamespaceSelector] = useState(false);
   const [namespaceLocked, setNamespaceLocked] = useState(false);
+
+  // Voice Speech Recognition & Synthesis states
+  const [isListening, setIsListening] = useState(false);
+  const [speakingIndex, setSpeakingIndex] = useState(null);
+  const recognitionRef = useRef(null);
 
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -100,6 +109,118 @@ export default function ChatbotUI() {
     navigator.clipboard.writeText(text);
     setCopiedIndex(index);
     setTimeout(() => setCopiedIndex(null), 2000);
+  };
+
+  /* ================= SPEECH RECOGNITION (VOICE INPUT) ================= */
+  useEffect(() => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = true;
+      recognition.lang = "en-US";
+
+      recognition.onstart = () => {
+        setIsListening(true);
+      };
+
+      recognition.onresult = (event) => {
+        let transcript = "";
+        for (let i = 0; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript;
+        }
+        setInput(transcript);
+      };
+
+      recognition.onerror = (event) => {
+        console.error("Speech recognition error:", event.error);
+        setIsListening(false);
+        if (event.error === "not-allowed") {
+          toast?.error?.("Microphone permission denied. Please allow microphone access in your browser.") ||
+            alert("Microphone permission denied. Please allow microphone access in your browser.");
+        } else if (event.error === "network") {
+          toast?.error?.("Network issue with speech recognition.") ||
+            alert("Network issue with speech recognition.");
+        }
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current = recognition;
+    }
+
+    return () => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.abort();
+        } catch (e) {}
+      }
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, [toast]);
+
+  const toggleVoiceInput = () => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert(
+        "Voice input is not supported in this browser. Please use Google Chrome, Microsoft Edge, or Safari."
+      );
+      return;
+    }
+
+    if (isListening) {
+      try {
+        recognitionRef.current?.stop();
+      } catch (e) {}
+      setIsListening(false);
+    } else {
+      try {
+        recognitionRef.current?.start();
+      } catch (err) {
+        console.error("Error starting speech recognition:", err);
+      }
+    }
+  };
+
+  /* ================= TEXT TO SPEECH (READ ALOUD) ================= */
+  const toggleSpeakAnswer = (text, index) => {
+    if (!("speechSynthesis" in window)) {
+      alert("Text-to-speech is not supported in this browser.");
+      return;
+    }
+
+    if (speakingIndex === index) {
+      window.speechSynthesis.cancel();
+      setSpeakingIndex(null);
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+
+    // Strip markdown formatting, links, and tables before speaking
+    const cleanText = text
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+      .replace(/[#*`_~|]/g, " ")
+      .replace(/-{3,}/g, "")
+      .replace(/\n+/g, ". ");
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+
+    utterance.onend = () => setSpeakingIndex(null);
+    utterance.onerror = () => setSpeakingIndex(null);
+
+    setSpeakingIndex(index);
+    window.speechSynthesis.speak(utterance);
   };
 
   /* ================= SEND ACTUAL MESSAGE (streaming) ================= */
@@ -684,27 +805,48 @@ export default function ChatbotUI() {
                         </div>
                       )}
 
-                      {/* Bottom action row (Copy button & timestamp) */}
+                      {/* Bottom action row (Copy & Speak buttons & timestamp) */}
                       {!isUser && !msg.isNamespaceSelector && (
                         <div className="flex items-center justify-between pt-2 mt-2 border-t border-slate-100 text-[11px] text-slate-400">
                           <span>{formatTime(msg.timestamp)}</span>
-                          <button
-                            onClick={() => copyToClipboard(msg.text, index)}
-                            className="flex items-center gap-1 hover:text-slate-700 transition-colors p-1 rounded"
-                            title="Copy response"
-                          >
-                            {copiedIndex === index ? (
-                              <>
-                                <FiCheck className="w-3.5 h-3.5 text-emerald-600" />
-                                <span className="text-emerald-600">Copied</span>
-                              </>
-                            ) : (
-                              <>
-                                <FiCopy className="w-3.5 h-3.5" />
-                                <span>Copy</span>
-                              </>
-                            )}
-                          </button>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => toggleSpeakAnswer(msg.text, index)}
+                              className={`flex items-center gap-1 hover:text-slate-700 transition-colors p-1 rounded ${
+                                speakingIndex === index ? "text-blue-600 font-medium" : ""
+                              }`}
+                              title={speakingIndex === index ? "Stop reading aloud" : "Listen to answer"}
+                            >
+                              {speakingIndex === index ? (
+                                <>
+                                  <FiVolumeX className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
+                                  <span className="text-blue-600">Stop</span>
+                                </>
+                              ) : (
+                                <>
+                                  <FiVolume2 className="w-3.5 h-3.5" />
+                                  <span>Listen</span>
+                                </>
+                              )}
+                            </button>
+                            <button
+                              onClick={() => copyToClipboard(msg.text, index)}
+                              className="flex items-center gap-1 hover:text-slate-700 transition-colors p-1 rounded"
+                              title="Copy response"
+                            >
+                              {copiedIndex === index ? (
+                                <>
+                                  <FiCheck className="w-3.5 h-3.5 text-emerald-600" />
+                                  <span className="text-emerald-600">Copied</span>
+                                </>
+                              ) : (
+                                <>
+                                  <FiCopy className="w-3.5 h-3.5" />
+                                  <span>Copy</span>
+                                </>
+                              )}
+                            </button>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -735,11 +877,33 @@ export default function ChatbotUI() {
         {/* ================= FLOATING INPUT BAR ================= */}
         <footer className="p-3 md:p-4 bg-white/80 backdrop-blur-md border-t border-slate-200/70 z-20">
           <div className="max-w-3xl mx-auto">
+            {/* Listening Indicator Bar */}
+            {isListening && (
+              <div className="flex items-center justify-between mb-2.5 px-3.5 py-2 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200/80 rounded-xl text-rose-600 text-xs shadow-xs animate-pulse">
+                <div className="flex items-center gap-2 font-medium">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-rose-500"></span>
+                  </span>
+                  <span>Listening... Speak your question into your microphone</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={toggleVoiceInput}
+                  className="text-[11px] font-semibold text-rose-600 hover:text-rose-800 underline underline-offset-2 ml-2"
+                >
+                  Done Speaking
+                </button>
+              </div>
+            )}
+
             <div
               className={`
                 flex items-center gap-2 bg-white rounded-2xl border px-3.5 py-2.5 shadow-md transition-all
                 ${
-                  showNamespaceSelector
+                  isListening
+                    ? "border-rose-400 ring-4 ring-rose-100"
+                    : showNamespaceSelector
                     ? "border-amber-300 ring-2 ring-amber-100"
                     : "border-slate-200/90 focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-100"
                 }
@@ -758,7 +922,9 @@ export default function ChatbotUI() {
                 rows={1}
                 disabled={isLoading || showNamespaceSelector}
                 placeholder={
-                  showNamespaceSelector
+                  isListening
+                    ? "Listening to your voice..."
+                    : showNamespaceSelector
                     ? "Please select a department above..."
                     : namespaceLocked
                     ? `Ask anything about ${selectedNamespace.toUpperCase()}...`
@@ -772,6 +938,38 @@ export default function ChatbotUI() {
                 }}
               />
 
+              {/* Voice Input Microphone Button */}
+              <button
+                type="button"
+                onClick={toggleVoiceInput}
+                disabled={isLoading || showNamespaceSelector}
+                className={`
+                  p-2.5 rounded-xl transition-all duration-200 flex items-center justify-center relative
+                  ${
+                    isListening
+                      ? "bg-rose-500 text-white shadow-md shadow-rose-500/30 ring-4 ring-rose-100 scale-105"
+                      : "text-slate-500 hover:text-blue-600 hover:bg-blue-50 bg-slate-100"
+                  }
+                  ${
+                    isLoading || showNamespaceSelector
+                      ? "opacity-50 cursor-not-allowed"
+                      : "cursor-pointer active:scale-95"
+                  }
+                `}
+                title={
+                  isListening
+                    ? "Listening... Click to stop"
+                    : "Ask question with voice (Microphone)"
+                }
+              >
+                {isListening ? (
+                  <FiMicOff className="w-4 h-4 animate-pulse" />
+                ) : (
+                  <FiMic className="w-4 h-4" />
+                )}
+              </button>
+
+              {/* Send Button */}
               <button
                 onClick={() => sendMessage()}
                 disabled={isLoading || !input.trim() || showNamespaceSelector}
@@ -795,7 +993,9 @@ export default function ChatbotUI() {
 
             {/* Input Disclaimer & Hint */}
             <div className="flex items-center justify-between text-[11px] text-slate-400 mt-2 px-1">
-              <span>Press <kbd className="px-1 py-0.5 bg-slate-100 border rounded text-slate-600">Enter</kbd> to send</span>
+              <span>
+                Press <kbd className="px-1 py-0.5 bg-slate-100 border rounded text-slate-600">Enter</kbd> to send or use <kbd className="px-1 py-0.5 bg-slate-100 border rounded text-slate-600">Mic</kbd> for voice
+              </span>
               <span className="flex items-center gap-1">
                 <FiInfo className="w-3 h-3 text-slate-400" />
                 Grounded in official UET Mardan data

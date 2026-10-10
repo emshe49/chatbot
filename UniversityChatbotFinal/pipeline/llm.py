@@ -31,30 +31,16 @@ MODEL_NAME = "openai/gpt-oss-120b"
 # ==================================================
 def clean_output(text: str) -> str:
     """
-    Converts messy markdown/table output into clean plain text.
+    Cleans up redundant formatting and HTML tags while preserving clean Markdown.
     """
-
-    # Remove bold / italic markdown
-    text = re.sub(r"\*\*(.*?)\*\*", r"\1", text)
-    text = re.sub(r"\*(.*?)\*", r"\1", text)
-
-    # Remove markdown table pipes
-    text = re.sub(r"\|", " ", text)
-
-    # Remove table separator lines
-    text = re.sub(r"-{3,}", "", text)
-
     # Convert HTML breaks
     text = re.sub(r"<br\s*/?>", "\n", text)
 
-    # Remove bullet symbols
-    text = re.sub(r"^\s*[-•]\s*", "", text, flags=re.MULTILINE)
+    # Remove any stray HTML tags
+    text = re.sub(r"<[^>]+>", "", text)
 
-    # Normalize spacing
-    text = re.sub(r"[ \t]+", " ", text)
-
-    # Normalize newlines
-    text = re.sub(r"\n{3,}", "\n\n", text)
+    # Normalize excessive newlines
+    text = re.sub(r"\n{4,}", "\n\n\n", text)
 
     return text.strip()
 
@@ -138,8 +124,8 @@ You are an intelligent university chatbot for UET Mardan.
 
 INSTRUCTIONS:
 
-1. Use conversation history when available
-2. Use retrieved university context as primary source
+1. Use conversation history when available.
+2. Use retrieved university context as your primary source of truth.
 3. Resolve follow-up references:
    - the above
    - these
@@ -147,34 +133,18 @@ INSTRUCTIONS:
    - previous one
    - what about that
 
-4. Summarize and rewrite information naturally
-5. Do NOT copy raw prospectus formatting
-6. If answer is unavailable, reply exactly:
+4. CITATION & REFERENCE RULES:
+   - When providing specific fee structures, quotas, rules, eligibility criteria, or procedures that mention table numbers (e.g., Table 2: Hostel Charges, Table 3: Hostel Security Deposit), section titles (e.g., Section: Hostels, Section: Admission Criteria), or clause/rule numbers (e.g., Clause 2.1, Rule 2.2) in the context, EXPLICITLY cite and reference them in your answer.
+   - Example: "According to Section: Hostels (Table 2 - Hostel Charges)..."
+   - Example: "As specified in Clause 2.2 and Table 3 (Hostel Security)..."
+
+5. FORMATTING:
+   - Provide clear, professional, well-structured responses.
+   - You may use clean Markdown (such as bold headers, bullet lists, or tables when presenting complex fee structures).
+   - Do NOT output raw HTML tags.
+
+6. If the requested information is not in the context, reply exactly:
 The requested information is not available.
-
-STRICT OUTPUT RULES:
-
-1. Plain text only
-2. No markdown
-3. No tables
-4. No pipes |
-5. No HTML
-6. No bullet symbols
-7. Use short readable paragraphs
-8. Use numbered lists only when needed
-
-GOOD FORMAT EXAMPLE:
-
-Need-Based Scholarship Criteria
-
-1. Student must be admitted on open merit.
-2. Minimum CGPA should be 2.5.
-3. No failing grades are allowed.
-
-Bad formats:
-| table |
-markdown
-HTML tags
 """
 
     if stream:
